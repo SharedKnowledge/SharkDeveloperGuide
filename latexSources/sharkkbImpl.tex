@@ -1,0 +1,26 @@
+\chapter{SharkKB implementations}
+\label{sec:sharkkbimplementations}
+This will be a very brief chapter. Implementations of {\tt SharkKB} are to be discussed. There are two implementations in version 2.0. The {\tt InMemoSharkKB} keeps any data in memory and offers no persistence. Knowledge base methods are already discussed. There are no special in memory methods.
+
+{\tt FSSharkKB} derives from the its in-memory-parent and keeps all data in files system. In most cases, data a taken from files and kept in memory. Yet, there are no more or less sophisticated swapping techniques implemented. That's up to future extensions.
+
+Creating a file system based knowledge base is simple. Just name a folder and create it:
+
+\begin{verbatim}
+String folderName = "mySharkKB";
+SharkKB fsKB = new FSSharkKB(folderName);
+\end{verbatim}
+
+In this case, a folder named {\it mySharkKB} is created in the working directory if it does not exist yet. All data a stored in this folder and sub-folders. 
+
+We are not going to explain the folder and file structure for two reasons. Some, but not you dear reader, would come up with the insane idea and use those files directly to do some things {\it faster} or {\it better}. Please, never ever try to even think about such a stuff. Keep that folder and its content as terra incognita. Yes, the whole folder can be moved. It can even be zipped and sent e.g. with e-mail to others. But never ever change is without the framework.
+
+The second reason is simple: Maybe, we decide to change the folder structure. We had to rewrite a whole chapter. Who really likes those jobs? I don't.
+
+There are a single special methods in that class that should be explained:
+
+\begin{verbatim}
+String freshFileName = FSSharkKB.emptyFilename("proposedName");
+\end{verbatim}
+
+This methods checks if a folder with the {\it proposedName} already exists. {\it ProposedName} itself is returned if no such folder exists. If a folder exists, a number is added and the algorithm is performed again and again until a non-existing folder name was found. This method can be used to ensure that no other folder is accidentally overwritten by our new knowledge base.
