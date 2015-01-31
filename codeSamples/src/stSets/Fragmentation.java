@@ -59,6 +59,18 @@ public class Fragmentation {
         STSet fragment = txSource.fragment(anchor, fp);
         System.out.println("fragment:" + L.stSet2String(fragment));
     }
+    
+    private void printProps(Vector<String> allowedProps) {
+        for(int i = 0; i < allowedProps.size(); i++) {
+            System.out.print(allowedProps.elementAt(i));
+            if(i+1 < allowedProps.size()) {
+                System.out.print(", ");
+            } else {
+                System.out.println(".");
+            }
+        }
+
+    }
 
     public void snfragmentation() throws SharkKBException {
         SemanticNet snSource = InMemoSharkKB.createInMemoSemanticNet();
@@ -96,8 +108,8 @@ public class Fragmentation {
         
         FragmentationParameter fp = 
                 new FragmentationParameter(
-                        null, // follow those props
-                        allowedProps, // no forbidden props
+                        allowedProps, // follow those props
+                        null, // no forbidden props
                         2); // depth == 2
         
 //        FragmentationParameter fp = 
@@ -107,6 +119,8 @@ public class Fragmentation {
 //                        2); // depth == 2
         
         SemanticNet fragment = snSource.fragment(anchor, fp);
+        System.out.print("allowed props: "); 
+        this.printProps(allowedProps);
         System.out.println("after fragmentation:" + L.stSet2String(fragment));
         
         // contextualization
@@ -118,7 +132,21 @@ public class Fragmentation {
         allowedProps.add(cousinProp);
         // do contextualization
         fragment = snSource.contextualize(context, fp);
+        System.out.print("allowed props: "); 
+        this.printProps(allowedProps);
         System.out.println("after contextualization:" + L.stSet2String(fragment));
+        
+        Vector<String> forbiddenProps = new Vector();
+        forbiddenProps.add(motherProp);
+        fp = new FragmentationParameter(
+                        null, // follow those props
+                        forbiddenProps, // no forbidden props
+                        2); // depth == 2
+        fragment = snSource.fragment(anchor, fp);
+        System.out.print("forbidden props: "); 
+        this.printProps(forbiddenProps);
+        System.out.println("after fragmentation:" + L.stSet2String(fragment));
+
     }
     
     public void plainfragmentation() throws SharkKBException {

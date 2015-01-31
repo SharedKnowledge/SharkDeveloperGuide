@@ -3,7 +3,7 @@ package semanticTags;
 import net.sharkfw.knowledgeBase.SharkKBException;
 import net.sharkfw.knowledgeBase.SpatialSemanticTag;
 import net.sharkfw.knowledgeBase.geom.SharkGeometry;
-import net.sharkfw.knowledgeBase.geom.inmemory.InMemoGeometry;
+import net.sharkfw.knowledgeBase.geom.inmemory.InMemoSharkGeometry;
 import net.sharkfw.knowledgeBase.inmemory.InMemoSharkKB;
 import net.sharkfw.system.L;
 
@@ -14,7 +14,7 @@ import net.sharkfw.system.L;
 public class SpatialSemanticTags {
     public static void main(String args[]) throws SharkKBException {
         String wkt = "";
-        SharkGeometry geom = InMemoGeometry.createGeomByWKT(wkt);
+        SharkGeometry geom = InMemoSharkGeometry.createGeomByWKT(wkt);
         
         SpatialSemanticTag berlinHTW = 
                 InMemoSharkKB.createInMemoSpatialSemanticTag(geom);
