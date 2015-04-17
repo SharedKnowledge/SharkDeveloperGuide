@@ -24,7 +24,7 @@ tcp://shark.wonderland.net:7070 is a valid address. A peer can start a TCP serve
 
 \end{description}
 
-A Peer Semantic Tag simply adds an arbitrary number of (permanent or temporary) addresses to a Semantic Tag. For example a peer named Alice could described with the following PST: 
+A Peer Semantic Tag simply adds an arbitrary number of (permanent or temporary) addresses to a Semantic Tag. For example a peer named Alice could be described with the following PST: 
 
 \begin{description}
     \item[Name] Alice.
@@ -72,8 +72,8 @@ The length of a day is calculated. Each day has 24 hours with 60 minutes. Each m
 
 \section{Spatial Semantic Tags}
 Information or information request can be location based. We need means to
-describe locations. There is a quite simple data model called {\it simple feature model} which is supported by nearly any spatial data base. That
-models is based on simple geometric structure, namely points, lines and polygones even with wholes. Arbitrary geometries can be combined with a collection which is also a geometry.
+describe locations. There is a quite simple data model called {\it simple feature model} which is supported by nearly any spatial database. That
+model is based on simple geometric structure, namely points, lines and polygones even with wholes. Arbitrary geometries can be combined with a collection which is also a geometry.
 
 The {\it well known text (WKT)} defines a string format to define those geometries.
 
@@ -83,7 +83,7 @@ SST add a geometry to a semantic tag.
 Thus, a SST can be created with name, subject identifier and geometry.
 A geometry can be defined with a valid WKT string.
 
-Moreover, geoemtries can also be defined with absolut values.
+Moreover, geometries can also be defined with absolute values.
 The following code creates a point with GPS coordinates of a point in Berlin.
 Afterwards, a SST is created which has no semantics but a geometry.
 
@@ -102,7 +102,7 @@ Note, Shark only supports GPS coordinates! More specific, Shark only supports ge
 \subsection{Summary}
 In general, we strongly discourage usage of {\it any} tags. We can weaken that rule for time and spatial tags. Time semantic tags describe a period and 
 take their identity, their meaning exactly from that definition. 
-Spatial geometries have already their own meaning. They define an area on earth. That can be sufficient sometimes. Sometime, it might help to add more semantics. It depends on the applications. We come back to that point when we discuss interests.
+Spatial geometries have already their own meaning. They define an area on earth. That can be sufficient sometimes. Sometimes it might help to add more semantics. It depends on the applications. We come back to that point when we discuss interests.
 
 \subsection{Exercises}
 \begin{enumerate}
