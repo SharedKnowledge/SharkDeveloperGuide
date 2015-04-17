@@ -9,13 +9,13 @@ A peer is meant to be a piece of software that runs on some hardware.
 Each Shark peer has an {\it owner} which is either a person or a group of persons. A group is constituted by a number (greater than one) of persons and other groups. A group may solely consists of persons, but a group is allowed to contain both: Persons and other groups.
 
 {\it Owning} means that the person/group has full access rights to the software. 
-A peer derives its identity from its owner. A peer has only one owner, but a owner is allowed to own multiple peers. 
+A peer derives its identity from its owner. A peer has only one owner, but an owner is allowed to own multiple peers. 
 
 \item
 A peer contains data. Its owner has full access to this data. Shark offers no concepts to protect data from owners. Nevertheless, application developers can decide to encrypt data but this is out of scope of the framework itself.
 
 \item
-Peers can communicate with other peers. Shark has its own communication protocol (KEP) which will be explained briefly later. This protocol defines two messages types. It does not define what a peer has to do after receiving a message.
+Peers can communicate with other peers. Shark has its own communication protocol (KEP) which will be explained briefly later. This protocol defines two message types. It does not define what a peer has to do after receiving a message.
 
 \item
 Peers can communicate via arbitrary protocols. The Shark protocol KEP is stateless and message-oriented which has implications: Peers cannot assume that sent messages reach their recipients. Applications are free to implement hand-shake protocols on top of KEP, though.
@@ -51,7 +51,7 @@ At the first syntactical glance, both peers don't have anything in common. Sport
 
 Shark provides a semantic data model which helps to recognize that both peers have similar interest. This point will be explained later in more detail.
 
-Moreover, a peer can define with whom it is interested in communicating, what time and at which place. But most importantly a peer is able to define if s/he wants to sent or/and receive information to/from a particular peer.
+Moreover, a peer can define with whom it is interested in communicating, what time and at which place. But most importantly a peer is able to define if s/he wants to send or/and receive information to/from a particular peer.
 
     \item[Insert (knowledge)]
 Knowledge is constituted of information. Each information is put into a {\it context}. A context describes aspects of information, namely information topic, issuer, location and time. Peers can exchange such contextualized information at any time. Peers can received knowledge at any time. And they can do with it whatever they like.
@@ -67,7 +67,7 @@ This process is called {\it device discovery}. Once a device is discovered a con
 
 Meeting is more complicated in non-spontaneous infrastructures. A Shark peer can run on a device which has hardly the chance to discover new peers in its surrounding, e.g. on a desktop computer. This kind of peer will communicate with TCP or e-mail protocols. Those peers won't meet other peers by chance but they can get peer addresses, e.g. an e-mail address of another peer. In non-spontaneous networks we say that two peers have met if at least one is able to create a communication channel to another peer. This is the case if it got its address and can send a message with the matching protocol.
 
-Apparently, it is very useful to mix both variants. It is often useful to provide a peer an address in a fixed infrastructure, e.g. an e-mail address even if it runs on a mobile (smart) phone. The spontaneous and local network is more secure and faster than e.g. a-mail. But communication can be continued of both peers have left communication range of their local network and switch to Internet communication.
+Apparently, it is very useful to mix both variants. It is often useful to provide a peer an address in a fixed infrastructure, e.g. an e-mail address even if it runs on a mobile (smart) phone. The spontaneous and local network is more secure and faster than e.g. e-mail. But communication can be continued of both peers have left communication range of their local network and switch to Internet communication.
 
 Let's have a look at some scenarios.
 
