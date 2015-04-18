@@ -1,5 +1,5 @@
 \chapter{Semantic Tags}
-The term {\it tag} became quite popular in Web 2.0. The {\it interactive} Web allows users adding comments and/or describing web content. Wikpipedia seems to be the most famous applications in that field. 
+The term {\it tag} became quite popular in Web 2.0. The {\it interactive} Web allows users adding comments and/or describing web content. Wikipedia seems to be the most famous application in that field. 
 
 Brief descriptions are called {\it tags} which are -- in IT terms -- {\it strings}.
 
@@ -35,7 +35,7 @@ Bob is interested in {\it sports}. Both words are no homonyms, synonyms, transla
 
 We talk about semantics but haven't used the words yet. Semantic describes the meaning of words. What does {\it bank} mean under given circumstances? The meaning of words can be found out in two different ways: Ask the author or make a text analysis. 
 
-First approach is most secure but often not feasible. As to be seen, the second approach is more error-prone and requires sophisticated algorithms, some dictionaries and a computer. In general, it is feasible. Computer based algorithms will fail by analyzing a single word like {\it bank}. How should a compute squeeze out author intention when writing those four letters. That's hardly feasible.
+First approach is most secure but often not feasible. As to be seen, the second approach is more error-prone and requires sophisticated algorithms, some dictionaries and a computer. In general, it is feasible. Computer based algorithms will fail by analyzing a single word like {\it bank}. How should a computer squeeze out author intention when writing those four letters. That's hardly feasible.
 
 Shark doesn't care how to get semantics but how to represent it. There are no algorithms in Shark which helps to figure out the meaning of words or even lengthy documents. Shark deals only with representation of semantics. How can we store known semantics? How can we work with it? And how can we exchange semantics and documents between autonomous peers? That is what Shark is all about.
 
@@ -183,7 +183,7 @@ offers a simple way to print out e.g. semantic tags.
 Removing the only SI from  {\tt bankTag1} fails. The error message explains the
 reason. Run the program and watch the results.
 
-SIs can be added. Be careful! All SI of a tag must mean the same.
+SIs can be added. Be careful! All SIs of a tag must mean the same.
 
 \begin{verbatim}
 bankTag1.addSI(bankEOSI);
@@ -198,7 +198,7 @@ A semantic tag with no subject identifier has no explicit semantics. This tag mi
 Such situations should be avoided. But we have to face reality. Sometimes there
 is no SI at hand and we have to deal with it. In Shark we say: Each tag with no subject identifier means {\it anything} - it is an {\it any tag}.
 
-{\it Any} is joker tag in Shark. {\it Any} is identical to each other tag.
+{\it Any} is joker tag in Shark. {\it Any} is identical to any other tag.
 
 \subsection{Algorithms}
 We have already seen some methods on semantic tags. Have a closer look into the java doc which is available e.g. on the sharksystem.net web 
