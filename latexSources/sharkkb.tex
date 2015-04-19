@@ -565,7 +565,7 @@ It is assumed that knowledge from another peer is assimilated. Thus, we have to 
 \item Direction is changed. OUT and INPUT becomes IN. NOTHING remains unchanged. Direction IN wouldn't be accepted anyway because it wouldn't match to an receiving interest.
 \end{itemize}
 
-There are two parameter left to be explained. Let's start with the easy one:
+There are two parameters left to be explained. Let's start with the easy one:
 {\tt deleteAssimilated} is a boolean value. Set to {\tt true} each context point that was assimilated is removed from knowledge. Applications which use a single knowledge base should always use the {\tt true} setting. That avoids re-assimilation of same knowledge by different knowledge ports. It makes no sense to add knowledge twice. Once added to the local knowledge base it can be removed. Following knowledge port has less to do. Applications with more than one knowledge base will have probably another strategy.
 
 They {\tt learnTags} parameter is a boolean value. A peer learns vocabulary from received knowledge if set {\tt true}. The local vocabulary will remain unchanged otherwise. How could a peer learn vocabulary?
