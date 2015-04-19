@@ -522,7 +522,7 @@ Knowledge is send to the recipient. A {\tt ChatKP} must be in place. It takes ea
 \label{fig:chatClassDiagram}
 \end{figure}
 
-Chat implementation is made up by four classes and one interface, see figure \ref{fig:chatClassDiagram}. {\tt ChatKPListener} is an interface that declares a single method: {\tt messageReceived}. This method is called by a {\tt ChatKP} whenever a new message arrived the peer. It has two parameter. First parameter is the actual message. Second parameter contains the sender. Later in this section we will have a look into {\tt ChatKP} implementation.
+Chat implementation is made up by four classes and one interface, see figure \ref{fig:chatClassDiagram}. {\tt ChatKPListener} is an interface that declares a single method: {\tt messageReceived}. This method is called by a {\tt ChatKP} whenever a new message arrived the peer. It has two parameters. First parameter is the actual message. Second parameter contains the sender. Later in this section we will have a look into {\tt ChatKP} implementation.
 
 We have implemented an abstract class {\tt ChatPeerTCP}. It is abstract because is does {\it not} implement {\tt messageReceived}. Implementations are made in Alice and Bob. We start with Alice:
 
