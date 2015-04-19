@@ -11,9 +11,9 @@ A {\it Peer Semantic Tag (PST)} represents a peer. We have already learned that 
 Shark only assumes that a peer can communicate with other peers. Thus, a peer can have addresses which can be e-mail addresses, TCP addresses etc. Shark supports e-mail and TCP in version 2.0. Each address can be represented with a string. Each address type starts with a prefix:
 
 \begin{description}
-    \item[mail://] indicates that a e-mail address follows. mail://alice@wonderland.net is a valid address in Shark. Note: The prefix {\bf is not} {\tt mailto} which is used in HTML. 
+    \item[mail://] indicates that a e-mail address follows. mail://alice@wonderland.net is a valid address in Shark. Note: The prefix {\bf is not} {\tt mailto} which is used in HTML.
 
-A mail address can have an additional parameter: {\it maxLength}. It describes the maximal message length in kilo bytes that fits into the mailbox. 
+A mail address can have an additional parameter: {\it maxLength}. It describes the maximal message length in kilo bytes that fits into the mailbox.
 
 mail://alice@wonderland.net?maxlLength=2048 is a valid address. It describes the fact that must not exceed the length of 2 MByte\footnote{It can also describe that users don't want to receive message larger than the defined length. The given parameter won't be compared to the information given by the mail provider.}.
 
@@ -24,7 +24,7 @@ tcp://shark.wonderland.net:7070 is a valid address. A peer can start a TCP serve
 
 \end{description}
 
-A Peer Semantic Tag simply adds an arbitrary number of (permanent or temporary) addresses to a Semantic Tag. For example a peer named Alice could described with the following PST: 
+A Peer Semantic Tag simply adds an arbitrary number of (permanent or temporary) addresses to a Semantic Tag. For example a peer named Alice could described with the following PST:
 
 \begin{description}
     \item[Name] Alice.
@@ -43,8 +43,8 @@ String aliceTCP = "tcp://shark.wonderland.net:7070";
 String[] aliceSIs = new String[] {aliceSI};
 String[] aliceAddr = new String[] {aliceMail, aliceTCP};
 
-PeerSemanticTag alice = 
-  InMemoSharkKB.createInMemoPeerSemanticTag("Alice", 
+PeerSemanticTag alice =
+  InMemoSharkKB.createInMemoPeerSemanticTag("Alice",
     aliceSIs, aliceAddr);
 
 System.out.println(L.semanticTag2String(alice));
@@ -60,9 +60,9 @@ The following code creates a TST that covers a whole day beginning {\it now}.
 \begin{verbatim}
 long now = System.currentTimeMillis();
 
-long dayLength = 24 * 60 * 60 * 1000; 
+long dayLength = 24 * 60 * 60 * 1000;
 
-TimeSemanticTag time = 
+TimeSemanticTag time =
     InMemoSharkKB.createInMemoTimeSemanticTag(now, dayLength);
 
 System.out.println(L.semanticTag2String(time));
@@ -73,11 +73,11 @@ The length of a day is calculated. Each day has 24 hours with 60 minutes. Each m
 \section{Spatial Semantic Tags}
 Information or information request can be location based. We need means to
 describe locations. There is a quite simple data model called {\it simple feature model} which is supported by nearly any spatial data base. That
-models is based on simple geometric structure, namely points, lines and polygones even with wholes. Arbitrary geometries can be combined with a collection which is also a geometry.
+models is based on simple geometric structure, namely points, lines and polygons even with wholes. Arbitrary geometries can be combined with a collection which is also a geometry.
 
 The {\it well known text (WKT)} defines a string format to define those geometries.
 
-Shark supports WKT. Of course, Shark has to integrate spatial information into it general model. Spatial Semantic Tags (SST) are created for that reason. 
+Shark supports WKT. Of course, Shark has to integrate spatial information into it general model. Spatial Semantic Tags (SST) are created for that reason.
 SST add a geometry to a semantic tag.
 
 Thus, a SST can be created with name, subject identifier and geometry.
@@ -88,10 +88,10 @@ The following code creates a point with GPS coordinates of a point in Berlin.
 Afterwards, a SST is created which has no semantics but a geometry.
 
 \begin{verbatim}
-Geometry geom = 
+Geometry geom =
   InMemoGeometry.createPoint(52.45747, 13.52669);
 
-SpatialSemanticTag berlinHTW = 
+SpatialSemanticTag berlinHTW =
   InMemoSharkKB.createInMemoSpatialSemanticTag(geom);
 
 System.out.println(L.semanticTag2String(berlinHTW));
@@ -100,16 +100,16 @@ System.out.println(L.semanticTag2String(berlinHTW));
 Note, Shark only supports GPS coordinates! More specific, Shark only supports geometries with EPSG code 4326. Shark is - not yet - a spatial database. But it links spatial data with semantics.
 
 \subsection{Summary}
-In general, we strongly discourage usage of {\it any} tags. We can weaken that rule for time and spatial tags. Time semantic tags describe a period and 
-take their identity, their meaning exactly from that definition. 
+In general, we strongly discourage usage of {\it any} tags. We can weaken that rule for time and spatial tags. Time semantic tags describe a period and
+take their identity, their meaning exactly from that definition.
 Spatial geometries have already their own meaning. They define an area on earth. That can be sufficient sometimes. Sometime, it might help to add more semantics. It depends on the applications. We come back to that point when we discuss interests.
 
 \subsection{Exercises}
 \begin{enumerate}
-\item 
+\item
 Describe yourself as peer semantic tag.
-\item 
+\item
 Define your lifespan as time semantic tag.
-\item 
+\item
 Define your place of birth as spatial semantic tag.
 \end{enumerate}
