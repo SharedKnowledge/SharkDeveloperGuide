@@ -36,7 +36,7 @@ Tags can be merged into a set. Sets can be merged into other sets.
 Moving a tag from one set two another could be implemented as two step algorithm: First, merge the tag to the target set. Second, remove it from source set. This algorithm behave as moving only if the target set does not contain an {\it identical} tag. This becomes - hopefully - clear when having a look on the merging algorithm:
 
 First, it is looked for
-an identical tag inside the set. If there is one, both tags are merged. A copy of the tag is added otherwise. Note: Properties are copied as well, regardless if their are defined to be transferable or not.
+an identical tag inside the set. If there is one, both tags are merged. A copy of the tag is added otherwise. Note: Properties are copied as well, regardless if they are defined to be transferable or not.
 
 Merging tag sets works similar. All tags from the source set are iterated and merged into the target set.
 
