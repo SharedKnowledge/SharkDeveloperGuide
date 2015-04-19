@@ -114,7 +114,7 @@ Only fourteen lines of code are required to write a P2P program that does an use
 
 Let's investigate the program. Most of it was explained in previous chapter. We create a {\tt SharkEngine} which makes up the peer. We have created a {\tt SharkKB} which holds semantic tags and information.
 
-A semantic tag is created that describes {\it Shark}. A peer semantic tag is created describing Alice herself. In this example, she has just a single address: A TCP port at local host. That's not advisable for real applications but its a good decision testing.
+A semantic tag is created that describes {\it Shark}. A peer semantic tag is created describing Alice herself. In this example, she has just a single address: A TCP port at local host. That's not advisable for real applications but it's a good decision testing.
 
 {\tt ContextCoordindates} are created. They use {\it Alice} as originator and peer and {\it Shark} as topic. Information shall be sent which is defined by 
 {\tt DIRECTION\_OUT}. A context point is created and a brief information added.
@@ -522,7 +522,7 @@ Knowledge is send to the recipient. A {\tt ChatKP} must be in place. It takes ea
 \label{fig:chatClassDiagram}
 \end{figure}
 
-Chat implementation is made up by four classes and one interface, see figure \ref{fig:chatClassDiagram}. {\tt ChatKPListener} is an interface that declares a single method: {\tt messageReceived}. This method is called by a {\tt ChatKP} whenever a new message arrived the peer. It has two parameter. First parameter is the actual message. Second parameter contains the sender. Later in this section we will have a look into {\tt ChatKP} implementation.
+Chat implementation is made up by four classes and one interface, see figure \ref{fig:chatClassDiagram}. {\tt ChatKPListener} is an interface that declares a single method: {\tt messageReceived}. This method is called by a {\tt ChatKP} whenever a new message arrived the peer. It has two parameters. First parameter is the actual message. Second parameter contains the sender. Later in this section we will have a look into {\tt ChatKP} implementation.
 
 We have implemented an abstract class {\tt ChatPeerTCP}. It is abstract because is does {\it not} implement {\tt messageReceived}. Implementations are made in Alice and Bob. We start with Alice:
 
@@ -822,7 +822,7 @@ Now, we have seen how {\tt ChatKP} handles incoming chat messages. Now we have t
 }
 \end{verbatim}
 
-This message takes two parameter: message and recipient. This message has two wrap the message into a knowledge object. First, context coordinates are required. Seven parameter are required.
+This message takes two parameters: message and recipient. This message has two wrap the message into a knowledge object. First, context coordinates are required. Seven parameter are required.
 
 The topic is created with {\tt getChatTopic}. See also the method implementation. A semantic tag is created labeled with ''ChatTopic''. It semantics is defined by {\tt CHAT\_TOPIC\_SI}, see above. 
 

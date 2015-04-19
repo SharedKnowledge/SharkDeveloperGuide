@@ -13,7 +13,7 @@ Each semantic tag describes a thing that either physically exists or is object o
 
 Each semantic tag can be seen as a word. The dictionary is made up by the referenced URI by the subject identifiers. Each peer can define its own semantic tags which means, that every peer can create its own vocabulary.
 
-Now we can define: {\bf A Shark vocabulary is the sum of all semantic tags defined by a peer.} {\tt SharkVocabulary} gets access to parts of each Shark vocabolary:
+Now we can define: {\bf A Shark vocabulary is the sum of all semantic tags defined by a peer.} {\tt SharkVocabulary} gets access to parts of each Shark vocabulary:
 
 \begin{description}
 \item[owner] A peer semantic tag describing the owner of that vocabulary.
@@ -33,7 +33,7 @@ PeerSTSet getPeerSTSet();
 TimeSTSet getTimeSTSet();
 \end{verbatim} 
 
-Those are plain tag sets. Shark also supports taxonomies and semantic nets. Each class that implememts {\tt SharkVocabulary} is forced to offer at least topics and peers as taxonomy and semantic nets. Therefore, the interfacce offers additional methods to get other views on topic and peer set:
+Those are plain tag sets. Shark also supports taxonomies and semantic nets. Each class that implements {\tt SharkVocabulary} is forced to offer at least topics and peers as taxonomy and semantic nets. Therefore, the interface offers additional methods to get other views on topic and peer set:
 
 \begin{verbatim}
 PeerTaxonomy getPeersAsTaxonomy();
@@ -114,7 +114,7 @@ We can now summarise. Each {\tt SharkKB} contains a vocabulary, knowledge and ha
 
 \section{Knowledge Extraction}
 \label{sec:extraction}
-There are two quite complex operations provided by a knowledge base: Extraction and assimilation. We are going to explain both of them and start with extraction. Developers don't have do deal with these operation when using pre-defined knowledge ports. Nevertheless, the basic idea of extraction and assimilation should be understood.
+There are two quite complex operations provided by a knowledge base: Extraction and assimilation. We are going to explain both of them and start with extraction. Developers don't have to deal with these operation when using pre-defined knowledge ports. Nevertheless, the basic idea of extraction and assimilation should be understood.
 
 Let's start with an example. (This and the following examples can be found on sharksystem.net under tutorials as {\tt ExtractionAssimilationExamples}.
 
@@ -407,7 +407,7 @@ Alice becomes part of a newly created {\tt group}. The following code is similar
 {\tt false, true} leads to knowledge that is filled with all context points. Try other true/false combinations and watch the results.
 
 \subsection{Cutting peer hierarchies}
-Lets review our last example. We have created a context point that has a group in its peer dimension. That's usual and advisable. It is convenient and efficient to create groups and add peers. Afterwords, we can add information and use those groups to define what peers (plural!) shall get these information.
+Let's review our last example. We have created a context point that has a group in its peer dimension. That's usual and advisable. It is convenient and efficient to create groups and add peers. Afterwords, we can add information and use those groups to define what peers (plural!) shall get these information.
 
 Shark is a P2P system. Each peer can define its own group. Such a group can be compared with recipient list in e-mail. In a number of case, users don't want to reveal neither existence nor members of such a list, though.
 
@@ -565,7 +565,7 @@ It is assumed that knowledge from another peer is assimilated. Thus, we have to 
 \item Direction is changed. OUT and INPUT becomes IN. NOTHING remains unchanged. Direction IN wouldn't be accepted anyway because it wouldn't match to an receiving interest.
 \end{itemize}
 
-There are two parameter left to be explained. Let's start with the easy one: 
+There are two parameters left to be explained. Let's start with the easy one: 
 {\tt deleteAssimilated} is a boolean value. Set to {\tt true} each context point that was assimilated is removed from knowledge. Applications which use a single knowledge base should always use the {\tt true} setting. That avoids re-assimilation of same knowledge by different knowledge ports. It makes no sense to add knowledge twice. Once added to the local knowledge base it can be removed. Following knowledge port has less to do. Applications with more than one knowledge base will have probably another strategy.
 
 They {\tt learnTags} parameter is a boolean value. A peer learns vocabulary from received knowledge if set {\tt true}. The local vocabulary will remain unchanged otherwise. How could a peer learn vocabulary?
