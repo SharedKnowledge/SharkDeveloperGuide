@@ -18,7 +18,7 @@ assimilator of knowledge. The interest can be seen as a filter for both exportin
 
 We are going to finish the introduction and start with the program. Actually, we are going two write two programs: One plays the role of Alice, the other the role of Bob. Source code can also be found on sharksystem.net under tutorials.
 
-The following section will contain the whole Alice program, next one will contain Bob. Relevant algorithms are explained afterwords.
+The following section will contain the whole Alice program, next one will contain Bob. Relevant algorithms are explained afterwards.
 
 \subsection{Alice and Bob basic scenario}
 \subsubsection{Alice}
@@ -78,7 +78,7 @@ public class Alice implements KPListener {
 
     // Now the peer is passively waiting for incoming traffic
 
-    // Create description if Bob
+    // Create description of Bob
     PeerSemanticTag bob = aliceKB.createPeerSemanticTag(
                             "Bob", 
                             "http://www.sharksystem.net/bob.html", 
@@ -110,7 +110,7 @@ public class Alice implements KPListener {
 } //end Alice class
 \end{verbatim}
 
-Only fourteen lines of code are required to write a P2P program that does an useful job. Additional line are required to implement the {\tt KPListener}. We had some larger programs when we explained knowledge extraction etc. That is because {\tt StandardKP} perfoms the whole communication between knowledge base and external peer(s). 
+Only fourteen lines of code are required to write a P2P program that does an useful job. Additional lines are required to implement the {\tt KPListener}. We had some larger programs when we explained knowledge extraction etc. That is because {\tt StandardKP} perfoms the whole communication between knowledge base and external peer(s). 
 
 Let's investigate the program. Most of it was explained in previous chapter. We create a {\tt SharkEngine} which makes up the peer. We have created a {\tt SharkKB} which holds semantic tags and information.
 
@@ -119,7 +119,7 @@ A semantic tag is created that describes {\it Shark}. A peer semantic tag is cre
 {\tt ContextCoordindates} are created. They use {\it Alice} as originator and peer and {\it Shark} as topic. Information shall be sent which is defined by 
 {\tt DIRECTION\_OUT}. A context point is created and a brief information added.
 
-Neither of those lines are new. New is creation of the {\tt StandardKP} with three parameters: the {\tt SharkEngine}, the {\tt interest} (we re-use our coordinates) and the {\tt SharkKB}. That's it. Out {\tt StandardKP} has anything it needs: It knows what is Alice willing to talk about and it knows where to store and/or retrieve information.
+Neither of those lines are new. New is creation of the {\tt StandardKP} with three parameters: the {\tt SharkEngine}, the {\tt interest} (we re-use our coordinates) and the {\tt SharkKB}. That's it. Our {\tt StandardKP} has everything it needs: It knows what Alice is willing to talk about and it knows where to store and/or retrieve information.
 
 A KPListener is set up afterwords - just to illustrate it's usage.
 
@@ -181,7 +181,7 @@ bobSE.startTCP(7071);
 \end{verbatim}
 
 \subsection{doExpose}
-Both program are quite short. That's because the application logic is hidden in the {\tt StandardKP}. We are going to describe the algorithm that is performed when an interest is received.
+Both programs are quite short. That's because the application logic is hidden in the {\tt StandardKP}. We are going to describe the algorithm that is performed when an interest is received.
 
 Figure \ref{fig:StandardKP_expose} summarizes the standard expose process.
 Yes, that figure is confusing. We will go through it step by step.
@@ -232,7 +232,7 @@ The result of this calculation is called {\it effective interest}. It can be mor
 Otherwise and in most cases, the {\it effective interest} is larger than or identical to the {\it local interest}.
 
 \paragraph{Mutual Interest}
-The received interest is taken and contextualized with the effective interest. Fragmentation parameter (fp) manages this process. This step less complicated than the others. A remote peer, e.g. Bob, showed its interest in communication. The local peer, Alice in this case, calculated her up-to-date interest.
+The received interest is taken and contextualized with the effective interest. Fragmentation parameter (fp) manages this process. This step is less complicated than the others. A remote peer, e.g. Bob, showed its interest in communication. The local peer, Alice in this case, calculated her up-to-date interest.
 
 Now she uses Bobs interest as source and finds out what of her interests fits to him. If Bob would be interested in {\it Sports} and she is interested in {\it Shark} no match can be found. If Bob is interested in {\it anything} {\it Shark} would be found as mutual interest, see discussion about revealing several lines above.
 
@@ -256,7 +256,7 @@ A peer defines its interest by a {\it local interest}.
 It also defines two fragmentation parameter, {\tt backgroundFP} and {\tt fp}. 
 
 \item 
-{\tt backgroundFP} is used to create an up-to-date interest. It take the local interest as anchor and finds related (and maybe new) tags in the vocabulary. This {\it effective interest} can change when peers vocabulary changes.
+{\tt backgroundFP} is used to create an up-to-date interest. It takes the local interest as anchor and finds related (and maybe new) tags in the vocabulary. This {\it effective interest} can change when peers vocabulary changes.
 
 \item
 Effective interest is used to calculate the {\it mutual interest} which comprises things that both peers share. Fragmenation parameter {\tt fp} is used here. It can be assumed that an empty mutual interest is quite common in most applications.
@@ -277,20 +277,20 @@ public StandardKP(SharkEngine se, SharkCS interest,
 \end{verbatim}
 
 \begin{description}
-\item[se] is an engine object. Each peer requires a single SharkEngine. It keep all components together. An engine must exist before creating a knowledge port. Engine are discussed in next chapter.
+\item[se] is an engine object. Each peer requires a single SharkEngine. It keeps all components together. An engine must exist before creating a knowledge port. Engine are discussed in next chapter.
 
 \item[interest] is an interest that defines constraints under which the peer is willing to exchange knowledge. 
 
-\item[backgroundFP] is a fragmentation parameter. It is used to update the local interest. In general, it can enhance he rules under which a communication can take place. It takes out the up-to-date background from the knowledge base for this task. 
+\item[backgroundFP] is a fragmentation parameter. It is used to update the local interest. In general, it can enhance the rules under which a communication can take place. It takes out the up-to-date background from the knowledge base for this task. 
 
 As broader it is defined as more learn peers from each other. Learning and spying are opposite sides of the same coin, though. Developers have to consider how to use it: Being more open, more verbose or more safe, less open. If you have doubts, use {\tt KnowledgePort.getZeroFP()}. It return is parameter that is set to depth 0 and doesn't allow following any relation to other tags in any dimension.
 
-\item[fp] is also a fragmentation parameter. It is used to find mutual interests. Thus, is the parameter which configures how much information get into the knowledge base. {\tt BackgroundFP} configures how much knowledge leaves the peer.
+\item[fp] is also a fragmentation parameter. It is used to find mutual interests. Thus, is the parameter which configures how much information gets into the knowledge base. {\tt BackgroundFP} configures how much knowledge leaves the peer.
 
-\item[kb] is the a knowledge of this peer. {\tt StandardKP} can changes vocabulary and information depending on parameters and received messages.
+\item[kb] is the knowledge of this peer. {\tt StandardKP} can change vocabulary and information depending on parameters and received messages.
 \end{description}
 
-There are two other constructor. Here is one:
+There are two other constructors. Here is one:
 \begin{verbatim}
 public StandardKP(SharkEngine se, SharkCS interest, 
   FragmentationParameter[] fp, SharkKB kb) {
@@ -298,7 +298,7 @@ public StandardKP(SharkEngine se, SharkCS interest,
 }
 \end{verbatim}
 
-This constructor can be used of both fragmentation parameters are identical, e.g. {\tt zeroFPs}.
+This constructor can be used if both fragmentation parameters are identical, e.g. {\tt zeroFPs}.
 
 Last one comes here.
 \begin{verbatim}
@@ -308,7 +308,7 @@ public StandardKP(SharkEngine se, SharkCS interest, SharkKB kb) {
 }
 \end{verbatim}
 
-Both fragmentation parameters are set to zero. Changing vocabulary won't have any effect on communication behavior. It is the proposed constructor for beginners. It has no side effects which can arise from an growing vocabulary or added information.
+Both fragmentation parameters are set to zero. Changing vocabulary won't have any effect on communication behavior. It is the proposed constructor for beginners. It has no side effects which can arise from a growing vocabulary or added information.
 
 \subsection{doInsert}
 {\tt StandardKP} can also process incoming knowledge. The algorithm is less complex than the previous one. Figure \ref{fig:StandardKP_insert} illustrates the steps and used parameter.
@@ -320,17 +320,17 @@ Both fragmentation parameters are set to zero. Changing vocabulary won't have an
 \label{fig:StandardKP_insert}
 \end{figure}
 
-First of all, it is checked whether the local interest is a receiving interest. More specific, it is checked if the direction is set to {\tt IN} or {\tt INOUT}. We also call such ports {\it IKP - incoming knowledge ports.}. Ports defining their direction with {\tt OUT} are called {\it OKP - outgoing knowledge ports}. A local interests with a direction setting of {\tt INOUT} is both IKP and OKP.
+First of all, it is checked whether the local interest is a receiving interest. More specific, it is checked if the direction is set to {\tt IN} or {\tt INOUT}. We also call such ports {\it IKP - incoming knowledge ports.}. Ports defining their direction with {\tt OUT} are called {\it OKP - outgoing knowledge ports}. A local interest with a direction setting of {\tt INOUT} is both IKP and OKP.
 We need an IKP here because knowledge has arrived and there must at least the general interest in receiving something. 
 
 Now, vocabulary (in other words:background knowledge) is taken and contextualized with the local interest by means of the fragmentation parameter. 
 The result is an {effective interest}. It contains tags which are in the knowledge and which also fit to local interest. Thus, the receiving vocabulary is reduced in most cases to tags which fit to peers interests.
 
-The process already ends if the {\it effective interest} is empty. An assimilation process is started otherwise. We have already discussed assimilation in a previous chapters. In short: Each context point is investigated. It is calculated if it fits into the context space defined by the {\it effective interest}. Thus, each, no or some context points can be added to the local knowledge base. 
+The process already ends if the {\it effective interest} is empty. An assimilation process is started otherwise. We have already discussed assimilation in a previous chapter. In short: Each context point is investigated. It is calculated if it fits into the context space defined by the {\it effective interest}. Thus, each, no or some context points can be added to the local knowledge base. 
 
 {\tt StandardKP} allows learning of tags. Thus, peers vocabulary grows if context points are assimilated that have unknown tags which are related to known tags. This default behavior can be changed by {\tt learningSTs(false);} Vocabulary remains unchanged in the mode but coordinates of assimilated context points might change.
 
-Assimilated context points are removed from the received knowledge in default. This has, of course, no effect on senders knowledge base. It has an effect on subsequent calls of other knowledge ports, though. They cannot assimilate the same context points again. This default behavior shouldn't be changed in applications with a single knowledge base. It is fully sufficient that one port adds a fitting context point the local knowledge base. Applications using more knowledge bases should consider to change that setting. The default behavior can be changed with {\tt deleteAssimilatedFromKnowledge(false)}.
+Assimilated context points are removed from the received knowledge in default. This has, of course, no effect on senders knowledge base. It has an effect on subsequent calls of other knowledge ports, though. They cannot assimilate the same context points again. This default behavior shouldn't be changed in applications with a single knowledge base. It is fully sufficient that one port adds a fitting context point to the local knowledge base. Applications using more knowledge bases should consider to change that setting. The default behavior can be changed with {\tt deleteAssimilatedFromKnowledge(false)}.
 
 \subsection{Summary}
 {\tt StandardKP} is complex, no doubt about it. But it is complex inside. It can be used quite simple. Developers can start with the easiest constructor and use default settings. Peers will exchange knowledge and learn vocabulary from each other but with less surprises. Our Alice and Bob basic scenario hopefully helps.
@@ -351,9 +351,9 @@ In social groups, a {\it hub} is a person that knows a noteworthy number of othe
 
 Figure \ref{fig:hubKP} illustrates an example. There is a SharkEngine on the right. It can run e.g. on a mobile phone. That engine has a running {\tt HubKP} which has its own interest storage. Actually, that storage is separated into a receiving and sending interests. 
 
-The little scenario starts with Alice. She is still and always interested in sending information. In our example, she is the first who communicates with that engine. Her interest arrives the engine and is offered to any active knowledge port. {\tt HubKP} becomes active. It hasn't met any other peer and its interest storage is empty. Thus, is just stores the interest and does not reply to Alice.
+The little scenario starts with Alice. She is still and always interested in sending information. In our example, she is the first who communicates with that engine. Her interest arrives the engine and is offered to any active knowledge port. {\tt HubKP} becomes active. It hasn't met any other peers and its interest storage is empty. Thus, it just stores the interest and does not reply to Alice.
 
-Bob arrives later and issues his interest. He is still interested in receiving information. The hub takes that interest and stores it as well. Then is calculates: Bob is interested in receiving something. Thus, hub checks its sending interest storage. It takes any interest and calculates the {\it mutual interest}. Non-empty mutual interest are send back as reply. Bob receives a mutual interest of his and Alice interest. 
+Bob arrives later and issues his interest. He is still interested in receiving information. The hub takes that interest and stores it as well. Then it calculates: Bob is interested in receiving something. Thus, hub checks its sending interest storage. It takes any interest and calculates the {\it mutual interest}. Non-empty mutual interest are send back as reply. Bob receives a mutual interest of his and Alice interest. 
 
 The hub performs the same operation as Bob would do if he would have received that interest from Alice. Even the result is the same. Both mutual interests are identical. 
 
@@ -369,7 +369,7 @@ Thus, when meeting an anonymous hub, peers would send only interests which can b
 
 That example is perfect to remember the difference between logical and physical sender. In this case, Bob gets a mutual interest. That interest contains a peer in the remote peer dimension. It is Alice. Alice issued her interest in the first place to the hub. Hub just stores the interest and calculates mutual interest after receiving an interest from Bob. The logical sender is Alice. She willingly (or not) stored her interest with the hub.
 
-The physical sender is the hub, though. Thus, Bob can decide how to handle that result. In most cases, it would hurt to handle the result as trustworthy. In this case, Bob would expose a subsequent interest to directly to Alice if he could found her permanent address (e.g. mail address) in remote peer dimension. 
+The physical sender is the hub, though. Thus, Bob can decide how to handle that result. In most cases, it would hurt to handle the result as trustworthy. In this case, Bob would expose a subsequent interest directly to Alice if he could found her permanent address (e.g. mail address) in remote peer dimension. 
 
 Alice would now receive an interest directly from Bob. A direct P2P communication is established now and End-to-End-Security could be established.
 
@@ -390,7 +390,7 @@ Two features are to be noted:
 \item 
 This hub implementation has no persistent memory. All stored interest get lost if the port or the whole engine terminates. It's a feature. Hub is not (yet) intended to be a permanent kind of directory for peer interests.
 \item 
-Second parameter describes lifetime of interest in the hub storage. In this example, interest are forgotten after 3600 seconds which is one hour.
+Second parameter describes lifetime of interest in the hub storage. In this example, interests are forgotten after 3600 seconds which is one hour.
 \end{enumerate}
 
 \subsection{Implementation} 
@@ -490,11 +490,11 @@ the peer that issued its interest. In our previous example, the hub would find A
 
 That's it. We won't discuss the interest storage implementation. It organizes removal of outdated interests. That's no rocket science. Have a look into the code.
 
-We are ready with {\tt HubKP}. It isn't difficult, is it? Let's have a look on a sketch of a chat implementation with knowledge ports.
+We are done with {\tt HubKP}. It isn't difficult, is it? Let's have a look on a sketch of a chat implementation with knowledge ports.
 
 \section{ChatKP}
 \label{sec:chatkp}
-A chat is a pretty simple distributed system. A peer creates a message and wants it send to a recipient. Recipient shall read the message and can reply. This principle has to translated into the Shark concept. And this easy.
+A chat is a pretty simple distributed system. A peer creates a message and wants it send to a recipient. Recipient shall read the message and can reply. This principle has to be translated into the Shark concept. And this is easy.
 
 \begin{figure}[t]
 \centering
@@ -505,13 +505,13 @@ A chat is a pretty simple distributed system. A peer creates a message and wants
 
 Figure \ref{fig:chatKP} illustrates (one possible) concept of a chat implementation with Shark. There is a user creating a message in the lower left corner. The message is written with a chat program. The message is transmitted to a {\tt ChatKP}. 
 
-There are two data types in Shark which can be transmitted, interests and knowledge. The ''natural'' choice is wrapping the message into knowledge. Why is it ''natural''? A message is an arbitrary number of bytes. That is the definition of information in Shark. Information are transmitted inside knowledge. That's the reason.
+There are two data types in Shark which can be transmitted, interests and knowledge. The ''natural'' choice is wrapping the message into knowledge. Why is it ''natural''? A message is an arbitrary number of bytes. That is the definition of information in Shark. Information is transmitted inside knowledge. That's the reason.
 
-{\tt ChatKP} creates knowledge which comprises several steps. First, a context point is created. It coordinates must be defined. In this implementation, the topic is set to a pre-defined semantic tag named {\it chat} and a unique subject identifier. Originator and peer is the creating peer. Remote peer is the recipient of that message. Multiple message are to be created for multiple recipients.
+{\tt ChatKP} creates knowledge which comprises several steps. First, a context point is created. Its coordinates must be defined. In this implementation, the topic is set to a pre-defined semantic tag named {\it chat} and a unique subject identifier. Originator and peer is the creating peer. Remote peer is the recipient of that message. Multiple messages are to be created for multiple recipients.
 
 Knowledge is send to the recipient. A {\tt ChatKP} must be in place. It takes each incoming knowledge. It checks: Does this knowledge contain context point with a topic {\it chat}? Is it issued from an allowed peer? Is the receiving peer the intended recipient? If so, information from the context point can be extracted. The job of {\tt ChatKP} ends here. It isn't its job to interpret the message or interact with a user. It calls the local chat program to deal with the newly arrived message.
 
-{\tt ChatKP} implementation is just a sketch but no ready for usage in a productive environment. There is no section {\it ChatKP usage} for that reason.
+{\tt ChatKP} implementation is just a sketch but not ready for usage in a productive environment. There is no section {\it ChatKP usage} for that reason.
 
 \subsection{Implementation}
 
@@ -522,7 +522,7 @@ Knowledge is send to the recipient. A {\tt ChatKP} must be in place. It takes ea
 \label{fig:chatClassDiagram}
 \end{figure}
 
-Chat implementation is made up by four classes and one interface, see figure \ref{fig:chatClassDiagram}. {\tt ChatKPListener} is an interface that declares a single method: {\tt messageReceived}. This method is called by a {\tt ChatKP} whenever a new message arrived the peer. It has two parameter. First parameter is the actual message. Second parameter contains the sender. Later in this section we will have a look into {\tt ChatKP} implementation.
+Chat implementation is made up by four classes and one interface, see figure \ref{fig:chatClassDiagram}. {\tt ChatKPListener} is an interface that declares a single method: {\tt messageReceived}. This method is called by a {\tt ChatKP} whenever a new message arrived the peer. It has two parameters. First parameter is the actual message. Second parameter contains the sender. Later in this section we will have a look into {\tt ChatKP} implementation.
 
 We have implemented an abstract class {\tt ChatPeerTCP}. It is abstract because is does {\it not} implement {\tt messageReceived}. Implementations are made in Alice and Bob. We start with Alice:
 
@@ -556,7 +556,7 @@ The main method brings no surprises:
 }
 \end{verbatim}
 
-An object of class {\tt Alice} is created. Alice is described by the name ''Alice'' and her - now well-known - subject identifier. We use a local TCP address with port 7070. Note again: That program will run only on a single computer. It requires some (little) extensions to make it real chat.
+An object of class {\tt Alice} is created. Alice is described by the name ''Alice'' and her - now well-known - subject identifier. We use a local TCP address with port 7070. Note again: That program will run only on a single computer. It requires some (little) extensions to make it a real chat.
 
 Finally, we have a look at the {\tt messageReceived} implementation:
 \begin{verbatim}
@@ -579,7 +579,7 @@ back. Apparently, a real chat program must prompt users entering
 a reply. Finally, {\tt this.stop()} is called which is implemented in
 {\tt ChatPeerTCP} and simply stops TCP communication in general. Thus, 
 Alice sends a reply and shuts down whenever she receives a single message.
-It is a sketch but illustrates the principle. The more interesting part are
+It is a sketch but illustrates the principle. The more interesting parts are
 implemented in {\tt ChatKP} anyway. But first have a look at the Bob implementation.
 
 \subsection{Bob}
@@ -679,8 +679,8 @@ We have already seen that Alice and Bob described themselves with
 name, subject identifier and so forth. The constructor takes those parameters.
 It creates a shark engine first. Second, a peer semantic tag is created that describes the peer itself (Alice or Bob in our example). Third, an object of
 {\tt ChatKP} is created. It takes two parameters: Engine and peer that runs that
-engine. Fourth, the objects subscribes to {\tt ChatKP} as listener. This call informs {\tt ChatKP} to call {\tt messageReceived} (implemented in Alice and 
-Bob). Finally, the TCP connection is started. Now, the engine is listening at the defined port. It will receive incoming KEP message and transmit them to all active knowledge ports. In this program there is only one: {\tt ChatKP}.
+engine. Fourth, the object subscribes to {\tt ChatKP} as listener. This call informs {\tt ChatKP} to call {\tt messageReceived} (implemented in Alice and 
+Bob). Finally, the TCP connection is started. Now, the engine is listening at the defined port. It will receive incoming KEP messages and transmit them to all active knowledge ports. In this program there is only one: {\tt ChatKP}.
 
 \begin{verbatim}
   public void stop() {
@@ -688,7 +688,7 @@ Bob). Finally, the TCP connection is started. Now, the engine is listening at th
   }
 }
 \end{verbatim}
-The final lines in this class implement the stop method. It is very simple. {\tt stop} in shark engine is called. The engine stops listening at any protocol. Open sessions remain unharmed, though.
+The final lines in this class implement the stop method. It is very simple. {\tt stop} in shark engine is called. The engine stops listening to any protocol. Open sessions remain unharmed, though.
 
 \subsection{ChatKP}
 Most work is done in {\tt ChatKP}. It can be re-used in productive programs.
@@ -715,11 +715,11 @@ public class ChatKP extends KnowledgePort {
 {\tt ChatKP} is a {\tt KnowledgePort} and has to call its constructor
 ({\tt super(se);}). The engine object already exists and is transmitted as
 parameter in its constructor. Some private member are declared. 
-{\tt CHAT\_TOPIC\_SI} was defined as unique identifier for that chat implementation. It will be used in the topic dimension to create knowledge that can be send to another peer. {\tt remotePeer} will contain the peer with whom a chat will established. {\tt listener} will contain the chat program to which incoming messages are to be propagated. {\tt owner} is the peer that runs that chat.
+{\tt CHAT\_TOPIC\_SI} was defined as unique identifier for that chat implementation. It will be used in the topic dimension to create knowledge that can be send to another peer. {\tt remotePeer} will contain the peer with whom a chat will be established. {\tt listener} will contain the chat program to which incoming messages are to be propagated. {\tt owner} is the peer that runs that chat.
 
-That knowledge port does not handle interest. {\tt doExpose()} contains no action. That makes sense since whole message exchange is mapped on exchanging knowledge between peers.
+That knowledge port does not handle interests. {\tt doExpose()} contains no action. That makes sense since the whole message exchange is mapped on exchanging knowledge between peers.
 
-Teh {\tt doInsert} makes the job:
+The {\tt doInsert} does the job:
 \begin{verbatim}
   @Override
   protected void doInsert(Knowledge k, KEPConnection kepConnection) {
@@ -762,7 +762,7 @@ Teh {\tt doInsert} makes the job:
 
 This method is called whenever knowledge reached that peer. First, it is tested if at least a single context point is present in the knowledge object. Second, it is tested if this context point is about ''chatting''. If not, the port aborts that algorithm. That knowledge has nothing to do with a chat.
 
-Second, it is tested whether this peer is recipient of this chat message. Third, it is tested of the remote peer fits to accepted remote peers by this peer.
+Second, it is tested whether this peer is recipient of this chat message. Third, it is tested if the remote peer fits to accepted remote peers by this peer.
 
 Information objects are extracted from the context point if all tests are passed. That message is transformed into a string an send to chat programs who have subscribed before. That's performed via {\tt this.messageReceived}.
 
@@ -776,7 +776,7 @@ Let's have look into this implementation:
   }
 \end{verbatim}
 
-It's straightforward. A listener is called if a listener has be subscribed. We don't present subscribing implementation here. It is very simple.
+It's straightforward. A listener is called if a listener has been subscribed. We don't present subscribing implementation here. It is very simple.
 
 Now, we have seen how {\tt ChatKP} handles incoming chat messages. Now we have to learn how it sends messages.
 
@@ -822,9 +822,9 @@ Now, we have seen how {\tt ChatKP} handles incoming chat messages. Now we have t
 }
 \end{verbatim}
 
-This message takes two parameter: message and recipient. This message has two wrap the message into a knowledge object. First, context coordinates are required. Seven parameter are required.
+This message takes two parameter: message and recipient. This message has to wrap the message into a knowledge object. First, context coordinates are required. Seven parameter are required.
 
-The topic is created with {\tt getChatTopic}. See also the method implementation. A semantic tag is created labeled with ''ChatTopic''. It semantics is defined by {\tt CHAT\_TOPIC\_SI}, see above. 
+The topic is created with {\tt getChatTopic}. See also the method implementation. A semantic tag is created labeled with ''ChatTopic''. Its semantics is defined by {\tt CHAT\_TOPIC\_SI}, see above. 
 
 Originator and peer dimension is set to the owner of this engine. This makes
 perfectly sense because this peer is creator and sender of the message. 
