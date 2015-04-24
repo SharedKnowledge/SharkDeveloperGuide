@@ -488,7 +488,7 @@ two points:
 (PL, Alice, Alice,-,-,-, inout)
 \end{verbatim}
 
-Let's see what happens afterwords in this example:
+Let's see what happens afterwards in this example:
 
 \begin{verbatim}
 Knowledge k = ... // contains two cp now.
@@ -589,13 +589,13 @@ Just a single context point would exists after assimilation if {\tt learnTags} w
 
 No {\it Java} tag would have be learned. But note, the second context was assimilated as well! We haven't changed anything on fragmentation parameter. What happened?
 
-Assimilation algorithm decides whether a context point gets added to the local knowledge base or not. That decision is made independently if tags are to be learned or not. There can be context points which have tags in their dimensions which are unknown in the local vocabulary. Such tags are replaced by the closest locally known tags.
+The assimilation algorithm decides whether a context point gets added to the local knowledge base or not. That decision is made independently if tags are to be learned or not. There can be context points which have tags in their dimensions which are unknown in the local vocabulary. Such tags are replaced by the closest locally known tags.
 
 In our example, the receiving peer refused to learn the tag {\it Java}. The closest tag to {\it Java} is {\it programming languages}. Thus, all information are added to the context point as well.
 
 When running the program, you'll see that {\tt (PL, Alice, Alice,-,-,-, inout)}
 has two attached information.
 
-That's it. We won't discuss any method from {\tt SharkKB}. Most of them are pretty obvious. We strongly recommend to make the exercises. They help to understand the concept. And they are not that difficult. Solutions can be found on the sharksystem.net web page. But it's better making them alone. Good luck!
+That's it. We won't discuss any method from {\tt SharkKB}. Most of them are pretty obvious. We strongly recommend to do the tutorial exercises since they help to understand the concepts conveyed in this chaper and are relatively easy to solve. Solutions can be found on the sharksystem.net web page and it is recommended to do them alone. Good luck!
 
 \section{Exercises}
