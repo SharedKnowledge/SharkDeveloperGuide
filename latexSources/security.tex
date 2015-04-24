@@ -1,21 +1,20 @@
 \chapter{Security}
 \label{sec:security}
-Shark allows encrypting and signing of KEP messages. We explain the responsible components in this chapter but don't explain in detail underlying mechanisms.
+Shark allows encrypting and signing of KEP messages. We explain the responsible components in this chapter, however, underlying mechanics are not covered in detail.
 
 \section{Signing}
 Signing a message requires a private key. A hash code of a message is created and encrypted with a private key. That encrypted hash code (which is called signature) is added to the message.
 
-A recipient can read the message and calculate the same hash code. Recipient can decrypt the transmitted signature with senders public key. The signature is ment to be {\it verified} if both hash codes are equal.
+A recipient can read the message and calculate the same hash code. Recipient can decrypt the transmitted signature with senders public key. The signature is meant to be {\it verified} if both hash codes are equal.
 
-Verifying requires a safe and secure way for public key dissemination. Such a infrastructure is called Public Key Infrastructure (PKI). Shark can be used with any PKI\footnote{There is already a Shark PKI that's needs more testing and becomes part of version 3.0 of Shark.}. Shark uses MD5 for hash code calculation and RSA for signature creation and verifying.
+Verifying requires a safe and secure way for public key dissemination. Such an infrastructure is called Public Key Infrastructure (PKI). Shark can be used with any PKI\footnote{There is already a Shark PKI that's needs more testing and becomes part of version 3.0 of Shark.}. Shark uses MD5 for hash code calculation and RSA for signature creation and verifying.
 
 \section{Encrypting}
-Messages can be encrypted with RSA in Shark. The recipients public key is used to encrypt the message. The private key is used to decrypt the message. Assumed, the private key is not compromised, the message can only be read by the recipient.
+Messages can be encrypted with RSA in Shark. The recipients public key is used to encrypt the message. The private key is used to decrypt the message. Assuming the private key is not compromised, the message can only be read by the recipient.
 
 Apparently, message encryption requires public keys as well. Thus, a PKI is needed, see above.
 
-Signing and encrypting can be switched on and off in Shark. We strongly suggest using both if a PKI is available. In Shark, we have chosen to encrypt messages before signing it. Thus, a message signature is verified before the 
-actual message is decrypted.
+Signing and encrypting can be switched on and off in Shark. We strongly suggest using both if a PKI is available. In Shark, we have chosen to encrypt messages before signing it. Thus, a message signature is verified before the actual message is decrypted.
 
 \section{Shark Key Store}
 Signing and encryption requires a key pair. Each peer has its own private key and needs a way to get a public key from another peer. Keys must be stored. Such stores are usually and less surprisingly called {\it key stores}.
@@ -65,7 +64,7 @@ ks.getPrivateKey();
 The peer is identified with one or more subject identifiers - as usual in Shark.
 It is up to application developers to implement that interface and attach a PKI.
 
-We hope the code above is self-explaining. A key store is created with a knowledge base and an engine. Keys can be stored and retrieved. Public key can also be signed. The actual signing algorithm is up to the developers. Java offers a number of methods to sign public keys. A signature combined with its key makes up a certificate. Thus, public key can be retrieved in its certificate incarnation from the key store.
+We hope the code above is self-explaining. A key store is created with a knowledge base and an engine. Keys can be stored and retrieved. Public keys can also be signed. The actual signing algorithm is up to the developers. Java offers a number of methods to sign public keys. A signature combined with its key makes up a certificate. Thus, public key can be retrieved in its certificate incarnation from the key store.
 
 \section{Setting up security policy}
 Shark can sign and encrypt but it cannot in any case: Signing requires a private key. Encrypting requires recipients public key. Signature verifying requires senders public key. Moreover, how should a peer reply to a received message. Shall it sign and encrypt in any case? Shall is use the same method as it communication partner? 
@@ -74,7 +73,7 @@ Shark cannot make that decision. It is up to the application. Shark provides sec
 
 Developers can define if encryption and/or signing is to be used. They can chose between three options.
 \begin{description}
-    \item[MUST] defines that the usage of encryption or signing is not optional. This setting ensures that no issued message is unencrypted and unsigned. 
+    \item[MUST] defines that the usage of encryption or signing is not optional. This setting ensures that no issued message is unencrypted and unsigned.
 
 Sending a message can fail if no private key was set. In this case, signing is not possible and the message won't be sent. Sending a message can fail if the recipients public key cannot be found. The encryption cannot be fulfilled in this case and no message is sent.
 
