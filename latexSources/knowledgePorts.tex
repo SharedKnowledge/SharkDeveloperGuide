@@ -104,7 +104,7 @@ protected void doExpose(SharkCS interest,
 \subsubsection{Reply}
 Peer often want to reply to incoming interests or knowledge. A reply can be an arbitrary number of expose and insert messages. In other words, a peer can reply with interests and knowledge. 
 
-A reply is send by means of the {\tt KEPConnection} object by calling {\tt expose} or {\tt insert} with appropriate parameters.
+A reply is sent by means of the {\tt KEPConnection} object by calling {\tt expose} or {\tt insert} with appropriate parameters.
 
 There are a three variants of {\tt expose}. Have a look at the following code fragment.
 
@@ -153,7 +153,7 @@ A {\it logical sender} can create a message, can even sign and encrypt but can s
 
 Figure \ref{fig:physicalAndLogicalSender} illustrates the relation between {\it logical} and {\it physical} sender. Alice creates an interest in this example. She stores that interest on her device A1. She also decided to choose A1 as logical sender. Note, each peer, each user is free to define a logical sender address. We have already defined an number of addresses for peers throughout that book. All addresses in peer semantic tags are {\it logical} addresses and can freely be chosen by users.
 
-In this example, Alice choses A1 as logical address and stores her interest also on A1. She meets Bob and exposes her interest. In that case, physical and logical sender are identical.
+In this example, Alice chooses A1 as logical address and stores her interest also on A1. She meets Bob and exposes her interest. In that case, physical and logical sender are identical.
 
 Bob can forward Alice's interest (unchanged) to Clara. Alice is still logical sender but Bob's device is logical sender. 
 
@@ -177,7 +177,7 @@ Shark allows signing and encrypting. Shark only offers End-to-End-Encryption. Ph
 \subsection{Sending initial messages}
 It isn't enough to wait for incoming requests. One peer must start talking.
 
-{\tt KnowledgePort} objects support methods for sending interests and knowledge. The following code is a scetch of its usage.
+{\tt KnowledgePort} objects support methods for sending interests and knowledge. The following code is a sketch of its usage.
 
 \begin{verbatim}
 Knowledge k = ...

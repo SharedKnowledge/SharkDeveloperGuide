@@ -22,25 +22,25 @@ Imagine, Bob has already exchanged public keys with Clara. Their exchanged keys 
 
 With that PKI, developers can define a minimum trust level which must be satisfied with peers to communicate. There might be applications who only accept a trust level 0 communication which means that each peer must know every other peer more or less personal. Of course, less secure applications will still be possible.
 
-\section{Sub Space}
+\section{Subspace}
 Shark supports only peer-to-peer communication which is not very surprising for a P2P system. Most distributed applications require a communication between a closed group of peers. Social networks are a good example.
 
 There can be groups exchanging information in a chat or with a variant of drop box. SharkNet is such an application. It comes with a chat and a concept called {\it makan}\footnote{Makan means room in Arabic.} which has features of a drop box -- it allows exchanging documents in a closed user group.
 
 Still, there is no server involved. Any information is exchanged between all peers. It requires a special kind of protocol to create such chats and makan. Furthermore, it requires additional communication to introduce peers to those makan, to subscribe, unsubscribe and to remove it.
 
-Shark 3.0 will introduce a concept called {\it sub space} which provides methods for creating many different kinds of such cooperative work. The concept is pretty simple: A peer creates a new knowledge base which is the new {\it sub space}. 
-A sub space comprises semantic tags and knowledge as usual.
+Shark 3.0 will introduce a concept called {\it subspace} which provides methods for creating many different kinds of such cooperative work. The concept is pretty simple: A peer creates a new knowledge base which is the new {\it subspace}.
+A subspace comprises semantic tags and knowledge as usual.
 
-The peer can introduces others to that sub space, though. Once a peer accepts an invitation it starts {\it sharing} the sub space. The result is pretty simple: Each new subscriber gets a copy of the subspace. Every subscriber is informed about the new subscriber. A sub space can have full subscribers and read-only subscribers. Full subscribers can also add information to the sub space. They simply add information with a context point.
+The peer can introduces others to that subspace, though. Once a peer accepts an invitation it starts {\it sharing} the subspace. The result is pretty simple: Each new subscriber gets a copy of the subspace. Every subscriber is informed about the new subscriber. A subspace can have full subscribers and read-only subscribers. Full subscribers can also add information to the subspace. They simply add information with a context point.
 
-The sub space automatically sends this new information to all subscribers. Note: There is no central entity. Any new information is submitted by the originator to every subscriber. 
+The subspace automatically sends this new information to all subscribers. Note: There is no central entity. Any new information is submitted by the originator to every subscriber.
 
-Peers can unsubscribe which actually means that all other subscribers get informed that this peer isn't interested in that sub space any more.
+Peers can unsubscribe which actually means that all other subscribers get informed that this peer isn't interested in that subspace any more.
 
-A sub space has similarities with an intranet application but there is no central instance. Each peer holds his own copy.
+A subspace has similarities with an intranet application but there is no central instance. Each peer holds his own copy.
 
-Of course, their can be a hierarchy of visibility rights which is achieved by structuring sub space memberships accordingly. We will explain that concept in the next version of this documentation. We can just state: The sub space concept was created to substitute parts of an internal intranet application. Thus, it meets all requirements of professional and commercial information exchange with the whole security and privacy background which is state of the art in the 21. century.
+Of course, their can be a hierarchy of visibility rights which is achieved by structuring subspace memberships accordingly. We will explain that concept in the next version of this documentation. We can just state: The subspace concept was created to substitute parts of an internal intranet application. Thus, it meets all requirements of professional and commercial information exchange with the whole security and privacy background which is state of the art in the 21. century.
 
 \section{.. and beyond: Shark Longitude}
 There are also plans to implement Shark Longitude (SL) which will mainly focus on Android phones.
