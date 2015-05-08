@@ -28,7 +28,7 @@ tags. Tags can either be part of a tag set or exist alone in memory.
 
 There are several knowledge base implementations which will be discussed later in this book. The {\verb|InMemoSharkKB|} exists only in computer memory. All other implementations persist their data on an external medium.
 
-Semantic Tags {\bf cannot} be moved from one set to another. A tag remains in the environment where it was created. A tag that was created remains in memory. A tag that was created in a tag set remains their until its deletion. 
+Semantic Tags {\bf cannot} be moved from one set to another. A tag remains in the environment where it was created. A tag that was created remains in memory. A tag that was created in a tag set remains there until its deletion.
 
 Tags and sets can be {\bf merged}, though. Merging means creating a copy.
 Tags can be merged into a set. Sets can be merged into other sets.
@@ -124,7 +124,7 @@ public class SemanticNetSample {
 The first line creates an in-memory knowledge base. The second line
 gets a reference to the topic dimension of the knowledge base. Each dimension can be handled differently. It can be handled as plain set, as taxonomy or as semantic net as in this example.
 
-Two tags are created, one representing Germany, another one for Berlin. The string {\it istPartOf} is defined for this application. It is just am arbitrary string! 
+Two tags are created, one representing Germany, another one for Berlin. The string {\it isPartOf} is defined for this application. It is just an arbitrary string!
 
 The line {\verb|berlin.setPredicate(isPartOf, germany)|} sets the predicate. 
 
@@ -210,7 +210,7 @@ public class TaxonomySample {
       tx.createTXSemanticTag("CSharp", 
       "http://en.wikipedia.org/wiki/C_Sharp_%28programming_language%29");
         
-    // define c# as sub topic of programming lanugages
+    // define c# as sub topic of programming languages
     csharp.move(pl);
   }
 }
@@ -280,7 +280,7 @@ plainSet.merge(plainSet2);
 Merging of sets works also with taxonomies and semantic nets. In this case, all predicates are merged as well. Such merging is a two step operation: First, all tags from the source are merged into the target with the described algorithm. Afterwards, all predicates are merged as well. 
 
 \section{Fragmentation}
-Fragmentation is one of the core algorithms in Shark. It is used in many different ways and comes in a number of different versions. We are going to discuss most of them here. It is crucial to understand that method even if it meight take a while to understand the concept.
+Fragmentation is one of the core algorithms in Shark. It is used in many different ways and comes in a number of different versions. We are going to discuss most of them here. It is crucial to understand that method even if it might take a while to understand the concept.
 
 Fragmentation is a powerful tool to find out e.g. if two persons share similar interests. Fragmentation can be compared with a database query but on a semantic level.
 
@@ -322,7 +322,7 @@ SemanticTag anchor =
 System.out.println("anchor:" + L.semanticTag2String(anchor));
 STSet fragment = source.fragment(anchor);
 
-System.out.println("fragement:" + L.stSet2String(fragment));
+System.out.println("fragment:" + L.stSet2String(fragment));
 \end{verbatim}
 
 Run the code and see what happens. Note, the {\tt L.stSet2String} creates a string representing a set. Class {\tt L} is really useful.

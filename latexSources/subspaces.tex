@@ -11,13 +11,13 @@ A chat, a forum, project sites etc. are means to exchange documents
 between people who share similar interests e.g. participate in the same
 project.
 
-Server-based applications create a data base on a dedicated machine
+Server-based applications create a database on a dedicated machine
 and offer restricted access to that machine. Figure X illustrates that
 -- well known -- concept.
 
 That concept of sharing documents in a (open or closed) group 
 of users can also be created in the realm of P2P networks. 
-{\it Sub spaces} are the Shark concept for that purpose.
+{\it Subspaces} are the Shark concept for that purpose.
 
 \section{Concept}
 Each subspace contains a knowledge base. It can contain -- as each knowledge base -- context points with properties and information. Subspaces are created by a peer which automatically becomes {\it owner} of that subspace. 
@@ -34,16 +34,16 @@ would unsubscribe.
 
 The subscription types can be distingueshed: {\it full member} and {\it read-only member}. The meaning obvious: Full member can add data to their subspaces. An attempt by a read-only member would fail. 
 
-Data can be removed from subspaces. {\bf Note, removing data is not propagated to other subspaces}. It is up to applications to propagate data removal\footnote{That rule sounds odd in first place. It has an advantage though. Imagine a chat. A peer might decide to remove a number of chat entries. What should a subspace do? Removing the copies in all suubscribed knowledge bases wouldn't be an expected behaviour. Imagine, Alice, Bob and Clara an in a chat. Bob decides to remove any discussion between Alice and Clara. What would Alice and Clara think if their local copies would be lost as well. Therefore, subspaces propagate new data but not data removal.}.
+Data can be removed from subspaces. {\bf Note, removing data is not propagated to other subspaces}. It is up to applications to propagate data removal\footnote{That rule sounds odd in first place. It has an advantage though. Imagine a chat. A peer might decide to remove a number of chat entries. What should a subspace do? Removing the copies in all subscribed knowledge bases wouldn't be an expected behaviour. Imagine, Alice, Bob and Clara an in a chat. Bob decides to remove any discussion between Alice and Clara. What would Alice and Clara think if their local copies would be lost as well. Therefore, subspaces propagate new data but not data removal.}.
 
-Each peer is free to unsubscribe from a subspace at any time. Owner can not. They can {\it destroy} the subspace which means that any subscriber is unsubscribed. Local copies remain intakt. Such destroyed subspaces are actually
+Each peer is free to unsubscribe from a subspace at any time. Owner can not. They can {\it destroy} the subspace which means that any subscriber is unsubscribed. Local copies remain intact. Such destroyed subspaces are actually
 archives which cannot be changed. Each peer is free to remove it, though.
 
-There are two kind of subspaces: {\it Closed} and {\it open} subspaces. Closed subspaces has been discribed until now. They have an owner which can invite and unsubscribe peers. Open subspaces are slightly different. There are created as well by a peer. Each peer can subscribe to such subspaces without interaction with the owner peer. Open subspace owner have no specific privileges except the fact that they have created the subspace. The cannot unsubscribe peers. Each peer can subscribe if it pleases.
+There are two kind of subspaces: {\it Closed} and {\it open} subspaces. Closed subspaces has been described until now. They have an owner which can invite and unsubscribe peers. Open subspaces are slightly different. There are created as well by a peer. Each peer can subscribe to such subspaces without interaction with the owner peer. Open subspace owner have no specific privileges except the fact that they have created the subspace. The cannot unsubscribe peers. Each peer can subscribe if it pleases.
 
-Peers can create a subspace clone. A new subspace with a different identity (whcih means different subject identifier) is created. Clones knowledge base is empty. What is cloned than? The subscriber list. The cloning peer becomes owner of the cloned subspace. Each member of the cloned subspace is invited to the new clone. 
+Peers can create a subspace clone. A new subspace with a different identity (which means different subject identifier) is created. Clones knowledge base is empty. What is cloned than? The subscriber list. The cloning peer becomes owner of the cloned subspace. Each member of the cloned subspace is invited to the new clone.
 
-This feature was introduced to underline the decentralized character of Shark. Closed subspaces introduced a hierarchy. That's useful in many cases. Nevertheless, a peer shouldn't have to much power over others in such a libertarian system even in a subspace. Each peer can decide to leave a subspace and it can also to decide other peers to follow. Such effects can be seen from time to tiem in social networks. A forum becomes somewhat weired. Fractions of users start to fight each other. Cloning is a solution. A peer of one fraction creates a clone, removes any peer from the opposite fraction and invites all of its friends. Now, they have their own subspace.
+This feature was introduced to underline the decentralized character of Shark. Closed subspaces introduced a hierarchy. That's useful in many cases. Nevertheless, a peer shouldn't have too much power over others in such a libertarian system even in a subspace. Each peer can decide to leave a subspace and it can also to decide other peers to follow. Such effects can be seen from time to time in social networks. A forum becomes somewhat weird. Fractions of users start to fight each other. Cloning is a solution. A peer of one fraction creates a clone, removes any peer from the opposite fraction and invites all of its friends. Now, they have their own subspace.
 
 The next sections explain subspace usage on the API level.
 
@@ -62,7 +62,7 @@ one guard KP can be instantiated. We don't discuss this kind of subspace multive
 Subspaces communicate with KEP. They use a special coding which prevents other knowledge ports from processing those messages, see \ref{subspacemessages}.
 For example, when a peer inserts new data into its local subspace a message is
 send to each subscribed peers to notify about this event. Subspace owner can
-invite another peer. Both subspace specific messages are encapsulated into KEP messages. The guard KP takes any subspace message and performs necessary actions. Here is the good news for any developer: You have nothing to do with the communcation. The whole synchronization process is already in place. You have just to handle with several events which can arise. And you have to create the guard object.
+invite another peer. Both subspace specific messages are encapsulated into KEP messages. The guard KP takes any subspace message and performs necessary actions. Here is the good news for any developer: You have nothing to do with the communication. The whole synchronization process is already in place. You have just to handle with several events which can arise. And you have to create the guard object.
 
 The guard requires a shark engine, a shark knowledge base and an object that implements {\tt SubSpaceManager}. The engine is pretty clear. It's the engine that makes up the shark peer. The knowledge base shall is called the {\it baseKB}. What makes that kb special. Actually nothing in the first place, but it becomes interesting: We have already learned that peers can be invited and can subscribe. Those, peers can learn about other peers or try to invite peers. The peer descriptions, namely the peer semantic tags must be stored somewhere. The peer dimension of the baseKB is that place. 
 
@@ -92,7 +92,7 @@ public void invitedToSubSpace(String subSpaceName,
         SharkSecurityException;
 \end{verbatim}
 
-First method is expected to return an iteration of known subspaces in this shark peer. The seconds methods shall return a subspace with a give subject identifier. Apparently, it is assumed that the subspace manager shall be aware of all existing subspaces. Shark offers a simple implementation of such a subspace manager, see class {\tt SimpleSubSpaceManager}.
+First method is expected to return an iteration of known subspaces in this shark peer. The seconds methods shall return a subspace with a given subject identifier. Apparently, it is assumed that the subspace manager shall be aware of all existing subspaces. Shark offers a simple implementation of such a subspace manager, see class {\tt SimpleSubSpaceManager}.
 
 The third methods is a called by the guard if a new invitation has arrived and a corresponding subspace does not yet exist on this peer. In most cases, the subspace manager will ask the user whether to join or not and will create a local copy of the subspace.
 
@@ -110,7 +110,7 @@ Following figure gives an overview on the objects that make up the subspace envi
 \subsection{Creation process in detail}
 This subsection can be skipped if an existing implementation is sufficient for application needs. It gives a bit more insights in the creation process.
 
-{\tt ImMemoSubSpace} offers a single constructor which takes jus ta single parameter a {\tt SubSpaceGuardKP}
+{\tt ImMemoSubSpace} offers a single constructor which takes just a single parameter a {\tt SubSpaceGuardKP}
 
 \subsection{Subspace messages}
 \label{subspacemessages}
@@ -121,23 +121,23 @@ This section can be skipped...
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.40\textwidth]{subspace.eps}
-\caption{Sub space stores its data in its own knowledge base.}
+\caption{Subspace stores its data in its own knowledge base.}
 \label{fig:subspace}
 \end{figure}
 
-Let's start with basic data structures and discuss communication principles later. A sub space is stored in a peer. A subspace comprises its own knowledge base and two additional peer lists: {\it member} and {\it read only member}.
+Let's start with basic data structures and discuss communication principles later. A subspace is stored in a peer. A subspace comprises its own knowledge base and two additional peer lists: {\it member} and {\it read only member}.
 A subspace is created by a peer which became {\it owner}.
 
-Figure \ref{fig:subspace} illustrates these relationship. Peer {\it Alice} has apparrently created a new subspace. She defined Bob and Clara as member of that sub space whereas Bob is a {\it full member} and Clara just {\it read only member}.
+Figure \ref{fig:subspace} illustrates these relationship. Peer {\it Alice} has apparently created a new subspace. She defined Bob and Clara as member of that subspace whereas Bob is a {\it full member} and Clara just {\it read only member}.
 
-Creating a subspace is straigforward.
+Creating a subspace is straightforward.
 \begin{verbatim}
 Add sample code here.
 \end{verbatim}
 
 Member can be invited into a subspace after its creation.
 
-There are two methods: {\verb|inviteAll()|} can only be called once. It is meant to be used directly after subspace creation to introduce all member to the newly created subspace. Subsequent calls of {\verb|inviteAll()|} has no effect after its first successfull execution.
+There are two methods: {\verb|inviteAll()|} can only be called once. It is meant to be used directly after subspace creation to introduce all member to the newly created subspace. Subsequent calls of {\verb|inviteAll()|} has no effect after its first successful execution.
 
 \begin{verbatim}
 SubSpace aliceSubSpace =..;
@@ -174,13 +174,13 @@ SharkKB kb=..;
 KnowledgePort guardKP = new SubspaceGuardKP();
 \end{verbatim}
 
-The following section describes some details of the guard KP. You can ignore that section if you are not interested in details of sub space communication.
+The following section describes some details of the guard KP. You can ignore that section if you are not interested in details of subspace communication.
 
 \subsubsection{SubSpaceGuardKP}
 
 
 \subsubsection{Subscribing}
-Non-owner are invitated to subspaces. A {\verb|SubSpaceGuardKP|} creates an empty subspace after receiving an invitation\footnote{Note, this behaviour can be overwritten. Sometimes, it might not be usefull to created subspaces without
+Non-owner are invited to subspaces. A {\verb|SubSpaceGuardKP|} creates an empty subspace after receiving an invitation\footnote{Note, this behaviour can be overwritten. Sometimes, it might not be useful to created subspaces without
 further user interactions - see previous section for details.}.
 
 \begin{figure}[t]
@@ -191,8 +191,8 @@ further user interactions - see previous section for details.}.
 \end{figure}
 
 Figure \ref{fig:subspaceAfterInvitation} illustrates that situation.
-Alice has invited Bob (beside Clara which isn't shown in th figure). The 
-SubSpaceGuardKP has created the sub space in the Bob peer. Have a look
+Alice has invited Bob (beside Clara which isn't shown in the figure). The
+SubSpaceGuardKP has created the subspace in the Bob peer. Have a look
 at the member lists. Only {\it Alice} as owner is known subspace because member.
 
 Bob has two options: He can subscribe to the subspace or not. He hasn't to inform Alice if he doesn't want to enter the subspace. He can just remove the subspace from its system and is done.
@@ -208,7 +208,7 @@ Actually two things happen: Alice gets informed that Bob has joined the subspace
 
 Figure \ref{fig:subSpaceRefreshing} illustrates action which are and can
 be performed afterwards. Alice has already received Bobs' subscription message. 
-Thus, subspace status has changed: Bob became subsribed member. Alice refreshes
+Thus, subspace status has changed: Bob became subscribed member. Alice refreshes
 Claras list of members. Clara subscribes as well in our example. That message
 is performed by Alice as well and leads to a refreshing message to Bob.
 
@@ -221,7 +221,7 @@ is performed by Alice as well and leads to a refreshing message to Bob.
 
 Finally, any member has got the current subscription list.
 
-The same procedure is performed when peers unsubscribe. An unsubscribe methode changes member list in the owner which are propagated to all subspace members.
+The same procedure is performed when peers unsubscribe. An unsubscribe method changes member list in the owner which are propagated to all subspace members.
 
 \subsection{Information exchange}
 Member can add information to a subspace at any time. The data model doesn't differ from what we have already discussed until now. Peers can create context points and add information.
@@ -269,7 +269,7 @@ other peers about local deletion of information or whole context points.
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.60\textwidth]{subspaceAddingCP.eps}
-\caption{Information synchronisation in sub spaces}
+\caption{Information synchronisation in subspaces}
 \label{fig:subspaceAddingCP}
 \end{figure}
 
@@ -278,12 +278,12 @@ other peers about local deletion of information or whole context points.
 \section{Implementation details}
 \subsection{Subspace Guard}
 \subsection{Subspace KP}
-\section{Implementing you own sub space}
+\section{Implementing you own subspace}
 \section{Using subspaces}
 
-\section{Child sub spaces}
+\section{Child subspaces}
 
-\section{Sub spaces usages}
+\section{Subspaces usages}
 \subsection{Chat}
 \subsection{Makan}
 \subsection{Forum}
