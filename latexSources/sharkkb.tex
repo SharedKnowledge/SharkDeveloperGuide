@@ -407,7 +407,7 @@ Alice becomes part of a newly created {\tt group}. The following code is similar
 {\tt false, true} leads to knowledge that is filled with all context points. Try other true/false combinations and watch the results.
 
 \subsection{Cutting peer hierarchies}
-Lets review our last example. We have created a context point that has a group in its peer dimension. That's usual and advisable. It is convenient and efficient to create groups and add peers. Afterwords, we can add information and use those groups to define what peers (plural!) shall get these information.
+Let's review our last example. We have created a context point that has a group in its peer dimension. That's usual and advisable. It is convenient and efficient to create groups and add peers. Afterwords, we can add information and use those groups to define what peers (plural!) shall get these information.
 
 Shark is a P2P system. Each peer can define its own group. Such a group can be compared with recipient list in e-mail. In a number of case, users don't want to reveal neither existence nor members of such a list, though.
 
@@ -488,7 +488,7 @@ two points:
 (PL, Alice, Alice,-,-,-, inout)
 \end{verbatim}
 
-Let's see what happens afterwords in this example:
+Let's see what happens afterwards in this example:
 
 \begin{verbatim}
 Knowledge k = ... // contains two cp now.
@@ -572,7 +572,7 @@ They {\tt learnTags} parameter is a boolean value. A peer learns vocabulary from
 
 Review our last example. Knowledge arrived with two context points. One is about {\it Java}, the other about {\it programming languages}. The effective interest contained only {\it programming languages} due to the zero fragmentation parameter. 
 
-Lets assume, we have had chosen a more broader parameter set. Maybe we have allowed to extract related tags to {\it programming languages}. In this case, {\it Java} would have become part of effective interest and second context point would have been added to the local knowledge base. If {\tt learnTags} would be set to true, {\tt kb1} would contain two points then:
+Let's assume, we have had chosen a more broader parameter set. Maybe we have allowed to extract related tags to {\it programming languages}. In this case, {\it Java} would have become part of effective interest and second context point would have been added to the local knowledge base. If {\tt learnTags} would be set to true, {\tt kb1} would contain two points then:
 
 \begin{verbatim}
 (Java, Alice, Alice,-,-,-, inout)
@@ -589,13 +589,13 @@ Just a single context point would exists after assimilation if {\tt learnTags} w
 
 No {\it Java} tag would have be learned. But note, the second context was assimilated as well! We haven't changed anything on fragmentation parameter. What happened?
 
-Assimilation algorithm decides whether a context point gets added to the local knowledge base or not. That decision is made independently if tags are to be learned or not. There can be context points which have tags in their dimensions which are unknown in the local vocabulary. Such tags are replaced by the closest locally known tags.
+The assimilation algorithm decides whether a context point gets added to the local knowledge base or not. That decision is made independently if tags are to be learned or not. There can be context points which have tags in their dimensions which are unknown in the local vocabulary. Such tags are replaced by the closest locally known tags.
 
 In our example, the receiving peer refused to learn the tag {\it Java}. The closest tag to {\it Java} is {\it programming languages}. Thus, all information are added to the context point as well.
 
 When running the program, you'll see that {\tt (PL, Alice, Alice,-,-,-, inout)}
 has two attached information.
 
-That's it. We won't discuss any method from {\tt SharkKB}. Most of them are pretty obvious. We strongly recommend to make the exercises. They help to understand the concept. And they are not that difficult. Solutions can be found on the sharksystem.net web page. But it's better making them alone. Good luck!
+That's it. We won't discuss any method from {\tt SharkKB}. Most of them are pretty obvious. We strongly recommend to do the tutorial exercises since they help to understand the concepts conveyed in this chaper and are relatively easy to solve. Solutions can be found on the sharksystem.net web page and it is recommended to do them alone. Good luck!
 
 \section{Exercises}
