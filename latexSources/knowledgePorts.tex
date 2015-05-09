@@ -1,16 +1,16 @@
 \chapter{Knowledge Ports}
 \label{sec:knowledgePorts}
-We have learned a lot about vocabulary and knowledge. Now, we can discuss communication. {\it Entities} communicate in each distributed system. Client-Server systems define two classes of {\it entities}. Clients communicate with servers. Each entity has its designated role in each communication act. They can change roles, though. A computer that is server in one communication can be client in another one.
+We have learned a lot about vocabulary and knowledge. Now, we can discuss communication. {\it Entities} communicate in each distributed system. Client-Server systems define two classes of {\it entities}. Clients communicate with servers. Each entity has its designated role in each communication act. They can change roles, though. A computer that is a server in one communication can be a client in another one.
 
-Shark based applications are P2P applications. Each Shark peer should be aware of receiving messages. Each Shark peer can send anytime any other peer a message. Shark communication paradigm can be compared with a crowded party. People who might never seen before exchange some words and go away. Maybe they see again, maybe not. People can say something. Maybe it is understood or not.
-People can also exchange phone numbers and addresses. After that, they can talk even if they are no longer at this party. 
+Shark based applications are P2P applications. Each Shark peer should be aware of receiving messages. Each Shark peer can send a message to any other peer at any time. Shark's communication paradigm can be compared with a crowded party. People who might never have met before exchange some words and go away. Maybe they meet again, maybe not. People can say something. Maybe it is understood or maybe not.
+People can also exchange phone numbers and addresses. After that, they can talk to each other even if they are no longer at this party. 
 
 That's the very idea of Shark. Peers can communicate whenever they want to but they have no obligation to answer in a defined manner. Shark makes no constraints about communication behavior. It's up to the application.
 
 A leaflet application might deliver an advertisement to any peer. Certainly, it won't be seen as {\it rude} if peers don't react. A leaflet sender can not assume a {\it thank you} or whatever.
 
 Another application might be a decentralized social network\footnote{SharkNet is
-a growing example. It actually is a social network based on Shark, see our web page for project status.}. In such application it can be helpful to know if information has received its destination or not. Such handshakes can be coded by applications programs. We'll see an example in section \ref{sec:chatkp}.
+a growing example. It actually is a social network based on Shark, see our web page for project status.}. In such an application, it can be helpful to know if information has reached its destination or not. Such handshakes can be coded by applications programs. We'll see an example in section \ref{sec:chatkp}.
 
 Communication requires a protocol. This protocol is called {\it Knowledge Exchange Protocol (KEP)}. It has just two commands: 
 
@@ -21,7 +21,7 @@ Communication requires a protocol. This protocol is called {\it Knowledge Exchan
 
 Application logic can be implemented with {\it Knowledge Ports} in Shark which are sometime called {\it Sharklets}. It is a quite slim interfaces. 
 
-Creating your own application specific knowledge port is simple as to be seen in the following code:
+Creating your own application specific knowledge port is simple as the following code shows:
 
 \begin{verbatim}
 public class MyKP extends KnowledgePort {
@@ -47,7 +47,7 @@ public class MyKP extends KnowledgePort {
 
 We will discuss the KEP protocol itself very briefly in this chapter. Shark creates messages which are sent over the network.
 
-This chapter discusses how to write your own knowledge port. Shark has some predefined knowledge port. They will be presented. The most important is our {\tt StandardKP}. We claim, that most applications can be implemented with it by setting appropriate parameters. 
+This chapter discusses how to write your own knowledge port. Shark has some predefined knowledge ports. They will be presented. The most important is our {\tt StandardKP}. We claim, that most applications can be implemented with it by setting appropriate parameters. 
 
 \section{Implementing your own Knowledge Port}
 Each knowledge port must be derived from {\tt KnowledgePort}. Each knowledge port must run with a {\tt SharkEngine}, see next chapter. Thus, each knowledge port {\it must} call the constructor that sets this engine.
@@ -79,12 +79,12 @@ public class MyKP extends KnowledgePort {
 }
 \end{verbatim}
 
-Abstract class {\tt KnowledgePort} offers a number of useful methods which are explained throughout that section and can also be found in the online API description\footnote{http://sharkfw.sourceforge.net/api/current/net/sharkfw/peer/KnowledgePort.html}.
+The abstract class {\tt KnowledgePort} offers a number of useful methods which are explained throughout that section and can also be found in the online API description\footnote{http://sharkfw.sourceforge.net/api/current/net/sharkfw/peer/KnowledgePort.html}.
 
 \subsection{KEPConnection}
-Knowledge ports are called when KEP message reaches a peer. They have to handle either interests or knowledge. Any knowledge ports must implement two methods for that reason: {\tt doExpose} to handle interests and {\tt doInsert} to handle knowledge. 
+Knowledge ports are called when a KEP message reaches a peer. They have to handle either interests or knowledge. All knowledge ports must implement two methods for that reason: {\tt doExpose} to handle interests and {\tt doInsert} to handle knowledge. 
 
-Both methods have two parameters: First is an interest or knowledge. Second is a {\tt KEPConnection} object. We are going to explain some details of that object in this section.
+Both methods have two parameters: The first one is an interest or knowledge. The second one is a {\tt KEPConnection} object. We are going to explain some details of that object in this section.
 
 {\tt KEPConnection} allows to check whether an message was encrypted and / or signed.
 
@@ -102,11 +102,11 @@ protected void doExpose(SharkCS interest,
 \end{verbatim}
 
 \subsubsection{Reply}
-Peer often want to reply to incoming interests or knowledge. A reply can be an arbitrary number of expose and insert messages. In other words, a peer can reply with interests and knowledge. 
+Peers often want to reply to incoming interests or knowledge. A reply can be an arbitrary number of expose and insert messages. In other words, a peer can reply with interests and knowledge. 
 
 A reply is send by means of the {\tt KEPConnection} object by calling {\tt expose} or {\tt insert} with appropriate parameters.
 
-There are a three variants of {\tt expose}. Have a look at the following code fragment.
+There are three variants of {\tt expose}. Have a look at the following code fragment.
 
 \begin{verbatim}
 Interest i = // create an interest
@@ -131,11 +131,11 @@ try {
 }
 \end{verbatim}
 
-The reply is sent to a dedicated address instead to the sending peer. The final variant takes an array of addresses instead a single address, see online documentation. The interest is sent to each address in the list.
+The reply is sent to a dedicated address instead of the sending peer. The final variant takes an array of addresses instead of a single address, see the online documentation. The interest is sent to each address in the list.
 
-The same concept is used if knowledge is to be sent as reply. Note, there is no method that sends knowledge just to the sending peer. It is for developers safety and not for their punishment.
+The same concept is used if knowledge is sent as a reply. Note, there is no method that sends knowledge just to the sending peer. It is for the developers safety and not for their punishment.
 
-We figured that developers tend to become confused by all those peers which can be seen as sender. Shark philosophy is that interests tend to be commonly available but knowledge not. We think, that sending knowledge must happen deliberately. Let's have a look of different kind of sender.
+We figured that developers tend to become confused by all those peers which can be seen as sender. Shark philosophy is that interests tend to be commonly available but knowledge does not. We think, that sending knowledge must happen deliberately. Let's have a look at a different kind of sender.
 
 \subsection{Physical and logical sender}
 \label{sec:knowledgePorts:sender}
@@ -161,23 +161,23 @@ Alice could also synchronize her data to another device, e.g. her laptop. Her in
 
 {\tt KEPConnection} offers several methods to reply to incoming interests. The more convenient methods reply to the {\it physical} sender. In most cases, this would be an appropriate choice but not in any. 
 
-Moreover, information of physical sender are not stored in interests or knowledge. That information is only available when receiving that data.
-Applications who need physical sender information are required to save it.
-Physical sender address can be retrieve from the connection object.
+Moreover, information of the physical sender are not stored in interests or knowledge. That information is only available when receiving that data.
+Applications who need the physical sender information are required to save it.
+The physical sender's address can be retrieve from the connection object.
 
 \begin{verbatim}
 PeerSemanticTag sender = kepConnection.getSender();
 String[] addresses = sender.getAddresses();
 \end{verbatim}
 
-We encourage to defines recipient addresses explicitly. That makes your code more transparent for other programmers.
+We encourage to define recipient addresses explicitly. That makes your code more transparent for other programmers.
 
 Shark allows signing and encrypting. Shark only offers End-to-End-Encryption. Physical sender don't play any role in those scenarios. Logical sender sign and encrypt. Physical devices are only means for transportation.
 
 \subsection{Sending initial messages}
 It isn't enough to wait for incoming requests. One peer must start talking.
 
-{\tt KnowledgePort} objects support methods for sending interests and knowledge. The following code is a scetch of its usage.
+{\tt KnowledgePort} objects support methods for sending interests and knowledge. The following code is a sketch of its usage.
 
 \begin{verbatim}
 Knowledge k = ...
@@ -187,12 +187,12 @@ this.sendKnowledge(k, peer);
 this.sendInterest(i, peer);
 \end{verbatim}
 
-The code is straightforward. We need a peer and either knowledge or an interest which can be delivered. Sending might fail either for security reasons or network problems. Exception are thrown in either case.
+The code is straightforward. We need a peer and either knowledge or an interest which can be delivered. Sending might fail either for security reasons or network problems. Exceptions are thrown in either case.
 
-A KEP message is send in case of success and be be handled by the receiver, more specific by a receivers {\tt KnowledgePort} objects. Note, message can send with each running knowledge port. The sending port has no privileges over others. A reply on a sent message is handled as any other message and offered to each active knowledge port.
+A KEP message is sent in case of success and can be handled by the receiver, more specific by the receiver's {\tt KnowledgePort} objects. Note, message can send with each running knowledge port. The sending port has no privileges over others. A reply on a sent message is handled as any other message and offered to each active knowledge port.
 
 Thus, sending a message requires at least a single active knowledge port. 
-There are no methods (yet) that allows developers to send {\it interest} or {\it knowledge} without a {\tt KnowledgePort} object. In the rare case of a peer that has no knowledge a workaround is proposed: Implement your own knowledge port and leave {\tt doExpose} and {\tt doInsert} empty. Now you have a knowledge port that actually has no effect on incoming messages but can be used to send messages.
+There are no methods (yet) that allow developers to send {\it interest} or {\it knowledge} without a {\tt KnowledgePort} object. In the rare case of a peer that has no knowledge a workaround is proposed: Implement your own knowledge port and leave {\tt doExpose} and {\tt doInsert} empty. Now you have a knowledge port that actually has no effect on incoming messages but can be used to send messages.
 
 \subsection{Creating a knowledge port}
 Now we are ready to instantiate a knowledge port. We need a {\tt SharkEngine} first, see chapter \ref{sec:sharkengine} for details. Afterwards, we can bring our knowledge port into existence and action:
@@ -228,7 +228,7 @@ public class MyKPListener implements KPListener {
 
 This class implements the {\tt KPListener} interface that comprises three methods which are implemented in a quite naive way.
 
-A listener must be added to a knowledge port. Let's extend our example code from previous section:
+A listener must be added to a knowledge port. Let's extend our example code from the previous section:
 
 \begin{verbatim}
 SharkEngine se = new J2SEAndroidSharkEngine();
@@ -237,10 +237,10 @@ KPListener myListener = new MyKPListener();
 kp.addListener(myListener);
 \end{verbatim}
 
-{\bf Knowledge port developer have to trigger those listener events!} The {\tt KnowledgePort} class just offers methods to subscribe and remove listeners.
+{\bf Knowledge port developers have to trigger those listener events!} The {\tt KnowledgePort} class just offers methods to subscribe and remove listeners.
 It does {\it not} trigger e.g. a {\tt exposeSent} event. This is up to knowledge port developers!
 
-Triggering those events is very simple, though. The following code can be  called inside any knowledge port object.
+Triggering those events is very simple, though. The following code can be called inside any knowledge port object.
 
 \begin{verbatim}
 // get or create interest and send it
@@ -272,7 +272,7 @@ kp.start();
 boolean started = kp.isStarted();
 \end{verbatim}
 
-A stopped knowledge port does not get any KEP message until it is restarted again. 
+A stopped knowledge port does not get any KEP messages until it is restarted again. 
 
 Each knowledge port can hold a knowledge base. We have added this feature into the most abstract superclass because most knowledge ports will need a knowledge base for operations.
 
@@ -299,11 +299,11 @@ boolean receivingInterest = kp.isIKP();
 boolean sendingInterest = kp.isOKP();
 \end{verbatim}
 
-Lets summarize. Knowledge ports are {\it the element} that stores the actual application logic of peers. Knowledge ports work independently from each other. Thus, a peer can instantiate a number of ports that perform different tasks.
+Lets summarize: Knowledge ports are {\it the elements} that store the actual application logic of peers. Knowledge ports work independently from each other. Thus, a peer can instantiate a number of ports that perform different tasks.
 
 Writing a knowledge port is as difficult or as easy as writing a Servlet. 
 
-Moreover, there are some knowledge port implementation already in the framework. We guess that this number of predefined knowledge ports will increase over the years and releases. Next section will explain the most important knowledge ports. We start with the most generic port which is called {\tt StandardKP}. It can be configured in different ways. We hope that this generic port can solve most applications needs just be configuration. Reading and understanding the following section can seriously reduce your development time. Enjoy!
+Moreover, there are some knowledge port implementations already included in the framework. We guess that the number of predefined knowledge ports will increase over the years and releases. The next section will explain the most important knowledge ports. We start with the most generic port which is called {\tt StandardKP}. It can be configured in different ways. We hope that this generic port can solve the needs of most applications just by configuration. Reading and understanding the following section can seriously reduce your development time. Enjoy!
 
 \section{Exercises}
 
