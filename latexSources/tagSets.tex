@@ -1,14 +1,14 @@
 \chapter{Semantic Tag Sets}
-Semantic tags can stored together in a set. Each Shark set behaves like Java sets typically do: Tags can be added and removed. 
+Semantic tags can be stored together in a set. Each Shark set behaves like Java sets typically do: Tags can be added and removed. 
 
 Tags can have relations. Relations can only be defined by means of tag 
-sets. From that structural point of view, Shark offers three kind of sets:
+sets. From that structural point of view, Shark offers three kinds of sets:
 
 \begin{description}
-\item[ST Sets] are also called {\it plain sets}. The just store tags. Tags don't have any additional relation.
+\item[ST Sets] are also called {\it plain sets}. They just store tags. Tags don't have any additional relation.
 \item[Taxonomy] also stores tags. {\tt TXSemanticTags} can be in a hierarchical 
 relations, e.g. tag A is {\tt sub} topic of tag B and tag B is {\tt super} topic of A in that case.
-\item[SemanticNet] also store tags. {\tt SNSemanticTags} can have arbitrary relations. Relations are usually illustrated by an arc. One tag can refer another tag with a {\tt predicate}\footnote{Yes, this terminology is taken from W3C RDF. The Shark model is far less complex, though.}.
+\item[SemanticNet] also store tags. {\tt SNSemanticTags} can have arbitrary relations. Relations are usually illustrated by an arc. One tag can refer to another tag with a {\tt predicate}\footnote{Yes, this terminology is taken from W3C RDF. The Shark model is far less complex, though.}.
 \end{description}
 
 \section{Create, Merge, Add, Remove}
@@ -23,20 +23,20 @@ SemanticTag berlin =
 plainSet.removeSemanticTag(berlin);
 \end{verbatim}
 
-That's a good point to discuss relationship between knowledge base, sets and 
+That's a good point to discuss the relationship between knowledge base, sets and 
 tags. Tags can either be part of a tag set or exist alone in memory.
 
 There are several knowledge base implementations which will be discussed later in this book. The {\verb|InMemoSharkKB|} exists only in computer memory. All other implementations persist their data on an external medium.
 
-Semantic Tags {\bf cannot} be moved from one set to another. A tag remains in the environment where it was created. A tag that was created remains in memory. A tag that was created in a tag set remains their until its deletion. 
+Semantic Tags {\bf cannot} be moved from one set to another. A tag remains in the environment where it was created. A tag that was created remains in memory. A tag that was created in a tag set remains there until its deletion. 
 
 Tags and sets can be {\bf merged}, though. Merging means creating a copy.
 Tags can be merged into a set. Sets can be merged into other sets.
 
-Moving a tag from one set two another could be implemented as two step algorithm: First, merge the tag to the target set. Second, remove it from source set. This algorithm behave as moving only if the target set does not contain an {\it identical} tag. This becomes - hopefully - clear when having a look on the merging algorithm:
+Moving a tag from one set to another could be implemented as a two step algorithm: First, merge the tag to the target set. Second, remove it from the source set. This algorithm behaves as moving only if the target set does not contain an {\it identical} tag. This becomes - hopefully - clear when having a look at the merging algorithm:
 
 First, it is looked for
-an identical tag inside the set. If there is one, both tags are merged. A copy of the tag is added otherwise. Note: Properties are copied as well, regardless if their are defined to be transferable or not.
+an identical tag inside the set. If there is one, both tags are merged. A copy of the tag is added otherwise. Note: Properties are copied as well, regardless if they are defined to be transferable or not.
 
 Merging tag sets works similar. All tags from the source set are iterated and merged into the target set.
 
@@ -79,7 +79,7 @@ A tag might describe Germany. Another tag might describe Berlin which is a city 
 \label{fig:semanticNet}
 \end{figure}
 
-Tags can refer to another tag by a {\it predicate}. A predicate has two parameters: the referred tag ({\it target} and the predicate name. The origin of the predicate is called {\it source}. 
+Tags can refer to other tags with a {\it predicate}. A predicate has two parameters: the referred tag ({\it target} and the predicate name. The origin of the predicate is called {\it source}. 
 
 For our example, the {\it Berlin} tag could refer to the tag {\it Germany} with a predicate named {\it is part of}, see figure \ref{fig:semanticNet}
 
@@ -122,19 +122,19 @@ public class SemanticNetSample {
 \end{verbatim}
 
 The first line creates an in-memory knowledge base. The second line
-gets a reference to the topic dimension of the knowledge base. Each dimension can be handled differently. It can be handled as plain set, as taxonomy or as semantic net as in this example.
+gets a reference to the topic dimension of the knowledge base. Each dimension can be handled differently. It can be handled as a plain set, as a taxonomy or as a semantic net like in this example.
 
-Two tags are created, one representing Germany, another one for Berlin. The string {\it istPartOf} is defined for this application. It is just am arbitrary string! 
+Two tags are created, one representing Germany, another one Berlin. The string {\it istPartOf} is defined for this application. It is just an arbitrary string! 
 
 The line {\verb|berlin.setPredicate(isPartOf, germany)|} sets the predicate. 
 
 {\verb|germany.sourceTags(isPartOf)|} returns an enumeration of source tags.
-Remember, source tags are the start of a predicate. Thus, that method returns any tag the refers to {\tt germany} with the {\tt isPartOf} predicate.
+Remember, source tags are the start of a predicate. Thus, this method returns any tag that refers to {\tt germany} with the {\tt isPartOf} predicate.
 
 {\verb|berlin.targetTags(isPartOf)|} returns an enumeration of target tags.
 In this case, we get all tags to which {\tt berlin} is linked with the {\tt isPartOf} predicate.
 
-Does it sound confusing? On the first glimpse it probably will. It will instantly less frustrating when you have made a little sketch by your own.
+Does it sound confusing? On the first glimpse it probably will. It will instantly become less frustrating once you have made a little sketch on your own.
 
 To sum up, predicates have the following features and conventions:
 
@@ -146,7 +146,7 @@ To sum up, predicates have the following features and conventions:
 Each predicate name can be used in an arbitrary number of predicates.
 
 \item
-Referred tags are called {\bf target tags}. The tag that actual refers to another tag is called {\bf source tag} -- it is the source of the predicate.
+Referred tags are called {\bf target tags}. The tag that actually refers to another tag is called {\bf source tag} -- it is the source of the predicate.
 
 \item
 Predicates can be removed. It doesn't change anything in related tags.
@@ -174,7 +174,7 @@ Tags can be removed. Sub-tags have to be handled in this case. There are two cas
 
 \end{itemize}
 
-Figure \ref{fig:taxonomy} illustrates a little taxonomy that describes the fact that Java and c-Sharp are programming languages.
+Figure \ref{fig:taxonomy} illustrates a little taxonomy that describes the fact that Java and C-Sharp are programming languages.
 
 \begin{figure}[t]
 \centering
@@ -277,10 +277,10 @@ plainSet.merge(paris);
 plainSet.merge(plainSet2);
 \end{verbatim}
 
-Merging of sets works also with taxonomies and semantic nets. In this case, all predicates are merged as well. Such merging is a two step operation: First, all tags from the source are merged into the target with the described algorithm. Afterwards, all predicates are merged as well. 
+Merging of sets also works with taxonomies and semantic nets. In this case, all predicates are merged as well. Such merging is a two step operation: First, all tags from the source are merged into the target with the described algorithm. Afterwards, all predicates are merged as well. 
 
 \section{Fragmentation}
-Fragmentation is one of the core algorithms in Shark. It is used in many different ways and comes in a number of different versions. We are going to discuss most of them here. It is crucial to understand that method even if it meight take a while to understand the concept.
+Fragmentation is one of the core algorithms in Shark. It is used in many different ways and comes in a number of different versions. We are going to discuss most of them here. It is crucial to understand that method even if it might take a while to understand the concept.
 
 Fragmentation is a powerful tool to find out e.g. if two persons share similar interests. Fragmentation can be compared with a database query but on a semantic level.
 
@@ -590,7 +590,7 @@ public PeerSemanticTag getSemanticTag(String si)
      throws SharkKBException;
 \end{verbatim}
 
-Note, method name is identical but return type has changed from {\tt SemanticTag} to {\tt PeerSemanticTag}.
+Note, the method name is identical but return type has changed from {\tt SemanticTag} to {\tt PeerSemanticTag}.
 
 Now it becomes a bit complicated due to possible combinations. Just relax and read the following comments calmly. 
 
