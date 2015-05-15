@@ -1,8 +1,8 @@
 \chapter{Shark Knowledge Base}
 \label{sec:sharkkb}
-We have discussed two different things up to here. We have learnt a big deal about semantic tags. And we have seen how information can be stored and enriched with context coordinates.
+We have discussed two different things up to here. We have learned a big deal about semantic tags. And we have seen how information can be stored and enriched with context coordinates.
 
-A knowledge base stores both things: semantic tags sets and information. We have already seen a bunch of code which uses the {\tt InMemoSharkKB}. The general idea of this knowledge base is already clear. This chapter reveals the remaining features of our knowledge base especially knowledge {\it extraction} and {\it assimilation}. Both methods play an important role probably most Shark based P2P system.
+A knowledge base stores both things: semantic tag sets and information. We have already seen a bunch of code which uses the {\tt InMemoSharkKB}. The general idea of this knowledge base is already clear. This chapter reveals the remaining features of our knowledge base, especially knowledge {\it extraction} and {\it assimilation}. Both methods play an important role in probably most Shark based P2P system.
 
 In order to explain those things, we have to introduce two concepts: vocabulary and knowledge.
 
@@ -13,7 +13,7 @@ Each semantic tag describes a thing that either physically exists or is object o
 
 Each semantic tag can be seen as a word. The dictionary is made up by the referenced URI by the subject identifiers. Each peer can define its own semantic tags which means, that every peer can create its own vocabulary.
 
-Now we can define: {\bf A Shark vocabulary is the sum of all semantic tags defined by a peer.} {\tt SharkVocabulary} gets access to parts of each Shark vocabolary:
+Now we can define: {\bf A Shark vocabulary is the sum of all semantic tags defined by a peer.} {\tt SharkVocabulary} gets access to parts of each Shark vocabulary:
 
 \begin{description}
 \item[owner] A peer semantic tag describing the owner of that vocabulary.
@@ -33,7 +33,7 @@ PeerSTSet getPeerSTSet();
 TimeSTSet getTimeSTSet();
 \end{verbatim} 
 
-Those are plain tag sets. Shark also supports taxonomies and semantic nets. Each class that implememts {\tt SharkVocabulary} is forced to offer at least topics and peers as taxonomy and semantic nets. Therefore, the interfacce offers additional methods to get other views on topic and peer set:
+Those are plain tag sets. Shark also supports taxonomies and semantic nets. Each class that implememts {\tt SharkVocabulary} is forced to offer at least topics and peers as taxonomy and semantic nets. Therefore, the interface offers additional methods to get other views on topic and peer set:
 
 \begin{verbatim}
 PeerTaxonomy getPeersAsTaxonomy();
@@ -43,21 +43,21 @@ SemanticNet getTopicsAsSemanticNet();
 Taxonomy getTopicsAsTaxonomy();
 \end{verbatim}
 
-Note: In any case: Each vocabulary has just a single set for each type. The different get-methods provide just different {\it views} on each set. Thus, each tag stored in the topic set can be accessed as a simple tag, as part of a taxonomy but also as part of a semantic net. It's the same with peer semantic tags. They are just views on the same data.
+Note: In any case: Each vocabulary has just a single set for each type. The various get-methods provide just different {\it views} on each set. Thus, each tag stored in the topic set can be accessed as a simple tag, as part of a taxonomy but also as part of a semantic net. It's the same with peer semantic tags. They are just views on the same data.
 
 \subsection{Vocabulary as context space}
-A vocabulary is a set of semantic tag sets. A vocabulary distinguishes those sets based on semantic tag types. The previous chapter introduces the Shark context space with its seven dimensions. We have learnt that three dimensions are made up by peer semantic tags (originator, peer and remote peer dimension).
+A vocabulary is a set of semantic tag sets. A vocabulary distinguishes those sets based on semantic tag types. The previous chapter introduces the Shark context space with its seven dimensions. We have learned that three dimensions are made up by peer semantic tags (originator, peer and remote peer dimension).
 
-Sometimes it is useful to interpret a vocabulary as context space. It is easy on programmers level:
+Sometimes it is useful to interpret a vocabulary as context space. It is easy on programming level:
 
-{\tt SharkKB} is no context space but it can be treated as one. The method {\tt asSharkCS} provides a {\it view} on the knowledge base if it would be a context space.
+{\tt SharkKB} is not a context space but it can be treated as one. The method {\tt asSharkCS} provides a {\it view} on the knowledge base as if it would be a context space.
 
 \begin{verbatim}
 SharkVocabulary v = //... get it from somewhere
 SharkCS asSharkCS = v.asSharkCS();
 \end{verbatim}
 
-All three peer dimension reference the peer tag set of the vocabulary. Topic dimension reference the topic set, location dimension the spatial set and time dimension vocabulary's time semantic tag set. Direction is defined to be INOUT.
+All three peer dimensions reference the peer tag set of the vocabulary. The Topic dimension references the topic set, the location dimension the spatial set and the time dimension the vocabulary's time semantic tag set. Direction is defined to be INOUT.
 It is a kind of trick but as useful one.
 
 There are no methods to create just a stand-alone vocabulary. It is part of the Shark knowledge base. Actually, it is the super-interface of {\tt SharkKB} which is the interface that any Shark compliant knowledge base must support.
@@ -78,14 +78,14 @@ We can create a knowledge base and {\it use it} as vocabulary.
 \label{fig:knowledgecomponents}
 \end{figure}
 
-Context points are means to store information with their coordinates, see previous chapter. Just exchanging sets of context points isn't sufficient in a semantic P2P system. Let's discuss it with an example we already know.
+Context points are means to store information with their coordinates, see the previous chapter. Just exchanging sets of context points isn't sufficient in a semantic P2P system. Let's discuss it with an example we already know.
 
 Alice stored information with coordinates: \\
 (Shark, Alice, Alice, any, any, any, OUT).
 
-Alice knows more, though. She knows that Shark {\it is a} P2P system. This fact isn't defined with coordinates. It is part of her vocabulary. Alice is willing to transmit information to others -- to Bob in our example. Apparently, it wouldn't be sufficient if she'd send just the context point. She should also send parts of her vocabulary which gives some background information.
+Alice knows more, though. She knows that Shark {\it is a} P2P system. This fact isn't defined with coordinates. It is part of her vocabulary. Alice is willing to transmit information to others -- to Bob, in our example. Apparently, it wouldn't be sufficient if she'd send just the context point. She should also send parts of her vocabulary which gives some background information.
 
-In Shark, {\bf knowledge is set of context points with a vocabulary}. Knowledge is rarely created by developers. In most cases it is extracted from a knowledge base. Nevertheless, we want to demonstrate usage of knowledge with a little example.
+In Shark, {\bf knowledge is a set of context points with a vocabulary}. Knowledge is rarely created by developers. In most cases it is extracted from a knowledge base. Nevertheless, we want to demonstrate usage of knowledge with a little example.
 
 
 \begin{verbatim}
@@ -103,7 +103,7 @@ We create a context point in line 3. It is empty which is not useful in real app
 Figure \ref{fig:knowledgecomponents} illustrates the parts of a knowledge object.
 
 
-We can now summarise. Each {\tt SharkKB} contains a vocabulary, knowledge and has an owner, see figure \ref{fig:sharkkbcontent}.
+We can now summarize. Each {\tt SharkKB} contains a vocabulary, knowledge and has an owner, see figure \ref{fig:sharkkbcontent}.
 
 \begin{figure}[t]
 \centering
@@ -114,7 +114,7 @@ We can now summarise. Each {\tt SharkKB} contains a vocabulary, knowledge and ha
 
 \section{Knowledge Extraction}
 \label{sec:extraction}
-There are two quite complex operations provided by a knowledge base: Extraction and assimilation. We are going to explain both of them and start with extraction. Developers don't have do deal with these operation when using pre-defined knowledge ports. Nevertheless, the basic idea of extraction and assimilation should be understood.
+There are two quite complex operations provided by a knowledge base: Extraction and assimilation. We are going to explain both of them and start with extraction. Developers don't have to deal with these operation when using pre-defined knowledge ports. Nevertheless, the basic idea of extraction and assimilation should be understood.
 
 Let's start with an example. (This and the following examples can be found on sharksystem.net under tutorials as {\tt ExtractionAssimilationExamples}.
 
@@ -163,7 +163,7 @@ System.out.println("kb after initialisation: ");
 System.out.println(L.kbSpace2String(this.kb));
 \end{verbatim}
 
-Each code example on the web page create a more or less lengthy output. We reduce the output to a minimum. This program prints out the newly created knowledge base.
+Each code example on the web page creates a more or less lengthy output. We reduce the output to a minimum. This program prints out the newly created knowledge base.
 
 \begin{verbatim}
 owner: Alice
@@ -185,7 +185,7 @@ Context Points
 \end{figure}
 
 The code is not complicated:
-An in memory knowledge base is created. Alice is described with a peer semantic tag. Java and programming languages are added to the {\it topic} set in that in our knowledge base. We also describe that Java {\it is a} programming language. Two coordinates are defined and information are added to both points. Both points have Alice as originator and peer. They differ in their topic dimension. One uses Java, the other takes - more general - programming languages as topic. Finally, we print out knowledge base content for debugging purposes. 
+An in-memory knowledge base is created. Alice is described with a peer semantic tag. Java and programming languages are added to the {\it topic} set in our knowledge base. We also describe that Java {\it is a} programming language. Two coordinates are defined and information is added to both points. Both points have Alice as originator and peer. They differ in their topic dimension. One uses Java, the other takes - more general - programming languages as topic. Finally, we print out the knowledge base content for debugging purposes. 
 
 Figure \ref{fig:extraction} illustrates most data structures: The {\tt SharkKB} with its three semantic tags and both context points are on the left upper side. 
 The tag labeled {\it ProgLang} is on the right side. It is not part of the knowledge base. It just exists in memory.
