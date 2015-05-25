@@ -226,7 +226,7 @@ This code will produce the output {\tt no information found}.
 Note, {\tt getContextPoints(i, true)} is identical to {\tt getContextPoints(i)}.
 
 \subsection{Any tags in interests}
-We want to discuss the use of {\it any} tags in interests in more in detail. You can skip that section during first reading. But come back later. 
+We want to discuss the use of {\it any} tags in interests in more in detail. You can skip this section during first reading. But come back later. 
 
 Semantic tags without an explicit meaning are called {\it any} tags in Shark.
 We could already see, that coordinates can have an {\it any} tag. Each dimension has -- per definition -- an {\it any} tag. An exception is the direction.
@@ -372,7 +372,7 @@ Imagine, Bob would receive Alice's interest. He could do the same calculation an
 
 That result differs in three points: peer, remote peer and direction. And that's only logical. We are on Bobs side now. Bob puts himself into the peer dimension and Alice in the remote peer slot of course. He also learnt that Alice only wants to send something, so he changed the direction to IN.
 
-We extends our program with those lines:
+We extend our program with these lines:
 \begin{verbatim}
 mutualInterest = SharkCSAlgebra.contextualize(
    aliceInterest, // source - received interest
