@@ -18,7 +18,7 @@ assimilator of knowledge. The interest can be seen as a filter for both exportin
 
 We are going to finish the introduction and start with the program. Actually, we are going two write two programs: One plays the role of Alice, the other the role of Bob. Source code can also be found on sharksystem.net under tutorials.
 
-The following section will contain the whole Alice program, next one will contain Bob. Relevant algorithms are explained afterwords.
+The following section will contain the whole Alice program, next one will contain Bob. Relevant algorithms are explained afterwards.
 
 \subsection{Alice and Bob basic scenario}
 \subsubsection{Alice}
@@ -119,9 +119,9 @@ A semantic tag is created that describes {\it Shark}. A peer semantic tag is cre
 {\tt ContextCoordindates} are created. They use {\it Alice} as originator and peer and {\it Shark} as topic. Information shall be sent which is defined by 
 {\tt DIRECTION\_OUT}. A context point is created and a brief information added.
 
-Neither of those lines are new. New is creation of the {\tt StandardKP} with three parameters: the {\tt SharkEngine}, the {\tt interest} (we re-use our coordinates) and the {\tt SharkKB}. That's it. Out {\tt StandardKP} has anything it needs: It knows what is Alice willing to talk about and it knows where to store and/or retrieve information.
+Neither of those lines are new. New is creation of the {\tt StandardKP} with three parameters: the {\tt SharkEngine}, the {\tt interest} (we re-use our coordinates) and the {\tt SharkKB}. That's it. Out {\tt StandardKP} has everything it needs: It knows what is Alice willing to talk about and it knows where to store and/or retrieve information.
 
-A KPListener is set up afterwords - just to illustrate it's usage.
+A KPListener is set up afterwards - just to illustrate it's usage.
 
 \begin{verbatim}
 aliceSE.startTCP(7070);
