@@ -574,7 +574,7 @@ Finally, we have a look at the {\tt messageReceived} implementation:
 \end{verbatim}
 
 The first three lines just print out the fact that a message was
-received and from whom. Afterwords, a message (''Hi Bob'') is send
+received and from whom. Afterwards, a message (''Hi Bob'') is sent
 back. Apparently, a real chat program must prompt users entering
 a reply. Finally, {\tt this.stop()} is called which is implemented in
 {\tt ChatPeerTCP} and simply stops TCP communication in general. Thus, 
@@ -822,9 +822,9 @@ Now, we have seen how {\tt ChatKP} handles incoming chat messages. Now we have t
 }
 \end{verbatim}
 
-This message takes two parameter: message and recipient. This message has two wrap the message into a knowledge object. First, context coordinates are required. Seven parameter are required.
+This message takes two parameters: message and recipient. This message has two wrap the message into a knowledge object. First, context coordinates are required. Seven parameter are required.
 
-The topic is created with {\tt getChatTopic}. See also the method implementation. A semantic tag is created labeled with ''ChatTopic''. It semantics is defined by {\tt CHAT\_TOPIC\_SI}, see above. 
+The topic is created with {\tt getChatTopic}. See also the method implementation. A semantic tag is created labeled with ''ChatTopic''. Its semantics is defined by {\tt CHAT\_TOPIC\_SI}, see above. 
 
 Originator and peer dimension is set to the owner of this engine. This makes
 perfectly sense because this peer is creator and sender of the message. 
@@ -835,7 +835,7 @@ Location and time dimension remains empty. Spatial and temporal constraints are 
 
 Direction is set to {\tt OUT} because we are going to send something out.
 
-A context point is created with those coordinates. The chat message can be attached as information. A knowledge object is created and the context point is added. Finally, that knowledge object is send out to the recipient peer with 
+A context point is created with those coordinates. The chat message can be attached as information. A knowledge object is created and the context point is added. Finally, that knowledge object is sent out to the recipient peer with 
 {\tt sendKnowledge(k, recipient)}.
 
 The receiving peer would get a knowledge object via KEP-insert and call {\tt doInsert} on all active knowledge ports. We have already seen the {\tt ChatKP} implementation.
