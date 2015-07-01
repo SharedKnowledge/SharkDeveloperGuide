@@ -32,7 +32,7 @@ Peers can add context points and information to subspaces. Each invited peer -- 
 Peers can unsubscribe from subspaces. They won't get new information any longer. They local copy still remains until it is finally removed by the peer. Owner can remove peers from subspace. It has the same effect as if a peer 
 would unsubscribe.
 
-The subscription types can be distingueshed: {\it full member} and {\it read-only member}. The meaning obvious: Full member can add data to their subspaces. An attempt by a read-only member would fail. 
+The subscription types can be distinguished: {\it full member} and {\it read-only member}. The meaning obvious: Full member can add data to their subspaces. An attempt by a read-only member would fail. 
 
 Data can be removed from subspaces. {\bf Note, removing data is not propagated to other subspaces}. It is up to applications to propagate data removal\footnote{That rule sounds odd in first place. It has an advantage though. Imagine a chat. A peer might decide to remove a number of chat entries. What should a subspace do? Removing the copies in all subscribed knowledge bases wouldn't be an expected behaviour. Imagine, Alice, Bob and Clara an in a chat. Bob decides to remove any discussion between Alice and Clara. What would Alice and Clara think if their local copies would be lost as well. Therefore, subspaces propagate new data but not data removal.}.
 
@@ -60,9 +60,9 @@ There is another class {\tt SubSpaceGuardKP}. Shark engines working with subspac
 one guard KP can be instantiated. We don't discuss this kind of subspace multiversum in this version of the programmers guide. Maybe later. Up to here, take it as a rule: Use the guard KP as singleton. It's better and has actually no serious drawbacks.}.
 
 Subspaces communicate with KEP. They use a special coding which prevents other knowledge ports from processing those messages, see \ref{subspacemessages}.
-For example, when a peer inserts new data into its local subspace a message is
-send to each subscribed peers to notify about this event. Subspace owner can
-invite another peer. Both subspace specific messages are encapsulated into KEP messages. The guard KP takes any subspace message and performs necessary actions. Here is the good news for any developer: You have nothing to do with the communication. The whole synchronization process is already in place. You have just to handle with several events which can arise. And you have to create the guard object.
+For example, when a peer inserted new data into its local subspace, a message is
+send to each subscribed peers in order to notify about this event. Subspace owner can
+invite another peer. Both subspace specific messages are encapsulated into KEP messages. The guard KP takes any subspace message and performs necessary actions. Here is the good news for any developer: You have nothing to do with the communication. The whole synchronization process is already in place. You have just to handle several events which can arise. And you have to create the guard object.
 
 The guard requires a shark engine, a shark knowledge base and an object that implements {\tt SubSpaceManager}. The engine is pretty clear. It's the engine that makes up the shark peer. The knowledge base shall is called the {\it baseKB}. What makes that kb special. Actually nothing in the first place, but it becomes interesting: We have already learned that peers can be invited and can subscribe. Those, peers can learn about other peers or try to invite peers. The peer descriptions, namely the peer semantic tags must be stored somewhere. The peer dimension of the baseKB is that place. 
 

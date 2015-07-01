@@ -5,7 +5,7 @@ Shark allows encrypting and signing of KEP messages. We explain the responsible 
 \section{Signing}
 Signing a message requires a private key. A hash code of a message is created and encrypted with a private key. That encrypted hash code (which is called signature) is added to the message.
 
-A recipient can read the message and calculate the same hash code. Recipient can decrypt the transmitted signature with senders public key. The signature is ment to be {\it verified} if both hash codes are equal.
+A recipient can read the message and calculate the same hash code. Recipient can decrypt the transmitted signature with senders public key. The signature is meant to be {\it verified} if both hash codes are equal.
 
 Verifying requires a safe and secure way for public key dissemination. Such a infrastructure is called Public Key Infrastructure (PKI). Shark can be used with any PKI\footnote{There is already a Shark PKI that's needs more testing and becomes part of version 3.0 of Shark.}. Shark uses MD5 for hash code calculation and RSA for signature creation and verifying.
 
@@ -31,7 +31,7 @@ FSSharkKB baseKB = new FSSharkKB("testKB");
 //each store needs an engine - WHY IS THAT?
 J2SEAndroidSharkEngine se = new J2SEAndroidSharkEngine();
 
-// create storaga
+// create storage
 SharkPublicKeyStorage ks = new FSSharkKBPublicKeyStorage(baseKB, se);
 
 // create or get private key;

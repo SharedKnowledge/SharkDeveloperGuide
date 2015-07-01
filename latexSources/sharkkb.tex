@@ -21,7 +21,7 @@ Now we can define: {\bf A Shark vocabulary is the sum of all semantic tags defin
 \item[peer] A peer semantic tag set containing arbitrary peer semantic tags.
 It can be seen as an address book. It stores known peers, not necessarily friends - just peers.
 \item[locations] A spatial semantic tag set containing geometries of places.
-\item[times] A time semantic tag set containing time periodes which are of any interest for the peer.
+\item[times] A time semantic tag set containing time periods which are of any interest for the peer.
 \end{description}
 
 The following code demonstrates how each of them set can be retrieved:
@@ -33,7 +33,7 @@ PeerSTSet getPeerSTSet();
 TimeSTSet getTimeSTSet();
 \end{verbatim} 
 
-Those are plain tag sets. Shark also supports taxonomies and semantic nets. Each class that implememts {\tt SharkVocabulary} is forced to offer at least topics and peers as taxonomy and semantic nets. Therefore, the interface offers additional methods to get other views on topic and peer set:
+Those are plain tag sets. Shark also supports taxonomies and semantic nets. Each class that implements {\tt SharkVocabulary} is forced to offer at least topics and peers as taxonomy and semantic nets. Therefore, the interface offers additional methods to get other views on topic and peer set:
 
 \begin{verbatim}
 PeerTaxonomy getPeersAsTaxonomy();
@@ -114,7 +114,7 @@ We can now summarize. Each {\tt SharkKB} contains a vocabulary, knowledge and ha
 
 \section{Knowledge Extraction}
 \label{sec:extraction}
-There are two quite complex operations provided by a knowledge base: Extraction and assimilation. We are going to explain both of them and start with extraction. Developers don't have to deal with these operation when using pre-defined knowledge ports. Nevertheless, the basic idea of extraction and assimilation should be understood.
+There are two quite complex operations provided by a knowledge base: Extraction and assimilation. We are going to explain both of them and start with extraction. Developers don't have to deal with these operation when using predefined knowledge ports. Nevertheless, the basic idea of extraction and assimilation should be understood.
 
 Let's start with an example. (This and the following examples can be found on sharksystem.net under tutorials as {\tt ExtractionAssimilationExamples}.
 
@@ -407,7 +407,7 @@ Alice becomes part of a newly created {\tt group}. The following code is similar
 {\tt false, true} leads to knowledge that is filled with all context points. Try other true/false combinations and watch the results.
 
 \subsection{Cutting peer hierarchies}
-Lets review our last example. We have created a context point that has a group in its peer dimension. That's usual and advisable. It is convenient and efficient to create groups and add peers. Afterwords, we can add information and use those groups to define what peers (plural!) shall get these information.
+Lets review our last example. We have created a context point that has a group in its peer dimension. That's usual and advisable. It is convenient and efficient to create groups and add peers. Afterwards, we can add information and use those groups to define what peers (plural!) shall get these information.
 
 Shark is a P2P system. Each peer can define its own group. Such a group can be compared with recipient list in e-mail. In a number of case, users don't want to reveal neither existence nor members of such a list, though.
 
@@ -488,7 +488,7 @@ two points:
 (PL, Alice, Alice,-,-,-, inout)
 \end{verbatim}
 
-Let's see what happens afterwords in this example:
+Let's see what happens afterwards in this example:
 
 \begin{verbatim}
 Knowledge k = ... // contains two cp now.
@@ -520,7 +520,7 @@ System.out.println(L.kb2String(kb1));
 
 A semantic tag is created that has no name but an identity. It represents {\it programming languages}. An interest is created that contains just that tag.
 
-An empty knowledge base ({\tt kb1}) is created. Afterwords, the assimilation is started and uses the empty knowledge base as target and the knowledge as source. 
+An empty knowledge base ({\tt kb1}) is created. Afterwards, the assimilation is started and uses the empty knowledge base as target and the knowledge as source. 
 {\tt backgroundFP} is a zero parameter set - depth is zero in each dimension.
 
 \begin{figure}[t]

@@ -110,7 +110,7 @@ public class Alice implements KPListener {
 } //end Alice class
 \end{verbatim}
 
-Only fourteen lines of code are required to write a P2P program that does an useful job. Additional line are required to implement the {\tt KPListener}. We had some larger programs when we explained knowledge extraction etc. That is because {\tt StandardKP} perfoms the whole communication between knowledge base and external peer(s). 
+Only fourteen lines of code are required to write a P2P program that does an useful job. Additional line are required to implement the {\tt KPListener}. We had some larger programs when we explained knowledge extraction etc. That is because {\tt StandardKP} performs the whole communication between knowledge base and external peer(s). 
 
 Let's investigate the program. Most of it was explained in previous chapter. We create a {\tt SharkEngine} which makes up the peer. We have created a {\tt SharkKB} which holds semantic tags and information.
 
@@ -259,7 +259,7 @@ It also defines two fragmentation parameter, {\tt backgroundFP} and {\tt fp}.
 {\tt backgroundFP} is used to create an up-to-date interest. It take the local interest as anchor and finds related (and maybe new) tags in the vocabulary. This {\it effective interest} can change when peers vocabulary changes.
 
 \item
-Effective interest is used to calculate the {\it mutual interest} which comprises things that both peers share. Fragmenation parameter {\tt fp} is used here. It can be assumed that an empty mutual interest is quite common in most applications.
+Effective interest is used to calculate the {\it mutual interest} which comprises things that both peers share. Fragmentation parameter {\tt fp} is used here. It can be assumed that an empty mutual interest is quite common in most applications.
 
 \item
 Finally, the mutual interest itself is replied or knowledge that was extracted by means of the mutual interest. 
@@ -507,7 +507,7 @@ Figure \ref{fig:chatKP} illustrates (one possible) concept of a chat implementat
 
 There are two data types in Shark which can be transmitted, interests and knowledge. The ''natural'' choice is wrapping the message into knowledge. Why is it ''natural''? A message is an arbitrary number of bytes. That is the definition of information in Shark. Information are transmitted inside knowledge. That's the reason.
 
-{\tt ChatKP} creates knowledge which comprises several steps. First, a context point is created. It coordinates must be defined. In this implementation, the topic is set to a pre-defined semantic tag named {\it chat} and a unique subject identifier. Originator and peer is the creating peer. Remote peer is the recipient of that message. Multiple message are to be created for multiple recipients.
+{\tt ChatKP} creates knowledge which comprises several steps. First, a context point is created. It coordinates must be defined. In this implementation, the topic is set to a predefined semantic tag named {\it chat} and a unique subject identifier. Originator and peer is the creating peer. Remote peer is the recipient of that message. Multiple message are to be created for multiple recipients.
 
 Knowledge is send to the recipient. A {\tt ChatKP} must be in place. It takes each incoming knowledge. It checks: Does this knowledge contain context point with a topic {\it chat}? Is it issued from an allowed peer? Is the receiving peer the intended recipient? If so, information from the context point can be extracted. The job of {\tt ChatKP} ends here. It isn't its job to interpret the message or interact with a user. It calls the local chat program to deal with the newly arrived message.
 
