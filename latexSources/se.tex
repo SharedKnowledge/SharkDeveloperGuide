@@ -12,11 +12,11 @@ Figure \ref{fig:sharkComponents} illustrates the major components which are disc
 \end{figure}
 
 \subsection{Stubs}
-Let's start with the {\it protocol stubs}. Shark supports TCP and E-Mail in version 2. HTTP will be supported soon\footnote{which is quite simple because HTTP is actually a TCP stub with an additional HTTP header} and Wifi-Direct is works in the laboratory and requires further tests to be officially added to the system.
+Let's start with the {\it protocol stubs}. Shark supports TCP and E-Mail in version 2. HTTP will be supported soon\footnote{which is quite simple because HTTP is actually a TCP stub with an additional HTTP header} and Wifi-Direct which is already working in the laboratory but requires further tests to be officially added to the system.
 
-Each stub is actually protocol server and client. The TCP stub supports e.g. a method the send data to another peer via TCP. The same stub comprises a TCP server as well which accepts new connections. Developers won't get bothered with those details anyway.
+Each stub is actually protocol server and client. The TCP stub supports e.g. a method to send data to another peer via TCP. The same stub comprises a TCP server as well which accepts new connections. Developers won't get bothered with those details anyway.
 
-Server parts of each stub just receive messages (e.g. with POP3) or establish connection (TCP and Wifi). Management of those data and connections are made by the {\it KEP Stub}.
+Server parts of each stub just receives messages (e.g. with POP3) or establish connection (TCP and Wifi). Management of this data and connections is handled by the {\it KEP Stub}.
 
 The {\it KEP stub} takes data from underlying protocols and tries to parse a KEP message. It decrypts messages and verifies signatures if required and checks if message comply with defined security policies (which are explained in chapter \ref{sec:security}). Parsing and security methods can fail. {\it KEP stub} writes a log messages and throws any data away. Valid KEP messages are given to the {\it SharkEngine}. 
 
@@ -29,12 +29,12 @@ The engine also keeps a list of active knowledge ports. The engine checks whethe
 We have already discussed knowledge ports and their usage. The can work with a local knowledge base. Knowledge ports can reply to the sender. In most cases, an already established connection is used. Knowledge ports can also decide to send messages to other addresses. In this case, the KEP stub is used to create a new connection. Developers are not aware of using KEP stub or protocol stubs. They just use the {\tt KEPConnection} interface.
 
 \subsection{Message2StreamStub}
-{\it Interest} are usually small in terms of numbers of byte. {\it Knowledge} can be huge. Huge data a no problem in general when using a stream protocol like TCP. It becomes a problem when using message oriented protocols like e-mail. 
+{\it Interest} are usually small in terms of number of bytes. {\it Knowledge} can be huge. Huge data is no problem in general when using a stream protocol like TCP. It becomes a problem when using message oriented protocols like e-mail. 
 
 We had serious discussions how to deal with that problem. An e-mail has a limited length. It depends on capacity and policy of recipient's mail server. What can be done if a KEP message exceeds that limit? In general, there are two possible way:
 
 \begin{enumerate}
-    \item Throwing an exception. That would make the framework easier to implement. Unfortunately, developers would be responsible to ensure that KEP message have a maximum size.
+    \item Throwing an exception. That would make the framework easier to implement. Unfortunately, developers would be responsible to ensure that KEP message has a maximum size.
 \item The framework solves that problem. 
 \end{enumerate}
 
@@ -93,7 +93,7 @@ This method publishes any knowledge port to {\tt remote peer}.
 aliceSE.publishAllKP();
 \end{verbatim}
 
-This method iterates all knowledge ports and performs an {\tt publishKP(kp)} on each of them.
+This method iterates over all knowledge ports and performs an {\tt publishKP(kp)} on each of them.
 
 \section{KEP communication}
 \label{ref:sec:KEP}
@@ -102,7 +102,7 @@ We have already seen that {\tt KEPStub} orchestrates communication and hides pro
 Developer don't have to access {\tt KEPStub} directly. Shark engine acts as {\it facade}: It offers methods and delegates parts of their duties to other components. Thus, sometime we might intermix {\tt KEPStub} and {\tt SharkEngine} in the next section. Don't care: Any method is available on the {\tt SharkEngine} interface. Internals are of no interest for Shark application developers.
 
 \subsection{Communication History}
-Peers send and receive messages. Received message can be handled by knowledge ports or not. The later are called {\it unhandled messages}. Sending can fail. Shark is mend to be a framework for spontaneous networks. Communication breakdown must be seen as usual event and not as avoidable error. Messages that are ought to be sent are stored and can be re-sent later.
+Peers send and receive messages. Received message can be handled by knowledge ports or not. The later are called {\it unhandled messages}. Sending can fail. Shark is meant to be a framework for spontaneous networks. Communication breakdown must be seen as usual event and not as avoidable error. Messages that are ought to be sent are stored and can be re-sent later.
 
 The following methods are offered by {\tt SharkEngine}.
 
@@ -125,14 +125,14 @@ First three methods are obvious. {\tt getUnhandledKnowledge} returns a context s
 
 \subsection{Silent period and empty knowledge}
 {\tt KEPStub} keeps track of sent interests and knowledge. It checks whether 
-or not those messages already sent and sometimes prevents the system from sending. 
-It is a very useful feature especially for spontaneous networks which tend to stutter. Let's explain it with an example:
+or not those messages were already sent and sometimes prevents the system from sending. 
+It is a very useful feature especially for spontaneous networks which tend to stutter. Let's explain it by an example:
 
 We are familiar with the Alice and Bob basic communication scenario. Imagine that applications runs on mobile phones which communicate solely with Wifi-direct. Alice and Bob e.g. meet at a table having lunch. Their devices establish a connection. At least one device issues an interest after a connection establishment. The communication takes place - anything it fine.
 Imagine, Bob stands up e.g. to go for some tomato sauce. Wifi communication breaks down more or less immediately. It is re-established when he comes back.
 Thus, one peer would issue the same interest as minutes before, both devices would perform same communication again and again. That additional power consumption would be a heavy burden for mobiles phones accumulator.
 
-There is a {\it silent period}. {\tt KEPStub} don't issues identical KEP messages within that silent period. Identical means identical content and identical recipient. When Bob return, one device might prepare for sending the same interest again but {\tt KEPStub} would prevent from sending that message.
+There is a {\it silent period}. {\tt KEPStub} don't issues identical KEP messages within that silent period. Identical means identical content and identical recipient. When Bob returns, one device might prepare for sending the same interest again but {\tt KEPStub} would prevent from sending that message.
 
 That period can be set.
 \begin{verbatim}
@@ -141,7 +141,7 @@ public void setSilentPeriod(int milliseconds);
 
 There is a default setting defined in {\tt DEFAULT\_SILTENT\_PERIOD}.
 
-Nevertheless, it is useful the re-expose interests to other peers. That's what we do when we read or listen to our preferred news paper / channel. Maybe the other peer has new information.
+Nevertheless, it is useful to re-expose interests to other peers. That's what we do when we read or listen to our preferred news paper / channel. Maybe the other peer has new information.
 
 {\tt KEPStub} keeps track of delivered knowledge. Identical knowledge won't be sent again. {\tt KEPStub} uses a history for that reason which can be removed.
 
@@ -152,10 +152,10 @@ removeSentHistory();
 Afterwards, the system has forgotten its history and would send any knowledge.
 
 There is a final quite special scenario. 
-We have discussed {\tt StandardKP}. Received interests are pre-processed. Finally, they are used extract knowledge from the local knowledge base. {\tt KEPStub} prevents re-sending knowledge which keeps resource on both sides.
-Thus, {\tt KEPStub} investigates any knowledge that is to be sent. Information that has already been delivered to the recipient is removed. Information can be removed during that process. It can also happen that all information are removed. In this case, no knowledge would be sent at all.
+We have discussed {\tt StandardKP}. Received interests are pre-processed. Finally, they are used to extract knowledge from the local knowledge base. {\tt KEPStub} prevents re-sending knowledge which keeps resource on both sides.
+Thus, {\tt KEPStub} investigates any knowledge that is to be sent. Information that has already been delivered to the recipient is removed. Information can be removed during that process. It can also happen that all information is removed. In this case, no knowledge would be sent at all.
 
-Some applications might not be happy with that behavior. They might want to get a reply even their are no new information. Their is a compromise. {\tt KEPStub} can be set to allow sending {\it empty} knowledge.
+Some applications might not be happy with that behavior. They might want to get a reply even if there exists no new information. Their is a compromise. {\tt KEPStub} can be set to allow sending {\it empty} knowledge.
 
 \begin{verbatim}
 public void setAllowSendingEmptyContextPoints(boolean allowed);
@@ -206,7 +206,7 @@ Those methods are declared at {\tt SharkEngine} which is the most
 abstract engine implementation. That implementation cannot assume that
 either of those protocols are actually available. Thus, there is a
 method {\tt startMail} which can fail because e-mail isn't supported with 
-that specific engine. Any exception is thrown in this case. Their are
+that specific engine. Any exception is thrown in that case. There are
 similar methods for other protocols. There is the same principle for stopping protocols. 
 
 There are more generic methods:{\tt start} tries to start any available protocols on that engine. Counterpart {\tt stop} stops any running (and of course available) protocol. 
@@ -216,7 +216,7 @@ There are more generic methods:{\tt start} tries to start any available protocol
 \subsection{Connection timeouts}
 Shark can establish TCP connections. The {\tt TCPStub} cannot calculate how long a connection shall be kept open. In most cases, peers will have quite brief conversations. Sometime, it can take longer, e.g. when user interaction is required. 
 
-Developer can define how long connection are kept open when no communication takes place. 
+Developer can define how long connections are kept open when no communication takes place. 
 
 \begin{verbatim}
 public void setConnectionTimeOut(long millis)
@@ -225,16 +225,16 @@ public long getConnectionTimeOut()
 
 \subsection{Protocol priorities}
 \label{sec:se:protocolPriorities}
-Knowledge ports perform a communication. They receive message and can reply. KEP message exchange has already be discussed. We need to have a closer look what communication channel is used.
+Knowledge ports perform a communication. They receive message and can reply. KEP message exchange has already been discussed. We need to have a closer look on what communication channel is used.
 
 Usually it is straightforward. Alice and Bob create a communication channel, e.g. with Wifi-direct. Bob received a message and his peer will reply. The whole communication is made over Wifi-direct. That's standard behavior: Messages are sent over the same communication channel if developer haven't decided otherwise and the channel is still available.
 
-What happens, if Bob received a message from Alice but leave communication range of Wifi-direct because he has to be on time in his seminar? Assume, that Bob has also more permanent addresses of Alice, e.g. an e-mail address or an address of a TCP or HTTP server. Developers can define what protocol is to be used when defining their own knowledge port. That tends to become tricky. There is a standard behavior in Shark that is used when no physical address was defined.
+What happens, if Bob received a message from Alice but leaves communication range of Wifi-direct because he has to be on time in his seminar? Assume, that Bob has also more permanent addresses of Alice, e.g. an e-mail address or an address of a TCP or HTTP server. Developers can define what protocol is to be used when defining their own knowledge port. That tends to become tricky. There is a standard behavior in Shark that is used when no physical address was defined.
 
 \begin{itemize}
     \item Use communication channel which delivered received message in first place.
 \item
-Bring recipients alternative address into an order. Start with {\it the best}. Try to establish a connection in that order. Use only the first one that works. If no connection can be established, store message as {\it unsent message}.
+Bring recipients alternative addresses into an order. Start with {\it the best}. Try to establish a connection in that order. Use only the first one that works. If no connection can be established, store message as {\it unsent message}.
 \end{itemize}
 
 What is the {\it best} protocol, though? Standard behavior simple: Stream protocols are {\it better} than message based protocols. Meaning: TCP is {\it better} than e-mail. TCP is assumed to be best. Thus, we have that order: TCP, HTTP, E-Mail. Wifi-Direct is no permanent address at all. Shark won't try to re-establish a Wifi-direct connection.
@@ -246,13 +246,13 @@ protected String[] prioritizeAddresses(String[] addresses);
 private boolean better(String addrA, String addrB);
 \end{verbatim}
 
-Of course, overwriting methods in such a core class should be done with great care. We think, most applications can work fine with that standard behavior.
+Of course, overwriting methods of such a core class should be done with great care. We think, most applications can work fine with that standard behavior.
 
 \subsection{Starting a KEP conversion}
 Shark communications must start. One peer most issue a KEP message. No communication would be performed otherwise. There are two general scenarios: Spontaneous networks and Internet based networks.
 
 \subsubsection{Information push with interest replay}
-Internet is based on the TCP/IP protocol stack. One computer send data to another one. Sender must know the address of the receiver. Shark can be used to build Internet applications.
+Internet is based on the TCP/IP protocol stack. One computer sends data to another one. Sender must know the address of the receiver. Shark can be used to build Internet applications.
 
 Sounds good. But how does a Internet Shark peer starts a KEP conversion? It requires an address. Addresses are stored in peer semantic tags. We could iterate our peer tags and containing addresses. That's feasible and we have already discussed that option. We can {\tt publish} interest and send knowledge to dedicated peers. 
 
@@ -261,7 +261,7 @@ There is another way. Let's come back to our Alice and Bob scenario. Alice has a
 Imagine, Alice would receive new information which are in Bobs interest space.
 Bob would get those news if he would only ask. How should he know, though. Polling is way. Bob could frequently ask Alice for news. There is a more elegant way.
 
-Alice knows about the new information. They are stored in her knowledge base. She can now replay Bobs interest by calling a engine method.
+Alice knows about the new information. They are stored in her knowledge base. She can now replay Bobs interest by calling an engine method.
 
 \begin{verbatim}
 // created an engine
@@ -280,9 +280,9 @@ se.handleInterest(bobInterest);
 // IKP will re-sent interests
 \end{verbatim}
 
-{\tt handleInterest} takes an interests and send is through the knowledge port queue. Knowledge ports cannot distinguish whether this interest was replayed or actually received. They could recognize that now communication channel to Bob exists. But that channel can be established, see section above.
+{\tt handleInterest} takes an interest and sends it through the knowledge port queue. Knowledge ports cannot distinguish whether this interest was replayed or actually received. They could recognize that now communication channel to Bob exists. But that channel can be established, see section above.
 
-Thus, each knowledge port handles that interest and reacts in it own way, e.g by sending knowledge or interest. {\tt KEPStub} prevents from sending duplicates. 
+Thus, each knowledge port handles that interest and reacts in its own way, e.g by sending knowledge or interest. {\tt KEPStub} prevents from sending duplicates. 
 
 It is the most convenient to push new information or to re-establish a conversion.
 
@@ -295,9 +295,9 @@ Spontaneous networks are different to Internet based systems. There are no perma
 public void handleConnection(StreamConnection con);
 \end{verbatim}
 
-A new stream connection (e.g. a Wifi-direct TCP connection) is used as parameter. This connection is stored with the {\tt KEP} stub. The Shark peer actually knows nothing about the communication partner but it existence. It doesn't neither know its identity nor its interests. A communication should be started anyway.
+A new stream connection (e.g. a Wifi-direct TCP connection) is used as parameter. This connection is stored with the {\tt KEP} stub. The Shark peer actually knows nothing about the communication partner but its existence. It does neither know its identity nor its interests. A communication should be started anyway.
 
-For that reason, a general interest is created: An interests that uses {\it any} in each dimension. That interest states an interest in any topic, doesn't reveal peers identity doesn't make any constraints regarding time, place and communication partners and is interested in sending an receiving information.
+For that reason, a general interest is created: An interest that uses {\it any} in each dimension. That interest states an interest in any topic, doesn't reveal peers identity doesn't make any constraints regarding time, place and communication partners and is interested in sending an receiving information.
 
 Shark assumes that this interest was received from the other peer. The {\tt handleInterest} method is used to offer that interest to any knowledge port. Ports will reply if they find a mutual interest with that most general interest. Replies are sent over the new channel to the communication partner.
 
