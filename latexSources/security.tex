@@ -7,7 +7,7 @@ Signing a message requires a private key. A hash code of a message is created an
 
 A recipient can read the message and calculate the same hash code. Recipient can decrypt the transmitted signature with senders public key. The signature is meant to be {\it verified} if both hash codes are equal.
 
-Verifying requires a safe and secure way for public key dissemination. Such a infrastructure is called Public Key Infrastructure (PKI). Shark can be used with any PKI\footnote{There is already a Shark PKI that's needs more testing and becomes part of version 3.0 of Shark.}. Shark uses MD5 for hash code calculation and RSA for signature creation and verifying.
+Verifying requires a safe and secure way for public key dissemination. Such an infrastructure is called Public Key Infrastructure (PKI). Shark can be used with any PKI\footnote{There is already a Shark PKI that needs more testing and becomes part of version 3.0 of Shark.}. Shark uses MD5 for hash code calculation and RSA for signature creation and verifying.
 
 \section{Encrypting}
 Messages can be encrypted with RSA in Shark. The recipients public key is used to encrypt the message. The private key is used to decrypt the message. Assumed, the private key is not compromised, the message can only be read by the recipient.
@@ -62,13 +62,13 @@ SharkCertificate certificate = ks.getCertificate(peer);
 ks.getPrivateKey();
 \end{verbatim}
 
-The peer is identified with one or more subject identifiers - as usual in Shark.
+The peer is identified by one or more subject identifiers - as usual in Shark.
 It is up to application developers to implement that interface and attach a PKI.
 
-We hope the code above is self-explaining. A key store is created with a knowledge base and an engine. Keys can be stored and retrieved. Public key can also be signed. The actual signing algorithm is up to the developers. Java offers a number of methods to sign public keys. A signature combined with its key makes up a certificate. Thus, public key can be retrieved in its certificate incarnation from the key store.
+We hope the code above is self-explaining. A key store is created with a knowledge base and an engine. Keys can be stored and retrieved. Public keys can also be signed. The actual signing algorithm is up to the developers. Java offers a number of methods to sign public keys. A signature combined with its key makes up a certificate. Thus, public key can be retrieved in its certificate incarnation from the key store.
 
 \section{Setting up security policy}
-Shark can sign and encrypt but it cannot in any case: Signing requires a private key. Encrypting requires recipients public key. Signature verifying requires senders public key. Moreover, how should a peer reply to a received message. Shall it sign and encrypt in any case? Shall is use the same method as it communication partner? 
+Shark can sign and encrypt but it cannot in any case: Signing requires a private key. Encrypting requires recipients public key. Signature verifying requires senders public key. Moreover, how should a peer reply to a received message. Shall it sign and encrypt in any case? Shall is use the same method as its communication partner? 
 
 Shark cannot make that decision. It is up to the application. Shark provides security policies which can be set. That's just a single line of code.
 
@@ -78,18 +78,18 @@ Developers can define if encryption and/or signing is to be used. They can chose
 
 Sending a message can fail if no private key was set. In this case, signing is not possible and the message won't be sent. Sending a message can fail if the recipients public key cannot be found. The encryption cannot be fulfilled in this case and no message is sent.
 
-    \item[IF\_POSSIBLE] is similar to must: The message is signed if a private key is available. The encryption is done if a public key can be found. The messages are send unsigned or unencrypted if a key is missing.
+    \item[IF\_POSSIBLE] is similar to must: The message is signed if a private key is available. The encryption is done if a public key can be found. The messages are sent unsigned or unencrypted if a key is missing.
 
     \item[NO] defines that a message is not encrypted and/or signed.
 \end{description}
 
 \subsection{Reply policies}
-The previous setting described how initial messages shall be sent. Peers can receive messages. There are more setting which describe how to react message with a some security settings.
+The previous setting described how initial messages shall be sent. Peers can receive messages. There are more settings which describe how to react to a message with some security settings.
 
 There are three options as well.
 
 \begin{description}
-    \item[TRY\_SAME] A message that reaches a peer can be signed or not and encrypted or not.  A peer will try to use the same security means. It will e.g. try to send a signed message if it received a signed message. It will try to send an unsigned message if the received message was unsigned, though.
+    \item[TRY\_SAME] A message that reaches a peer can be signed or not and encrypted or not. A peer will try to use the same security means. It will e.g. try to send a signed message if it received a signed message. It will try to send an unsigned message if the received message was unsigned, though.
 
 The attempt can fail. Signing requires a private key and encryption a public key. Thus, signing and/or encryption can fail if the peer lacks of either key. Such failures are ignored and the message is sent unsigned and not encrypted.
 
@@ -101,7 +101,7 @@ Apparently, sending a reply to an unsigned and unencrypted message cannot fail d
 
 \end{description}
 
-Security setting are defined with the {\tt initSecurity} method on a shark engine.
+Security settings are defined with the {\tt initSecurity} method on a shark engine.
 
 \begin{verbatim}
 // an engine was created sometimes..
@@ -118,8 +118,8 @@ aliceSE.initSecurity(
 );
 \end{verbatim}
 
-The previous setting are also the default settings. Engine with no
-explicit settings won't sign and encrypt messages. The can't verify signatures either due to the lack of a key store that provides public keys.
+The previous settings are also the default settings. Engine with no
+explicit settings won't sign and encrypt messages. The [receiver?] can't verify signatures either due to the lack of a key store that provides public keys.
 
 Developers don't have to deal directly with a key store if a public key infrastructure is in place.
 
