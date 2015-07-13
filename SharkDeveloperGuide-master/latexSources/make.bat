@@ -1,2 +1,0 @@
-bibtex tutorials
-latex tutorials
