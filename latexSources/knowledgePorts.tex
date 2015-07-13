@@ -135,7 +135,11 @@ The reply is sent to a dedicated address instead of the sending peer. The final 
 
 The same concept is used if knowledge is sent as a reply. Note, there is no method that sends knowledge just to the sending peer. It is for the developers safety and not for their punishment.
 
+<<<<<<< HEAD
 We figured that developers tend to become confused by all those peers which can be seen as senders. Shark's philosophy is that interests tend to be commonly available but knowledge does not. We think, that sending knowledge must happen deliberately. Let's have a look at a different kind of sender.
+=======
+We figured that developers tend to become confused by all those peers which can be seen as sender. Shark philosophy is that interests tend to be commonly available but knowledge does not. We think, that sending knowledge must happen deliberately. Let's have a look at a different kind of sender.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 \subsection{Physical and logical sender}
 \label{sec:knowledgePorts:sender}
@@ -151,6 +155,7 @@ Whenever a peer has received a KEP message there was a {\it physical sender} whi
 
 A {\it logical sender} can create a message, can even sign and encrypt but can store it in another device which transmits this message to others. Thus, the other devices or peers can act as proxies or relays. Recipients can decide whether to reply to the proxy or directly to the {\it logical sender}. 
 
+<<<<<<< HEAD
 Figure \ref{fig:physicalAndLogicalSender} illustrates the relation between {\it logical} and {\it physical} sender. Alice creates an interest in this example. She stores that interest on her device A1. She also decided to choose A1 as logical sender. Note, each peer, each user is free to define a logical sender address. We have already defined a number of addresses for peers throughout the book. All addresses in peer semantic tags are {\it logical} addresses and can freely be chosen by users.
 
 In this example, Alice chooses A1 as logical address and stores her interest also on A1. She meets Bob and exposes her interest. In that case, physical and logical sender are identical.
@@ -158,12 +163,25 @@ In this example, Alice chooses A1 as logical address and stores her interest als
 Bob can forward Alice's interest (unchanged) to Clara. Alice is still the logical sender but Bob's device is the logical sender. 
 
 Alice could also synchronize her data to another device, e.g. her laptop. Her interest could also be sent from her laptop to Clara. In that case, A1 is still the logical but A2 is the physical sender.
+=======
+Figure \ref{fig:physicalAndLogicalSender} illustrates the relation between {\it logical} and {\it physical} sender. Alice creates an interest in this example. She stores that interest on her device A1. She also decided to choose A1 as logical sender. Note, each peer, each user is free to define a logical sender address. We have already defined an number of addresses for peers throughout that book. All addresses in peer semantic tags are {\it logical} addresses and can freely be chosen by users.
+
+In this example, Alice choses A1 as logical address and stores her interest also on A1. She meets Bob and exposes her interest. In that case, physical and logical sender are identical.
+
+Bob can forward Alice's interest (unchanged) to Clara. Alice is still logical sender but Bob's device is logical sender. 
+
+Alice could also synchronize her data to another device, e.g. her laptop. Her interest could also be sent from her laptop to Clara. In that case, A1 is still logical but A2 is physical sender.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 {\tt KEPConnection} offers several methods to reply to incoming interests. The more convenient methods reply to the {\it physical} sender. In most cases, this would be an appropriate choice but not in any. 
 
 Moreover, information of the physical sender are not stored in interests or knowledge. That information is only available when receiving that data.
 Applications who need the physical sender information are required to save it.
+<<<<<<< HEAD
 The physical sender's address can be retrieved from the connection object.
+=======
+The physical sender's address can be retrieve from the connection object.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 \begin{verbatim}
 PeerSemanticTag sender = kepConnection.getSender();
@@ -172,7 +190,11 @@ String[] addresses = sender.getAddresses();
 
 We encourage to define recipient addresses explicitly. That makes your code more transparent for other programmers.
 
+<<<<<<< HEAD
 Shark allows signing and encrypting. Shark only offers End-to-End-Encryption. Physical sender don't play any role in those scenarios. The logical sender signs and encrypts. Physical devices are only mean for transportation.
+=======
+Shark allows signing and encrypting. Shark only offers End-to-End-Encryption. Physical sender don't play any role in those scenarios. Logical sender sign and encrypt. Physical devices are only means for transportation.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 \subsection{Sending initial messages}
 It isn't enough to wait for incoming requests. One peer must start talking.
@@ -189,7 +211,11 @@ this.sendInterest(i, peer);
 
 The code is straightforward. We need a peer and either knowledge or an interest which can be delivered. Sending might fail either for security reasons or network problems. Exceptions are thrown in either case.
 
+<<<<<<< HEAD
 A KEP message is sent in case of success and can be handled by the receiver, more specific by the receiver's {\tt KnowledgePort} objects. Note, messages can be sent with each running knowledge port. The sending port has no privileges over others. A reply on a sent message is handled as any other message and offered to each active knowledge port.
+=======
+A KEP message is sent in case of success and can be handled by the receiver, more specific by the receiver's {\tt KnowledgePort} objects. Note, message can send with each running knowledge port. The sending port has no privileges over others. A reply on a sent message is handled as any other message and offered to each active knowledge port.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 Thus, sending a message requires at least a single active knowledge port. 
 There are no methods (yet) that allow developers to send {\it interest} or {\it knowledge} without a {\tt KnowledgePort} object. In the rare case of a peer that has no knowledge a workaround is proposed: Implement your own knowledge port and leave {\tt doExpose} and {\tt doInsert} empty. Now you have a knowledge port that actually has no effect on incoming messages but can be used to send messages.
@@ -237,7 +263,11 @@ KPListener myListener = new MyKPListener();
 kp.addListener(myListener);
 \end{verbatim}
 
+<<<<<<< HEAD
 {\bf Knowledge port developers have to trigger those listener events!} The {\tt KnowledgePort} class just offers methods to subscribe to and remove listeners.
+=======
+{\bf Knowledge port developers have to trigger those listener events!} The {\tt KnowledgePort} class just offers methods to subscribe and remove listeners.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 It does {\it not} trigger e.g. a {\tt exposeSent} event. This is up to knowledge port developers!
 
 Triggering those events is very simple, though. The following code can be called inside any knowledge port object.
@@ -299,7 +329,11 @@ boolean receivingInterest = kp.isIKP();
 boolean sendingInterest = kp.isOKP();
 \end{verbatim}
 
+<<<<<<< HEAD
 Lets summarize: Knowledge ports are {\it the elements} that stores the actual application logic of peers. Knowledge ports work independently from each other. Thus, a peer can instantiate a number of ports that perform different tasks.
+=======
+Lets summarize: Knowledge ports are {\it the elements} that store the actual application logic of peers. Knowledge ports work independently from each other. Thus, a peer can instantiate a number of ports that perform different tasks.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 Writing a knowledge port is as difficult or as easy as writing a Servlet. 
 
@@ -309,5 +343,9 @@ Moreover, there are some knowledge port implementations already included in the 
 
 \begin{enumerate}
 \item 
+<<<<<<< HEAD
 Create a knowledge port that... Implements your own KP.
+=======
+Create a knowledge port that... Implement your own KP.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 \end{enumerate}

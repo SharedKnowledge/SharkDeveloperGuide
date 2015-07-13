@@ -1,0 +1,267 @@
+\chapter{Context Space}
+Shark is a system for information exchange in loosely coupled spontaneous P2P networks. Anything that was designed and defined is to transmit information.
+
+The understanding of information is pretty short:
+Shark considers information to be an arbitrary amount of bytes. That's it. There are no further constraints on data types length etc. Information can have a name and information have a length which is the number of bytes. Information can have a type. Shark uses the MIME-Type convention.
+
+Shark is a semantic system for information exchange. Each information that is stored can (and should) define additional meta-information that describe aspects
+under which it should be exchanged. This discussion tends to become quite abstract. Therefore, we want to examine all seven possible meta-information and discuss their usage afterwards.
+
+\section{Seven aspects of information}
+
+Each information can have seven aspects that describe the context in which it can be exchanged. These aspects are:
+
+\begin{description}
+    \item[Topic] describes what this information is about. Apparently, a topic is a semantic tag. 
+    \item[Originator] describes a peer. A peer semantic tag is used. Now, what role does that peer play? 
+
+Information are about something which is described by a topic. Tourist information can be about a city. Historical information can be about a historical event etc. pp. That's already defined with the topic aspect and it isn't quite new. That's the very idea of tags in Web 2.0 and the more elaborated Semantic Web. Give users a chance to describe topic of information. What both Web 2.0 and Semantic Web forget is pretty simple but nevertheless astonishing:
+Who made that description?
+
+Let's have an example:
+There is a model in which earth is orbiting sun. Centuries ago a scientist claimed that this model would describe our reality. Others called it heresy and burned him.  
+
+Who is right? The decision was clear in the middle ages. Sun is orbiting earth. 
+Shark ignores this question and allows to put same information to different topics by remembering who made that classification - who choose the topic:
+
+That's the originator. The peer that declares that information fits to a topic. 
+This concept has at least two results.
+
+First, same information can be found many time in a system in a different context. Shark has no means to set a logical value of true or false. Shark just stores those statements and information. Thus, Shark can also deal with logical contradictions.
+
+Second, a peer can put itself into the owner role. By doing so, it declares that is beliefs that this information fits to the topic. The peer doesn't claim to be information creator.
+
+It is up to the user to make a decision.
+
+    \item[Peer] Information can be sent to other peers. The peer aspect states who will be sender in that case.
+
+    \item[Remote Peer] Information can be exchanged with other peers. The remote peer aspect states to whom that information can be sent - or from whom that information was received.
+
+    \item[Location] 
+defines at which place the peer is willing to communicate. This aspect does {\it not} define a kind of spatial validity of information. Example: Let's imagine location would define Aleppo in Syria. It would {\it not} state that the peer is interested in information about Aleppo. It would state, that the peer wants to exchange information in Aleppo.
+
+The actual information topic is described with the topic aspect. The location aspect describes place or area of communication. Apparently, it can be used to create location based services.
+
+    \item[Time] 
+defines the time of communication. It does not limit validity of information. It does describe the time in which a communication can take place.
+
+Thus, a peer could define to exchange information about the ancient Constantinople between 10 a.m. and 4 p.m. {\it Acient Constantinople} would be the topic, the time frame the time aspect.
+
+    \item[Direction] 
+This final aspect describes direction of information exchange. A peer can state that is wants to deliver that information. It would be the {\tt OUT} direction in that case. Value {\tt IN} notes the fact that a peer wants to receive information. {\tt INOUT} is combination of both. The final {\tt NOTHING} setting describes that the peer doesn't want to exchange information at all.
+
+The final parameter might look a bit strange a the first glance. But it is useful in several scenario. We will come back to that point. Just an idea: Peers can store information with Shark. Peers can decide from time to time to hide information or even whole topics from other peers. The can just set the {\tt NOTHING} direction and no exchange will performed.
+
+\end{description}
+
+\section{Context Space / Context Coordinates}
+
+Now, we know the seven aspects of information in Shark. All those aspects are independent which means that a change in one aspect has no impact on another aspect. 
+
+Those features are well-known in Cartesian systems. A Cartesian system is a n-dimensional space. Each point in that space can be identified by its coordinates. Coordinates are point on a defined dimension whereas each dimension is orthogonal to all others. We all know such systems from school. Remember the two dimensional space and all the wonderful hours we spent with discussing
+function curves.
+
+The x-coordinate is orthogonal to y-coordinate. Position of each point can be defined with a two values - a x and a y value. 
+
+We also call those seven aspects {\bf dimension}. There is a {\bf topic dimension} which is orthogonal (means independent) from e.g. {\bf originator dimension}.
+
+We also call those aspects {\bf context} because they describe circumstances in which information are to be exchanged or in they have been exchanged.
+
+We call a combination of one topic, one originator, one peer, one remote peer, one location, one time and one direction a {\bf context coordinate}. 
+
+Imagine a peer A has the wish to deliver information regarding ancient Constantinople to anybody anywhere but just between 10 a.m and 4 p.m. The peer has classified this information by itself. The coordinate would be:
+
+(ancient Constantinople, A, A, any, any, 10 a.m - 4 p.m, OUT)
+
+Shark uses Semantic Tag to describe the first six dimension. Topic dimension uses semantic tags. Originator, peer and remote peer dimension uses Peer Semantic Tags. Location is describes be means of a Spatial Semantic Tag, time with a Time Semantic Tag. Only direction has just four possible values: IN, OUT, INPUT, NOTHING.
+
+Any information has all seven aspects. An aspect that wasn't explicitly set is -- per definition -- any. A direction that isn't explicitly set is -- per definition -- NOTHING.
+
+There is a final concept that has to be explained in this chapter.
+An n-dimension Cartesian systems spawns an n-dimensional space.
+We are familiar with the two dimensional space what we constantly used in school. We are familiar with the three dimensional space what we daily perceive.
+
+Seven dimensions spawn a seven dimensional space. The dimensions are also define the context in which information are exchanged. Thus, the seven dimension space that is spawned by the seven aspects of information is called {\bf context space}.
+
+It is a discrete space in opposite to a continuous space. The reason is obvious: E.g. numbers a continuous: There is e.g. an infinite amount of numbers between 1 and 2. But was is between the topics {\it Ancient Constantinople} and {\it P2P systems} ? Topics and all other dimensions are made up by discrete semantic tags. Discrete dimensions produce a discrete space.
+
+\section{Information / Context Points}
+Information are a bunch of arbitrary bytes. Shark is designed to exchange information. Information storage is actually a very important but a side effect. 
+Each information is stored with it's exchange context.
+
+That's sound again very complicated. Let's have an example.
+
+Alice has found a very good book about the Java programming language. She got a digital version of it. The book came fortunately with a license that allows her to give it to others. Alice open her preferred Shark application and stores that book. Shark is for information exchange and therefore she explains a context in which she would exchange that book.
+
+Defining a topic is easy: 
+
+(Java, (http://en.wikipedia.org/wiki/Java\_(programming\_language)))
+
+She stores the book which makes her the originator. She can define herself:
+
+(Alice, (http://www.sharksystem.net/alice.html))
+
+No she could restrict recipients of this book by defining remote peers. We need an example and therefore she only wants to share it with Bob:
+
+(Bob, (http://www.sharksystem.net/bob.html))
+
+Alice would also be sender of that information. She doesn't care about time and location of information transmitting. Of course, she wants to send that book and defines direction accordingly.
+
+Now, we can define context coordinates:
+
+\begin{description}
+    \item[topic] 
+(Java, (http://en.wikipedia.org/wiki/Java\_(programming\_language)))
+    \item[originator] 
+(Alice, (http://www.sharksystem.net/alice.html))
+    \item[peer] 
+(Alice, (http://www.sharksystem.net/alice.html))
+    \item[remote peer] 
+(Bob, (http://www.sharksystem.net/bob.html))
+    \item[location] 
+Any
+    \item[time] 
+Any
+    \item[direction] 
+OUT
+\end{description}
+
+Information and coordinates must be put together which is the only task of the {\bf context point (CP)}. In programming terms, a CP is a data structure that brings has one coordinate and an arbitrary number of information.
+
+I our geometrical understanding, it is a point in context space at which information are stored.
+
+That's all. Alice has put her information into her knowledge base. She has also defined under which circumstances those information are exchanged. Information provider is (nearly) ready. Let's have a look at the information seeker now.
+
+\section{Interests}
+Let's start less abstract and take our user Bob again. Bob is interested in Java programming. He has nothing to offer but looks for related information. Moreover, he would love to learn diving and looks for information regarding that sport.
+
+His wishes can easily be summarised with Shark terms:
+
+\begin{description}
+    \item[topic] 
+(Java, (http://en.wikipedia.org/wiki/Java\_(programming\_language))) \\
+(Diving, (http://en.wikipedia.org/wiki/Underwater\_diving))    
+
+\item[originator] 
+Any
+    \item[peer] 
+(Bob, (http://www.sharksystem.net/bob.html))
+    \item[remote peer] 
+Any
+    \item[location] 
+Any
+    \item[time] 
+Any
+    \item[direction] 
+IN
+\end{description}
+
+That is an example of what we call an {\bf interest} in Shark. An interest describes constraints in which a peer is interested in information exchange.
+Less surprisingly, interests have seven dimension. Most of the dimensions can have a semantic tag {\it set} and not only a single value. Only originator and direction are limited to a single value.
+
+Based on that definition, {\bf a context coordinate is an interest}. 
+Coordinates have just a single tag in each dimension and fit into that definition.
+
+We can interpret both structures geometrically. Context Coordinates are single points in context space whereas interests can cover in region in context space. In geometrical terms, interests describe a {\it sub space}.
+
+Example.
+
+\subsection{Any tags in interests}
+Semantic tags without a explicit meaning are called {\it any} tags in Shark.
+We could already see, that coordinates can have an {\it any} tag. Each dimension has -- per definition -- an {\it any} tag. An exception is the direction dimension.
+
+Thus, {\it any} in context coordinates are interpreted as {\it don't know} rather than {\it anything}. That is straightforward and consistent with the Shark concept.
+
+The problem arise in interests. What is meant if a user declares {\it any} e.g. in topic dimension? From a technical point of view, it could have two meanings: 
+\begin{enumerate}
+    \item The user is interested in information which have no defined topic. The user is not interested in any information with a declared topic.
+\item
+The user has no constraints in topics. 
+\end{enumerate}
+
+We have chosen the last interpretation. Thus, an {\it any tag} in interests declares that dimension to be free of constraints. Anything would fit.
+
+The most general interest is the following one:
+
+(Any, Any, Any, Any, Any, Any, INOUT).
+
+It could be translated in: A peer that doesn't reveal its identity is interested in sending and receiving information about arbitrary topic. It has no constraints on communication partners, locations and time. 
+
+This interest isn't as useless as it might look at the first glance. We come back to the point when we talk about mutual interests.
+
+Let's have a look at this interest:
+
+(Tourist information, Any, Any, Any, Berlin, Any, IN).
+
+This interest can be described as: A peer that doesn't reveal it identity wants to receive tourist information in Berlin. It has no further constraints. Looks like a location based service.
+
+Or this one:
+
+(Any, Any, Bob, Alice, Any, Any, INOUT).
+
+Bob is interested in sharing anything with Alice.
+
+\section{Operations}
+\subsection{Contextualization}
+There is just a single non-trival operation that should be declared in this chapter. It is actually the very core of Shark information exchange principle. A motivation shall be given first.
+
+Shark applications are P2P systems. Peers exchange just two different things: Interests and knowledge. Let's stick to interest only in this chapter. 
+
+Interests describe constraints. Each peer can and must describe it's own constraints. That's what a P2P systems makes up: Not an almighty server makes the decision what data are to be offered. No, each peer describes its wishes and offers.
+
+Peers can received interests from other peers. Now, the receiving peer should  find out if there is a mutual interest. If so, they should exchange more than interests. If not, they have nothing to discuss.
+
+Let's come back to Alice and Bob in the previous sections of this chapter. Alice had something to offer about Java. Framed into an interest it could be written as:
+
+(Java, Alice, Alice, Any, Any, Any, OUT)
+
+She (Alice) offers something about Java to anybody, anywhere and anytime.
+
+Bob described this interest:
+
+(Any, Any, Bob, Alice, Any, Any, INOUT).
+
+He wants to share anything with Alice and no further constraints.
+
+Interests are defined by peers. Interests can be sent. Let's take that Alice has received Bobs interest. For us it is very simple to find the mutual interest. If Bob wants to share anything with Alice and Alice offers java information to anybody it obvious: Both have the interest, that Alice send information about Java to Bob anywhere and anytime.
+
+(Java, Alice, Alice, Bob, Any, Any, OUT)
+
+Let's examine the calculation: Bob had no constraints about the topic. Alice did: The intersection of both is Java. Bob had no constraints regarding originator. Alice did. The intersection is Alice.
+
+Let's have a little break here. We already know that method: We use semantic tag set contextualization. We try to find out what is in Bobs interest that fits to Alice. But let's proceed.
+
+Bob has introduced himself as Bob in peer dimension. So did Alice. She introduced herself as Alice. Apparently, Alice should not try to find out of both peer dimensions fit. They usually wont. She should try to find out if the peer in received interest fits to her constraints about remote peers - and vice versa.
+
+Alice had no constraints about remote peers, Bob only wants to talk with Alice. The intersection is Bob. Alice is making that calculation and Bob is the remote peer. The result of that consideration is stored in remote peer.
+
+Bob has constraints about his remote peers: He only wants to talk with Alice. Alice has revealed her identity - that fits. Alice is put into peer dimension.
+
+Both peers have no constraints in locations and time. There no constraints in the mutual interest either. Bob wants to communicate in both directions. Alice only wants to send.
+
+Imagine, Bob would receive Alice interest. He could do the same calculation and would come to that result:
+
+(Java, Alice, Bob, Alice, Any, Any, IN)
+
+That result differs in three points: peer, remote peer and direction. And that's clear. We are on Bobs side now. Bob puts himself into the peer dimension and Alice in the remote peer slot of course. He also learnt that Alice only wants to send something, so he changed direction to IN.
+
+Both mutual interests describe a potential information exchange. Both mutual interests differ because they describe the same exchange from different perspectives. We can lend terms from Einstein to describes that difference. Each peer has its own inertial system. Bob is Bob and Alice is Alice. Alice is a remote peer to Bob. Bob is remote peer to Alice. 
+
+Once an interest is received it has to be translated into peers own inertial system. Bobs constraints of {\it remote peers} must fit to Alice {\it peer} dimension if Alice makes the calculation. This effect happens twice: In interest exchange and knowledge exchange.
+
+Does it sound complicated, irritating? Don't panic! The good news is that most applications don't have to deal with those details. Anything is already implemented and there are already predefined and implemented classes that makes
+information exchange that fits to a huge number of applications. 
+
+It is explained in such detail because it is sometimes useful to know what happens. Now we can explain the algorithm and make some exercises. Than you are done.
+
+We have already motivated purpose of contextualization and the fact that peers have a different view on the same information exchange. 
+
+[TODO: explain algorithm here...]
+
+\subsection{Is in}
+
+\subsection{Identical}
+
+\section{Code samples}
+
+\section{Exercises}

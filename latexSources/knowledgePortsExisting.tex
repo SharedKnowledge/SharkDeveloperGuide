@@ -2,12 +2,20 @@
 Knowledge ports are building blocks of Shark based applications.
 Each Shark project will create its own knowledge port. Some are
 already shipped with the framework. Number of such ready-to-use
+<<<<<<< HEAD
 ports will increase with each new version. The first and most flexible 
+=======
+ports will increase which each new version. The first and most flexible 
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 implementation is the {\tt StandardKP} though. 
 
 \section{StandardKP}
 \label{sec:knowledgePorts:StandardKP}
+<<<<<<< HEAD
 The  {\it Shark basic scenario} was explained in section \ref{sec:concepts:baseScenario}: Alice and Bob met. Both were interested in {\it P2P system}. Both found out their mutual interest by means of interest exchange. Finally, knowledge was transferred.
+=======
+The  {\it Shark basic scenario} was explained in section \ref{sec:concepts:baseScenario}: Alice and Bob met. Both are interested in {\it P2P system}. Both found out their mutual interest by means of interest exchange. Finally, knowledge was transfered.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 {\tt StandardKP} was developed to serve such scenarios. This section reveals how this basic scenario can be implemented with a few lines of code.
 
@@ -16,7 +24,11 @@ But let's start from the beginning: {\tt StandardKP} extends {\tt KnowledgePort}
 Each {\tt StandardKP} must be instantiated with an interest and a knowledge base. This KP can actually be seen as the guard that serves as an extractor and
 assimilator of knowledge. The interest can be seen as a filter for both exporting and importing. 
 
+<<<<<<< HEAD
 We are going to finish the introduction and start with the program. Actually, we are going to write two programs: One plays the role of Alice, the other the role of Bob. Source code can also be found on sharksystem.net under tutorials.
+=======
+We are going to finish the introduction and start with the program. Actually, we are going two write two programs: One plays the role of Alice, the other the role of Bob. Source code can also be found on sharksystem.net under tutorials.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 The following section will contain the whole Alice program, next one will contain Bob. Relevant algorithms are explained afterwards.
 
@@ -110,7 +122,11 @@ public class Alice implements KPListener {
 } //end Alice class
 \end{verbatim}
 
+<<<<<<< HEAD
 Only 14 lines of code are required to write a P2P program that does an useful job. Additional lines are required to implement the {\tt KPListener}. We had some larger programs when we explained knowledge extraction etc. That is because {\tt StandardKP} performs the whole communication between knowledge base and external peer(s). 
+=======
+Only fourteen lines of code are required to write a P2P program that does an useful job. Additional line are required to implement the {\tt KPListener}. We had some larger programs when we explained knowledge extraction etc. That is because {\tt StandardKP} performs the whole communication between knowledge base and external peer(s). 
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 Let's investigate the program. Most of it was explained in previous chapter. We create a {\tt SharkEngine} which makes up the peer. We have created a {\tt SharkKB} which holds semantic tags and information.
 
@@ -129,7 +145,11 @@ aliceSE.startTCP(7070);
 
 This line tells the engine to open a TCP port and to accept incoming KEP messages. Now the Alice peer is ready to retrieve information. 
 
+<<<<<<< HEAD
 In this example, Alice initiates communication. A peer semantic tag is used to describe Bob. His peer is listening at port 7071 on the same machine which will hardly be used in real applications but in tests.
+=======
+In this example, Alice initiates communication. A peer semantic tag is used to describe bob. His peer is listening at port 7071 on the same machine which will hardly be used in real applications but in tests.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 \begin{verbatim}
 aliceSE.publishKP(kp, bob);
@@ -191,7 +211,11 @@ Colors describe different types of aspects in that figure. Yellow is used to mar
 Blue illustrates a process that issues a KEP message. There is a single green entity which is a message from a remote peer. Arcs describe the flow of control. Dashed arcs show what member variable is input for a process. Now we can start investigating the process.
 
 \paragraph{Interest arrives}
+<<<<<<< HEAD
 The whole process is being started whenever an {\it interest} is received. The {\tt SharkEngine} performs a preprocessing which is explained later in section {\ref{sec:sharkengine} in more details. Just in brief: Developers can define security policies and black- or white lists. That means, developers can define if messages from other peers must be signed and/or encrypted or not. A white list contains all peers from which this peer is willing to accept messages at all. Developers can also decide to maintain a black list that contains peer from which no further messages are accepted.
+=======
+The whole process is started whenever an {\it interest} was received. The {\tt SharkEngine} performs a preprocessing which is explained later in section {\ref{sec:sharkengine} in more details. Just in brief: Developers can define security policies and black- or white list. That means, developers can define if messages from other peers must be signed and/or encrypted or not. A white list contains all peers from which this peer is willing to accept messages at all. Developers can also decide to maintain a black list that contains peer from which no further messages are accepted.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 Those checks are already made before a knowledge port starts working at all.
 Thus, the interest that was received in the upper left corner is from an accepted peer and satisfies security settings of this peer.
@@ -201,13 +225,21 @@ Thus, the interest that was received in the upper left corner is from an accepte
 {\it local interest}. 
 In most cases, a local interest contains semantic tag sets in its dimension. Alice in our example described her interest in {\it Shark} with a semantic tag in her topic dimension.
 
+<<<<<<< HEAD
 The received interest can contain semantic tags e.g. in its topic dimension. In this case, a later process figures out whether or not both topic sets match with each other. This process is described later on.
+=======
+The received interest can contain semantic tags e.g. in its topic dimension. In this case, a later process figures out whether or not both topic sets match with each other. This process is described soon.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 The received interest can also have an empty e.g. topic dimension. An empty dimension is interpreted as {\it anything}. Alice could receive such an interest. She would know, that this peer is apparently interested in anything. She could calculate that it is also interested in {\it Shark}.
 
 Let's consider this step from a privacy point of view. Peers could send any interests to other peers. Those peers would reveal their interests as reply. There is a unbalanced situation in case of an {\it any interest}. The sending peer reveals nothing of its interest. Alice reveals her interest.
 
+<<<<<<< HEAD
 Developers can decide if this unbalanced situation is bearable or not. The {\tt setRevealLocalInterest(boolean)} methods can be used to define what policy shall be used. {\tt True} would allow revealing local interests even if the remote peer just sends {\it any} tags. That's default behavior because in most cases peers should learn from each other at least vocabulary.
+=======
+Developers can decide if this unbalanced situation is bearable or not. The {\tt setRevealLocalInterest(boolean)} methods can be used to define what policy shall be used. {\tt True} would allow revealing local interests even if the remote peer just send {\it any} tags. That's default behavior because in most cases peers should learn from each other at least vocabulary.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 The default behavior can be switched off. In this case, the process is continued only if each non-any dimension of the local interests meets a non-any dimension in received interest.
 

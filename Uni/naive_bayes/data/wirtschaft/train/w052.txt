@@ -1,0 +1,15 @@
+Der Skandal um die NSA-Totalüberwachung hat offenbar wirtschaftliche Folgen: Laut "Independent" verbuchen die amerikanischen IT-Riesen Cisco und IBM nach den Enthüllungen von Edward Snowden Umsatzeinbrüche - vor allem in Asien.
+
+Hamburg - Angezapfte Internetkabel, massenhafte Sammlung von Telefonverbindungsdaten: Die Enthüllungen über die ausufernden Überwachungstechniken des US-Geheimdienstes NSA haben nicht nur das Vertrauen in die Sicherheit von Daten schwer erschüttert - sie bereiten auch den Unternehmen immer größere Sorgen.
+
+Große IT-Firmen haben seit Beginn der Enthüllungen von Edward Snowden milliardenschwere Umsatzeinbrüche verbucht, berichtet der "Independent".
+
+    Bei IBM Chart zeigen, einem der weltgrößten IT-Ausrüster, seien die Verkäufe in Asien und dem Pazifikraum von Mitte August bis Mitte Oktober um rund 15 Prozent eingebrochen. Das sei doppelt so viel wie im selben Zeitraum im Vorjahr.
+    Beim IT-Riesen Cisco Chart zeigen sei der Umsatzeinbruch noch gravierender gewesen, hieß es. Dort seien die Umsätze im Quartal nach den Snowden-Enthüllungen um 8,75 Prozent zurückgegangen. Im Quartal zuvor seien es nur 2,84 Prozent gewesen.
+
+IBM kommentierte die Zahlen nicht. Ciscos Finanzchef Frank Calderone nannte die NSA-Affäre gegenüber dem "Independent" explizit einen der Gründe für die abgeschwächte Nachfrage. Ein durchaus bemerkenswertes Statement, bemühen sich die meisten Unternehmen doch, die möglichen wirtschaftlichen Auswirkungen der Affäre herunterzuspielen.
+
+Viele US-Unternehmen gestehen jedoch ein, sich wegen der Überwachungsaffäre um ihren Ruf zu sorgen. Google Chart zeigen, Yahoo Chart zeigen, Facebook Chart zeigen, Microsoft Chart zeigen und andere IT-Firmen fordern, mehr Details über geheimdienstliche Anfragen veröffentlichen zu dürfen. Google fordert zudem eine Reform der Überwachungsgesetze in den USA. Der Konzern reagierte zuletzt empört auf Berichte, denen zufolge die NSA Millionen von Nutzerdaten mitliest, die zwischen Google-Rechenzentren ausgetauscht werden.
+
+Analysten weisen schon länger auf einen möglichen kausalen Zusammenhang von schwindenden Verkäufen und den Snowden-Enthüllungen hin. Laut einer Prognose der Information Technology & Innovation Foundation, einer US-Denkfabrik, könnte allein die Cloud-Computing-Industrie wegen des NSA-Überwachungsprogramms Prism in den kommenden drei Jahren Umsatzeinbrüche von bis zu 35 Milliarden Dollar erleiden. Beim Cloud Computing werden Nutzerdaten und ganze Computerprogramme nicht auf dem eigenen Rechner, sondern auf Servern großer IT-Konzerne gelagert. 
+

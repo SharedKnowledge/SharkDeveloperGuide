@@ -1,5 +1,9 @@
 \chapter{Shark 3.0}
+<<<<<<< HEAD
 Shark is an open source project that is driven by a little team at an university with partners who work on actual applications. Have a look at www.sharksystem.net for more information.
+=======
+Shark is an open source project that is driven by a little team at a university with partners who work on actual applications. Have a look at www.sharksystem.net for more information.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 Shark is used in projects. Each project has additional needs and requires additional functionality. Sometimes new custom functionality is worth to become a general framework function.
 
@@ -7,7 +11,11 @@ We have already identified two major enhancement which will be part of Shark 3.0
 
 
 \section{Public key infrastructure (PKI)}
+<<<<<<< HEAD
 Shark will get its own PKI. It already runs in our lab but wasn't tested enough to be published. The general idea shall already be outlined, though.
+=======
+Shark will get its own PKI. It already runs in our lab but wasn't tested enough to publish it. The general idea shall already be outlined, though.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 Each peer will be able to create its own RSA key pair and then send its private key to another peer. The preferred way of public key exchange will be an ad-hoc network. Both persons see each others eyes and exchange key with their mobile phones.
 Both can verify keys by fingerprints.
@@ -20,7 +28,11 @@ Alice creates a key pair and sends her public key directly to Bob. Of course, Bo
 
 Imagine, Bob has already exchanged public keys with Clara. Their exchanged keys have the trust level 0 as well. Now, Bob might send Alice the public key of Clara. Clara would now have a public key of Alice, that was mediated by Bob. For Clara, the Alice key has the trust level 1 -- A single peer (Bob) mediated the key. Clara could send Alice's key to e.g. Daniel. He would have Alice's key with a trust level of two and so forth.
 
+<<<<<<< HEAD
 With that PKI, developers can define a minimum trust level which must be satisfied with peers to communicate. There might be applications which only accept a trust level 0 communication which means that each peer must know every other peer more or less personal. Of course, less secure applications will still be possible.
+=======
+With that PKI, developers can define a minimum trust level which must be satisfied with peers to communicate. There might be applications who only accept a trust level 0 communication which means that each peer must know every other peer more or less personal. Of course, less secure applications will still be possible.
+>>>>>>> 64cb9cb05b907c77572a9795282711e75220cde5
 
 \section{Sub Space}
 Shark supports only peer-to-peer communication which is not very surprising for a P2P system. Most distributed applications require a communication between a closed group of peers. Social networks are a good example.
