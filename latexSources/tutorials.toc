@@ -1,0 +1,132 @@
+\contentsline {chapter}{\numberline {1}Introduction}{7}
+\contentsline {chapter}{\numberline {2}Concepts}{9}
+\contentsline {section}{\numberline {2.1}Communication principles}{10}
+\contentsline {subsection}{\numberline {2.1.1}Peers meet}{11}
+\contentsline {subsection}{\numberline {2.1.2}Base scenario}{11}
+\contentsline {subsection}{\numberline {2.1.3}Triangle scenario}{12}
+\contentsline {subsection}{\numberline {2.1.4}Hub scenario}{13}
+\contentsline {subsection}{\numberline {2.1.5}Location based scenario}{14}
+\contentsline {chapter}{\numberline {3}Setting up Shark}{15}
+\contentsline {chapter}{\numberline {4}Semantic Tags}{17}
+\contentsline {section}{\numberline {4.1}Subject Identifier}{18}
+\contentsline {section}{\numberline {4.2}Definition}{19}
+\contentsline {subsection}{\numberline {4.2.1}Changing Subject Identifier}{21}
+\contentsline {subsection}{\numberline {4.2.2}Any}{22}
+\contentsline {subsection}{\numberline {4.2.3}Algorithms}{22}
+\contentsline {subsection}{\numberline {4.2.4}Is Any}{22}
+\contentsline {subsection}{\numberline {4.2.5}Identical}{23}
+\contentsline {subsection}{\numberline {4.2.6}Merge}{23}
+\contentsline {section}{\numberline {4.3}Exercises}{24}
+\contentsline {chapter}{\numberline {5}Derived Semantic Tags}{25}
+\contentsline {section}{\numberline {5.1}Peer Semantic Tags}{25}
+\contentsline {section}{\numberline {5.2}Time Semantic Tags}{26}
+\contentsline {section}{\numberline {5.3}Spatial Semantic Tags}{27}
+\contentsline {subsection}{\numberline {5.3.1}Summary}{27}
+\contentsline {subsection}{\numberline {5.3.2}Exercises}{28}
+\contentsline {chapter}{\numberline {6}Properties}{29}
+\contentsline {section}{\numberline {6.1}Usage}{29}
+\contentsline {section}{\numberline {6.2}System properties}{30}
+\contentsline {chapter}{\numberline {7}Semantic Tag Sets}{31}
+\contentsline {section}{\numberline {7.1}Create, Merge, Add, Remove}{31}
+\contentsline {section}{\numberline {7.2}SemanticNet}{33}
+\contentsline {section}{\numberline {7.3}Taxonomy}{34}
+\contentsline {section}{\numberline {7.4}Tag set operations}{36}
+\contentsline {subsection}{\numberline {7.4.1}Is in}{36}
+\contentsline {subsection}{\numberline {7.4.2}Is any}{36}
+\contentsline {subsection}{\numberline {7.4.3}Identity}{37}
+\contentsline {subsection}{\numberline {7.4.4}Merge}{37}
+\contentsline {section}{\numberline {7.5}Fragmentation}{37}
+\contentsline {subsection}{\numberline {7.5.1}Plain set fragmentation}{37}
+\contentsline {subsection}{\numberline {7.5.2}Taxonomy fragmentation}{38}
+\contentsline {subsection}{\numberline {7.5.3}Semantic net fragmentation}{41}
+\contentsline {subsection}{\numberline {7.5.4}Contextualize}{43}
+\contentsline {section}{\numberline {7.6}PeerSNSemanticTag and friends}{44}
+\contentsline {section}{\numberline {7.7}Exercises}{46}
+\contentsline {chapter}{\numberline {8}Context Space}{47}
+\contentsline {section}{\numberline {8.1}Information}{47}
+\contentsline {section}{\numberline {8.2}Context Coordinates / Context Point}{47}
+\contentsline {section}{\numberline {8.3}Storing and retrieving information}{50}
+\contentsline {section}{\numberline {8.4}Interests}{50}
+\contentsline {section}{\numberline {8.5}Geometrical interpretation}{51}
+\contentsline {section}{\numberline {8.6}Find information with interests}{52}
+\contentsline {subsection}{\numberline {8.6.1}Any tags in interests}{53}
+\contentsline {section}{\numberline {8.7}Contextualization}{54}
+\contentsline {subsubsection}{Algorithm}{58}
+\contentsline {section}{\numberline {8.8}Other operations}{58}
+\contentsline {subsection}{\numberline {8.8.1}Is in}{58}
+\contentsline {subsection}{\numberline {8.8.2}Identical}{61}
+\contentsline {section}{\numberline {8.9}Context Space interfaces}{61}
+\contentsline {section}{\numberline {8.10}Exercises}{62}
+\contentsline {chapter}{\numberline {9}Shark Knowledge Base}{63}
+\contentsline {section}{\numberline {9.1}Vocabulary}{63}
+\contentsline {subsection}{\numberline {9.1.1}Vocabulary as context space}{64}
+\contentsline {section}{\numberline {9.2}Knowledge}{65}
+\contentsline {section}{\numberline {9.3}Knowledge Extraction}{66}
+\contentsline {subsection}{\numberline {9.3.1}Extraction with fragmentation parameter}{70}
+\contentsline {subsection}{\numberline {9.3.2}Peer hierarchies}{73}
+\contentsline {subsection}{\numberline {9.3.3}Cutting peer hierarchies}{74}
+\contentsline {section}{\numberline {9.4}Knowledge Assimilation}{75}
+\contentsline {section}{\numberline {9.5}Exercises}{79}
+\contentsline {chapter}{\numberline {10}Knowledge Ports}{81}
+\contentsline {section}{\numberline {10.1}Implementing your own Knowledge Port}{82}
+\contentsline {subsection}{\numberline {10.1.1}KEPConnection}{83}
+\contentsline {subsubsection}{Reply}{83}
+\contentsline {subsection}{\numberline {10.1.2}Physical and logical sender}{84}
+\contentsline {subsection}{\numberline {10.1.3}Sending initial messages}{86}
+\contentsline {subsection}{\numberline {10.1.4}Creating a knowledge port}{86}
+\contentsline {subsection}{\numberline {10.1.5}KP Listener}{86}
+\contentsline {subsection}{\numberline {10.1.6}Other methods}{88}
+\contentsline {section}{\numberline {10.2}Exercises}{89}
+\contentsline {chapter}{\numberline {11}Predefined Knowledge Ports}{91}
+\contentsline {section}{\numberline {11.1}StandardKP}{91}
+\contentsline {subsection}{\numberline {11.1.1}Alice and Bob basic scenario}{92}
+\contentsline {subsubsection}{Alice}{92}
+\contentsline {subsubsection}{Bob}{94}
+\contentsline {subsection}{\numberline {11.1.2}doExpose}{95}
+\contentsline {paragraph}{Interest arrives}{96}
+\contentsline {paragraph}{Revealing check}{96}
+\contentsline {paragraph}{Effective Interest}{96}
+\contentsline {paragraph}{Mutual Interest}{97}
+\contentsline {paragraph}{Receiving Mutual Interest}{98}
+\contentsline {paragraph}{Sending Mutual Interest}{98}
+\contentsline {subsubsection}{In simple words...}{98}
+\contentsline {subsection}{\numberline {11.1.3}constructor and parameters}{98}
+\contentsline {subsection}{\numberline {11.1.4}doInsert}{100}
+\contentsline {subsection}{\numberline {11.1.5}Summary}{101}
+\contentsline {section}{\numberline {11.2}HubKP}{101}
+\contentsline {subsection}{\numberline {11.2.1}Usage}{102}
+\contentsline {subsection}{\numberline {11.2.2}Implementation}{103}
+\contentsline {section}{\numberline {11.3}ChatKP}{105}
+\contentsline {subsection}{\numberline {11.3.1}Implementation}{106}
+\contentsline {subsection}{\numberline {11.3.2}Alice}{106}
+\contentsline {subsection}{\numberline {11.3.3}Bob}{108}
+\contentsline {subsection}{\numberline {11.3.4}ChatPeerTCP}{109}
+\contentsline {subsection}{\numberline {11.3.5}ChatKP}{110}
+\contentsline {section}{\numberline {11.4}Exercises}{113}
+\contentsline {chapter}{\numberline {12}Shark Engine}{115}
+\contentsline {section}{\numberline {12.1}Architectur}{115}
+\contentsline {subsection}{\numberline {12.1.1}Stubs}{115}
+\contentsline {subsection}{\numberline {12.1.2}SharkEngine}{115}
+\contentsline {subsection}{\numberline {12.1.3}Knowledge Port}{116}
+\contentsline {subsection}{\numberline {12.1.4}Message2StreamStub}{116}
+\contentsline {section}{\numberline {12.2}Knowledge Port Management}{117}
+\contentsline {subsection}{\numberline {12.2.1}Publishing}{117}
+\contentsline {section}{\numberline {12.3}KEP communication}{118}
+\contentsline {subsection}{\numberline {12.3.1}Communication History}{118}
+\contentsline {subsection}{\numberline {12.3.2}Silent period and empty knowledge}{119}
+\contentsline {subsection}{\numberline {12.3.3}Some other protocol methods}{120}
+\contentsline {subsection}{\numberline {12.3.4}Connection timeouts}{121}
+\contentsline {subsection}{\numberline {12.3.5}Protocol priorities}{121}
+\contentsline {subsection}{\numberline {12.3.6}Starting a KEP conversion}{122}
+\contentsline {subsubsection}{Information push with interest replay}{122}
+\contentsline {subsubsection}{Spontaneous networks}{123}
+\contentsline {section}{\numberline {12.4}Black- and white lists}{124}
+\contentsline {section}{\numberline {12.5}Platform specific engines}{125}
+\contentsline {chapter}{\numberline {13}Security}{127}
+\contentsline {section}{\numberline {13.1}Signing}{127}
+\contentsline {section}{\numberline {13.2}Encrypting}{127}
+\contentsline {section}{\numberline {13.3}Shark Key Store}{128}
+\contentsline {section}{\numberline {13.4}Setting up security policy}{129}
+\contentsline {subsection}{\numberline {13.4.1}Reply policies}{129}
+\contentsline {section}{\numberline {13.5}Shark Public Key Infrastructure}{130}
+\contentsline {chapter}{\numberline {14}SharkKB implementations}{131}
