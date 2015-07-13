@@ -1,0 +1,47 @@
+\chapter{Properties}
+This will become a brief chapter. We are going to discuss properties. 
+
+Semantic tags as well as other structures in Shark can have properties which are name-value-pairs. Defining a property is simple.
+
+\begin{verbatim}
+SemanticTag shark = 
+  InMemoSharkKB.createInMemoSemanticTag("Shark", 
+     "http://www.sharksystem.net/");
+
+shark.setProperty("propName1", "propValue1");
+String value = shark.getProperty("propName1");
+
+\end{verbatim}
+
+We have created a single tag and added a property {\tt propName1}. The last line retrieves the value. This method would produce an failure if no property with that name exists.
+
+Setting an existing property overwrites the old value. Properties can be removed by setting a null value.
+
+\begin{verbatim}
+//remove property named propName1
+shark.setProperty("propName1", null);
+\end{verbatim}
+
+Developers can define whether a property is {\it transferable} or not. What does that mean?
+
+Shark is used to build P2P systems. Thus, e.g. semantic tags are ought to be transmitted from peer to peer including their properties. This default behaviour
+can be overwritten by defining a property as non-transferable.
+
+\begin{verbatim}
+shark.setProperty("propName2", "propValue2", false);
+\end{verbatim}
+
+\section{Usage}
+Don't use properties. That provocative rule has a true background. The real rule is: Use properties only if it's really necessary.
+
+Shark has a powerful data model. Especially context points and information are {\bf the} way to store and transmit data and knowledge. Information can be searched. Properties not.
+
+The problem is that properties are easy to understand - even and especially for undergraduates. Don't fall into that trap! Properties can be sweet poison. Whenever information have to be stored, consider first if they can be stored either in semantic tags or in information and context points. Use properties if those options are impossible. Impossible does not mean: 'Well, I haven't found time to read the following chapters and decided to use these property stuff. It sounds familiar.' Impossible means, you had tried hard to do it otherwise and didn't found a useful way.
+
+\section{System properties}
+There are also system properties. Here comes the rule: Don't use it! We mean it. 
+
+Don't use it if your are just about writing a Shark application. Only use it if your are about adding features to the framework. Consult the Shark developer team and get deep insights into the framework. Than it might be useful to use system properties. Until you've reached that level of wisdom: Don't use it!
+
+(You may actually find system properties if your are really curious. But never ever change one of these values! Most probably, you will damage your system.)
+        

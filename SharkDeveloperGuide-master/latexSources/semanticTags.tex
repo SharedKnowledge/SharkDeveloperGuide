@@ -1,0 +1,310 @@
+\chapter{Semantic Tags}
+The term {\it tag} became quite popular in Web 2.0. The {\it interactive} Web allows users adding comments and/or describing web content. Wikipedia seems to be the most famous application in that field. 
+
+Brief descriptions are called {\it tags} which are -- in IT terms -- {\it strings}.
+
+This tutorial could be tagged with e.g. {\it Shark} and {\it P2P}.
+Tags are well-known in social networks as well. User describe their interests with tags. The author described his interest in Java e.g. with the string ''java''\footnote{on my page on XING}.
+
+Let's have a closer look at a tag, e.g. {\it P2P}. There are some trivial observations:
+
+\begin{itemize}
+\item 
+Tags are usually compared by string comparison. Meaning: {\it p2p} isn't {\it P2P}. Some systems might ignore lower or higher case letters but even so {\it Peer-to-Peer} is different from both. 
+
+More sophisticated systems might help to overcome those obstacles. A dictionary can help to find out that two strings have the same meaning.
+
+\item
+An ordinary dictionary won't help to find out that {\it bank} and {\it finance institute} can be considered to be the same. There can be different words having the same meaning. They are called {\bf synonyms}. A synonym dictionary can help in this case.
+
+\item
+Languages tend to be merged. Apparently, {\it music}, {\it Musik} and {\it La Musica} are not the same string, not the same words and are no synonyms in any language. They depict the same thing but in different languages.
+
+Dictionaries might help in this case. But how many should we use?
+
+\item
+It becomes even worse. Have a look at the tag {\it bank}. We already know that it has something to do with finance. It can also be a furniture that helps to relax our legs, though. 
+
+Any natural language has {\bf homonyms} which are words which stand for different concepts. Homonyms can only be detected in context. Unfortunately, tags usually don't have a context. A user might just tag a web page with {\it bank}. What can we learn from that? Not that much.
+
+\item
+In the previous lecture we learned about Alice and her interest in {\it skiing}.
+Bob is interested in {\it sports}. Both words are no homonyms, synonyms, translations and they are correctly spelled. They don't mean the same thing. Nevertheless, they have something in common.
+
+\end{itemize}
+
+We talk about semantics but haven't used the words yet. Semantic describes the meaning of words. What does {\it bank} mean under given circumstances? The meaning of words can be found out in two different ways: Ask the author or make a text analysis. 
+
+First approach is most secure but often not feasible. As to be seen, the second approach is more error-prone and requires sophisticated algorithms, some dictionaries and a computer. In general, it is feasible. Computer based algorithms will fail by analyzing a single word like {\it bank}. How should a computer squeeze out author intention when writing those four letters. That's hardly feasible.
+
+Shark doesn't care how to get semantics but how to represent it. There are no algorithms in Shark which helps to figure out the meaning of words or even lengthy documents. Shark deals only with representation of semantics. How can we store known semantics? How can we work with it? And how can we exchange semantics and documents between autonomous peers? That is what Shark is all about.
+
+Shark uses {\it Semantic Tags} to describe semantics of words. Semantic Tags are derived from the ISO standard 13250 Topic Maps, namely the concept {\bf topic}. We won't have a deeper look into that ISO standard in that book. If you'd find some time: Do it. It is well-written, full of wisdom and -- also important -- quite short.
+
+We have to explain just one concept from the standard: {\bf Subject Identifier} are a core concept of Topic Maps as a well as of Shark.
+
+\section{Subject Identifier}
+There are things we want to talk about. We can name those things but the naming can be ambiguous. The things are called {\bf subjects} in the Topic Maps ISO standard. Subjects are things in the real world, e.g. a person, a book, a feeling, virtually anything we can talk about.
+
+How do we represent a subject in a computer? The ISO standards uses {\bf topics} for that reason. They represent subjects in a computer system. A topic can have (an arbitrary number of) names. 
+
+Topics must describe their semantics. That's done with a {\bf subject identifier}. We don't refer to the definition in the ISO standard but to the (a bit more limited) understanding in Shark:
+
+A subject identifier (SI) is a URI that refers a human readable source that describes the meaning of the semantic tag. The following URL can be used as SI for the tag {\it bank}: http://en.wikipedia.org/wiki/Bank
+
+There is another URL that can also be used:
+http://eo.wikipedia.org/wiki/Banko
+
+The later URL refers a web page describing bank (the finance institute) in Esperanto. Both URLs satisfy the requirements for a subject identifier. What URL should be taken?
+
+The answer is pretty simple: Both of course. When defining a semantic tag find and use as much URLs as you can find. Just ensure that all SI really describe the same {\it thing}.
+
+\section{Definition}
+Now we can define a semantic tag:
+
+A semantic tag has one (exactly one) name. It has an arbitrary number of subject identifiers. SIs define the meaning of the semantic tag. 
+
+Semantic tags can be created without a single subject identifier. Such semantic tags have no explicit meaning. They might have an implicit meaning. The tag author might have had something in his/her mind when creating that tag. That meaning wasn't described either the author didn't know the meaning, hadn't found an appropriate URL or was short in time.
+
+In any case, the computer cannot detect the meaning. The tag can mean anything or nothing, depending on the context. Tags without a single subject identifier are called {\bf any tags}, see also section \ref{sec:AnyST}.
+
+Two semantic tags are defined to be identical if at least one pair of SIs can be found which refers to the same description. Wikipedia is e.g. a very good source for subject identifiers.
+
+Examples:
+\begin{itemize}
+    \item (bank, (http://en.wikipedia.org/wiki/Bank)) and \\ (bank, (http://en.wikipedia.org/wiki/Bank)) are apparently identical. \\ Names and SIs are the same.
+
+    \item (bank, (http://en.wikipedia.org/wiki/Bank)) and \\ (Bank, (http://en.wikipedia.org/wiki/Bank)) are identical. \\ Name differs slightly but names are not taken into account when comparing tags.
+
+    \item (bank, (http://en.wikipedia.org/wiki/Bank)) and \\ (Financial institute, (http://en.wikipedia.org/wiki/Bank)) are identical. \\ Name differs but SIs are the same (synonyms).
+
+    \item (bank, (http://en.wikipedia.org/wiki/Bank)) and \\ (bank, (http://eo.wikipedia.org/wiki/Bank)) are not identical. \\ Names are the same but each semantic tag has just a single SI and both SIs differ.
+
+    \item (bank, ()) and \\ (bank, (http://eo.wikipedia.org/wiki/Bank)) are not identical. \\ Names are the same but one semantic tag has no defined semantics due to the lack of a SI. Thus, the first tag has the meaning of anything/nothing, the second stands for a bank - for those who understand Esperanto.
+
+    \item (bank, ()) and (P2P, ()) are identical. \\ Names are irrelevant when comparing semantic tags. Both tags have no defined semantics and therefore they are considered to be identical.
+
+    \item (bank, (http://en.wikipedia.org/wiki/Bank)) and \\ (Bank, (http://eo.wikipedia.org/wiki/Bank, \\ http://en.wikipedia.org/wiki/Bank)) are identical. \\ Both tags use http://en.wikipedia.org/wiki/Bank as a subject identifier. 
+
+    \item (bank, (http://en.wikipedia.org/wiki/Bank)) and \\ (bank, (http://en.wikipedia.org/wiki/Bank,\_Iran)) are not identical. \\ Names are the same but the first refers to the financial institute whereas the last refers to a city in the south-west of Iran. Bank is homonym in this case. Note, both homonyms can be distinguished.
+
+\end{itemize}
+
+Subject identifiers solve nearly all problems described above except for the last one.
+
+That's a programmers guide and Shark is a framework for P2P applications. Let's
+have a look at some simple lines of code.
+
+\begin{verbatim}
+String bankEnglSI = "http://en.wikipedia.org/wiki/Bank";
+
+SemanticTag bankTag1 = 
+    InMemoSharkKB.createInMemoSemanticTag("Bank", bankEnglSI);
+\end{verbatim}
+
+First line is simple. We have created string containing a subject identifier explaining the concept bank in English. The second line creates a semantic tag.
+We use the {\tt InMemoSharkKB}. This class implements a Shark knowledge base which will be explained later in more details. For now we just need to know that this class also offers a number of static methods to create our semantic structures in computer memory. Thus, the second line of code creates a semantic tag object in memory with the name {\it Bank} and one subject identifier.
+
+Let's expand our example with the following lines:
+
+\begin{verbatim}
+String bankEOSI = "http://eo.wikipedia.org/wiki/Bank";
+        
+String[] bankSIs = new String[] {bankEnglSI, bankEOSI};
+        
+SemanticTag bankTag2 = 
+  InMemoSharkKB.createInMemoSemanticTag(
+      "Financial institute", bankSIs);
+        
+if(SharkCSAlgebra.identical(bankTag1, bankTag2)) {
+    System.out.println("identical");
+} else {
+    System.out.println("not identical");
+}
+\end{verbatim}
+
+We create another SI which refers to a page that explains bank in Esperanto ({\tt bankEOSI}).
+Now, we create an array containing both subject identifiers ({\tt bankSIs}). 
+It might sound somewhat academic but that array has a dedicated meaning.
+It means that both subject identifier actually describe the same thing.
+No machine can decide that very fact. Just a human being can make such a decision. That decision must be made carefully
+which assumes that decision makers are familiar with the given topic and 
+the languages - bank, English and Esperanto in this case.
+
+Another semantic tag can now be created. Its semantics is described with both subject identifiers ({\tt bankTag2}). 
+
+Finally, both semantics tags can be compared. We use class 
+{\tt SharkCSAlgebra}\footnote{http://www.sharksystem.net/javadoc/current/net/sharkfw/knowledgeBase/SharkCSAlgebra.html}.
+
+We simple check whether both tags {\it mean} the same. In other words: 
+Do they have same semantics? Run the program and see the answer\footnote{which is {\tt identical}}.
+
+\subsection{Changing Subject Identifier}
+Of course, there are circumstances in which users can not define a subject identifier. At least temporary, there can be situations in which a semantic tag doesn't have a SI which means it has no explicitly defined meaning.
+
+The code it pretty simple. Semantics is not.
+
+\begin{verbatim}
+SemanticTag noSI = 
+    InMemoSharkKB.createInMemoSemanticTag(
+        "myFirstTag", 
+        (String) null
+    );
+\end{verbatim}
+
+Let's sort that mess. First of all, a human has something in mind when s/he talks about anything. Thus, anything has a meaning. The question is if a subject identifier can be found when creating the tag. If yes, the meaning is made explicit. If not, the meaning remains implicit. 
+
+Once a subject identifier is defined, the semantic tag has explicitly got a meaning. This meaning cannot be withdrawn - or at least shouldn't be.
+
+This rule has impact on the programming level. Users can change subject identifiers whenever they want to. Shark will and cannot check the content that is referred to by a SI. Thus, Shark cannot check if descriptions have the same meaning. That's up to the user.
+
+Shark simply refuses to remove all subject identifiers if at least one was set: A SI can only be removed if at least another one exists.
+
+We extend out example:
+\begin{verbatim}
+bankTag2.removeSI(bankEOSI);
+  
+System.out.println("removed SI from bankTag2: " + 
+  L.semanticTag2String(bankTag2));
+  
+// try to remove final SI from tag - fails
+try {
+  bankTag1.removeSI(bankEnglSI);
+}
+catch(SharkKBException e) {
+  System.out.println("failed: " + e.getMessage());
+}
+\end{verbatim}
+
+Tag {\tt bankTag2} has two SI. One can be removed. Note class {\tt L}.
+It is a helper class and mainly used for debugging purposes. It also
+offers a simple way to print out e.g. semantic tags.
+
+Removing the only SI from  {\tt bankTag1} fails. The error message explains the
+reason. Run the program and watch the results.
+
+SIs can be added. Be careful! All SIs of a tag must mean the same.
+
+\begin{verbatim}
+bankTag1.addSI(bankEOSI);
+System.out.println("bankTag1 after adding: " + 
+  L.semanticTag2String(bankTag1));
+\end{verbatim}
+
+\subsection{Any}
+\label{sec:AnyST}
+A semantic tag with no subject identifier has no explicit semantics. This tag might have a name but its explicit {\it meaning} is {\bf anything} which can also mean {\bf nothing} in another context.
+
+Such situations should be avoided. But we have to face reality. Sometimes there
+is no SI at hand and we have to deal with it. In Shark we say: Each tag with no subject identifier means {\it anything} - it is an {\it any tag}.
+
+{\it Any} is joker tag in Shark. {\it Any} is identical to any other tag.
+
+\subsection{Algorithms}
+We have already seen some methods on semantic tags. Have a closer look into the java doc which is available e.g. on the sharksystem.net web 
+site\footnote{http://www.sharksystem.net/javadoc/current/net/sharkfw/knowledgeBase/SemanticTag.html}. 
+We want to explain the algorithms beyond the methods.
+
+\subsection{Is Any}
+It can be check whether a tag is an any tag.
+
+$isAny(tag): boolean$
+
+The algorithm is trivial. The result is true if either tag is not set ({\tt null} in Java speech) or tag uses the SI {\it http://www.sharksystem.net/psi/anything}.
+
+We have already seen a tag with no subject identifier. That's the other - the explicit definition of an any tag. It should be used very deliberately.
+
+\begin{verbatim}
+SemanticTag anyTag = 
+InMemoSharkKB.createInMemoSemanticTag("anyTag", SharkCS.ANYURL);
+
+if(SharkCSAlgebra.isAny(anyTag)) {
+  System.out.println("anyTag is any");
+}
+\end{verbatim}
+
+Note class {\tt SharkCS} which offers important constants, e.g. the URL 
+representing the any / nothing meaning.
+
+\subsection{Identical}
+We have already calculated if two tags are identical. 
+
+$identical(tagA, tagB): boolean$
+
+The algorithm is straightforward:
+
+\begin{enumerate}
+    \item 
+The framework is implemented in Java. Both parameters are objects which reside in computer memory. The first check is whether both Java objects are identical. In this case, both tags are apparently also identical.
+
+\item
+It is checked if both tags don't have any subject identifiers. In this case, both tags have no semantics and are identical.
+
+\item
+If only one tag doesn't have a subject identifier, it is is checked whether the second one has the semantics of {\it anything} - which can also be explicitly defined - there is a code example later in this section. If so, both tags are identical.
+
+\item
+Both tags have a semantics which is not anything at this point. Now, each subject identifier of {\it tagA} is taken and compared to each subject identifier of {\it tagB}. The algorithm stops immediately if a matching pair is found. Both tags are identical in this case.
+
+\item
+Both tags are not identical if this point of the algorithm is reached.
+
+\end{enumerate}
+
+\subsection{Merge}
+As we have seen, semantic tags can -- and usually are -- defined more than once by different peers in different manners. Two identical peers can be {\it merged}, though. Merging can only be performed with identical semantic tags.
+
+This operation merges one semantic tag with another one. The latter shall be called {\it target} the first {\it merge tag}:  
+
+$merge(target, mergeTag): void$
+
+The target can be changed, but the mergeTag remains unchanged in any case.
+
+The algorithm is pretty simple:
+
+\begin{enumerate}
+\item 
+If the target tag has no name, it gets the name of the merge tag. If the target tag has already a name, nothing happens.
+
+\item
+All subject identifiers from merge tag are copied to target. SIs are not duplicated: There is at least one SI that already existed in target and merge before merging. Such identical SIs are not duplicated.
+
+\item
+Semantic tags can have properties. All properties from merge tag are copied to target tag.
+\end{enumerate}
+
+\begin{verbatim}
+SharkCSAlgebra.merge(bankTag1, bankTag2);
+
+SharkCSAlgebra.merge(anyTag, bankTag2);
+\end{verbatim}
+
+Both methods merge any data from the right tag into the left tag with the described algorithm. Be careful! Shark merges. It does not check whether both tags are identical or not. It is up to programmers will and knowledge. 
+
+Apparently, the first line is useful. Both bank tags mean the same and can be merged. The second line is disastrous. It merges bank with any which is nonsense from a semantic point of view. Bank means bank and {\it not} anything. Be careful with what your doing!
+
+\section{Exercises}
+
+\begin{enumerate}
+    \item 
+Create a semantic tag that represents the city in which you were born. You must find at least one subject identifier.
+
+Write a method {\tt writeST(SemanticTag st)} that prints name and subject identifier of a semantic tag to {\tt System.out}. Check that method with your semantic tag.
+
+\item
+Define another semantic tag that defines the city you are currently living in. This tag should have at least one subject identifier different than the one in the previous task.
+
+Check both of your semantic tags on identity.
+
+\item
+If both tags are identical, skip this task.
+
+Create another semantic tag that also represents the city where you were born in. Use {\it one} subject identifier that was already used in the first semantic tag and use at least one SI that wasn't used yet.
+
+Both tags should now have a different number of subject identifiers but should be evaluated as identical. Check that.
+
+\item
+Merge both identical semantic tags. Print target and merge tag before merging and after merging. Investigate what happened during the process.
+
+\end{enumerate}
+
