@@ -4,6 +4,10 @@ import net.sharkfw.knowledgeBase.SemanticTag;
 import net.sharkfw.knowledgeBase.SharkKBException;
 import net.sharkfw.knowledgeBase.inmemory.InMemoSharkKB;
 
+/** 
+ * 
+ * @author thsc 
+ */ 
 public class Properties {
     public static void main(String args[]) throws SharkKBException {
         SemanticTag shark = 
