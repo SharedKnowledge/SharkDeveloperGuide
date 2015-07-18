@@ -18,8 +18,9 @@ import net.sharkfw.peer.SharkEngine;
 import net.sharkfw.system.SharkException;
 
 /**
- *
  * @author thsc
+ * @brief chat knowledge Port
+ * @file ChatKP.java
  */
 public class ChatKP extends KnowledgePort {
     public static final String CHAT_TOPIC_SI = "http://www.sharksystem.net/examples/chat/chatinterest.html";
@@ -34,7 +35,7 @@ public class ChatKP extends KnowledgePort {
 
     /**
      * Probably, a chat entry has been received - handle it
-     * @param k
+     * @param k is the variable from Knowledge
      * @param kepConnection 
      */
     @Override
