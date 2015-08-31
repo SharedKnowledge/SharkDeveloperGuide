@@ -91,7 +91,22 @@ public class GettingProfiles {
 }
 \end{verbatim}
 
+The first part is very similar to the example CreateProfile, because before extracting or getting profiles from the factory they must be created and in this example an empty SharkKB is used so it needs to be filled with profiles before. After the create section the SharkKB in the profileFactory now holds a profile for Bob and a profile for Alice. These profiles can be extracted by using these functions: {\tt List<Profile> getAllProfiles()}, {\tt Profile getProfile(PeerSemanticTag creatorAndTarget)} or {\tt Profile getProfile(PeerSemanticTag creator, PeerSemanticTag target)}. The first function returns a list with all profiles in the given profile factory, the second function needs a PeerSementicTag as parameter and will return a profile where the given peer is creator and target and the last function needs two PeerSemanticTags as parameters and will return a specific profile where the first peer of the profile is creator and the second peer of the profile is target.
 
+\subsection{Entry}
+An entry is an approach to be a generic container for information. Different kinds of information should be stored in entries. So the structure of entries is also alterable. 
+Entry Example: Imagine an entry like a job employment. A job employment can contain things like:
+ -employer name(String)
+ -job title(String)
+ -start and end of the job(Date or Int)
+ -information if the job is the current job(Boolean)
+ -job description(String)
+So now you can create an entry named employment and add the different paths with the information as content.
+
+\subsubsection{Create employment entry}
+\begin{verbatim}
+
+\end{verbatim}
 
 
 
