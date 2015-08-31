@@ -3,7 +3,10 @@
 Peers like Alice and Bob sometimes have more relevant information about themselves. If there is more than temporal interests an instance to store and collect theses relevant facts about peers is needed. Therefore we can use the profile. A profile can change its shape so it fits the needs. E.g. its possible to make an entry "ProfileName" and these entry can store a first name, a last name and a nick name but the entry can easily be changed so if there is no need for a nick name it can be changed into alternate spellings for the first name or add several new components to the "ProfileName" like academical titles and so on. 
 An entry is a generic component of a profile. A profile can handle/manage several different entries. Content stored in an profile entry is persistent. 
 
-\subsection{Creating a profile}
+\subsection{ProfileFactory}
+For creating/rebuilding a profile you always use the profile factory. These factory is like the manager of all profiles in the SharkKB. It provides functions to rebuild profiles out of context points and a function to create an empty new profile object {\tt createProfile(PeerSemanticTag, PeerSemanticTag)}. The first PeerSemanticTag parameter is called creator and the second PeerSementicTag parameter is called target. Creator is a peer that makes a new profile and maintains it and a target is a peer all information of the profile refers to. E.g. a profile creator writes a profile over a target. A profile factory needs to be initialized with a SharkKB. All profiles that are created with this factory are now stored in the KB. But the factory can only rebuild profiles from this specific SharkKB so if there is no such profile in the KB an SharkKBException is thrown. To rebuild a profile from an other KB create a new profile factory and initialize it with the KB.
+
+\subsubsection{Creating a profile}
 \begin{verbatim}
 public class CreateProfile {
 	//Create an empty SharkKB
@@ -24,11 +27,11 @@ public class CreateProfile {
             aliceAddresses);
             
     //Initialize profileFactory with SharkKB
-    public CreateProfile() throws SharkKBException {
+    private CreateProfile() throws SharkKBException {
         profileFactory = new ProfileFactoryImpl(kb);
     }
 
-    private Profile createProfileAlice() throws SharkKBException {
+    public Profile createProfileAlice() throws SharkKBException {
     	//Create profile for Alice with the profileFactory
         Profile aliceProfile = profileFactory.createProfile(alice, alice);
         //Create ProfileName object
@@ -42,22 +45,99 @@ public class CreateProfile {
     }
 \end{verbatim}
 
-For creating/rebuilding a profile you always use the profile factory. These factory is like the manager of all profiles in the SharkKB. It provides functions to rebuild profiles out of context points and a function to create an empty new profile object {\tt createProfile(PeerSemanticTag, PeerSemanticTag)}. The first PeerSemanticTag parameter is called creator and the second PeerSementicTag parameter is called target. Creator is a peer that makes a new profile and maintains it and a target is a peer all information of the profile refers to. E.g. a profile creator writes a profile over a target. A profile factory needs to be initialized with a SharkKB. All profiles that are created with this factory are now stored in the KB. But the factory can only rebuild profiles from this specific SharkKB so if there is no such profile in the KB an SharkKBException is thrown. To rebuild a profile from an other KB create a new profile factory and initialize it with the KB. A profile consists of all the entry functionality and some basic functions. These basic functions store data which often occurs in a normal profile like:
+In these class a profile factory is used to create an profile for Alice. At first there is an empty SharkKB created which initialized the profileFactory, than a peer for Alice is created.
+This peer is needed because the createProfile function of the profileFactory needs peers as parameters. "aliceProfile" and a "profileName" object are created. The "profileName" object was filled with information about Alice first name, last name and titles of Alice. "setName" is called on "aliceProfile" and sets the "profileName" object persistently for Alice profile.
+A profile consists of all the entry functionality and some basic functions. These basic functions store data which often occurs in a normal profile like:
 \begin{verbatim}
 	setName(ProfileName profileName) 
 	setPicture(byte[] content, String contentType, String identifier)
 	setTelephoneNumber(String number, String identifier)
 \end{verbatim}
-3 basic functions to store often occurring data. It is possible to create exactly these 3 basic functions of the profile with the entry functionality but in terms of simplification they are given by the profile.
+Just 3 basic functions to store often occurring data. It is possible to create exactly these 3 basic functions of the profile with the entry functionality but in terms of simplification they are given by the profile.
 
-\subsection{Getting a profile}
+\subsubsection{Getting profiles}
 \begin{verbatim}
-public class gettingProfiles {
-    private ProfileFactory profileFactory;
-    
-    //Imagine there is a profile of Alice and of Bob in the SharkKB of the profile Factory
-    gettingProfiles(ProfileFactory pf) {
-    	this.profileFactory = pf;
+public class GettingProfiles {
+    public static void main(String[] args) throws SharkKBException {
+    	//Create empty SharkKB
+    	SharkKB kb = new InMemoSharkKB();
+    	ProfileFactory profileFactory = new ProfileFactoryImpl(kb);
+    	
+    	//Create a peer semantic tag describing Alice herself
+    	String[] aliceAddresses = {"mail://alice@wonderland.net", "mail://alice@wizards.net", "http://www.sharksystem.net/alice.html"};
+    	String[] aliceSis = {"http://www.sharksystem.net/alice.html"};
+    	PeerSemanticTag alice = InMemoSharkKB.createInMemoPeerSemanticTag("Alice", aliceSis, aliceAddresses);
+    	
+    	//Create a peer semantic tag describing Bob himself
+    	String[] bobAddresses = {"mail://bob@sharknet.net", "mail://bob@wizards.net", "http://www.sharksystem.net/bob.html"};
+    	String[] bobSis = {"http://www.sharksystem.net/bob.html"};
+    	PeerSemanticTag bob = InMemoSharkKB.createInMemoPeerSemanticTag("Bob", bobSis, bobAddresses);
+    	
+    	//Profile is created where Alice is the creator and the target
+    	profileFactory.createProfile(alice, alice);
+    	
+    	//Profile is created where Bob is the creator and the target
+    	profileFactory.createProfile(bob, bob);
+    	
+    	//Create a list with Alice and Bobs profile in it
+		List<profile> aliceAndBobProfiles = profileFactory.getAllProfiles();  	
+		
+		//Getting Alice profile out of the profile factory respectively out of the KnowledgeBase
+		Profile aliceNew1 = profileFactory.getProfile(alice);
+		Profile aliceNew2 = profileFactory.getProfile(alice, alice);
+		
+		//aliceNew1 and aliceNew2 are equal profiles of Alice
     }
 }
 \end{verbatim}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
