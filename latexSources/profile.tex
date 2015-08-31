@@ -1,3 +1,63 @@
 \section{Profile}
 \label{sec:knowledgePorts:Profile}
-Peers like Alice and Bob sometimes have more relevant information about themselves. If there is more than temporal interests an instance to store and collect theses relevant facts about peers is needed. Therefore we can use the profile. A profile can change its shape so it fits the needs. E.g. its possible to make an entry "ProfileName" and these entry can store a first name, a last name and a nick name but the entry can easily be changed so if there is no need for a nick name it can be changed into alternate spellings for the first name or add several new components to the "ProfileName" like academical titles and so on. An entry is a generic component of a profile. A profile can handle/hold.
+Peers like Alice and Bob sometimes have more relevant information about themselves. If there is more than temporal interests an instance to store and collect theses relevant facts about peers is needed. Therefore we can use the profile. A profile can change its shape so it fits the needs. E.g. its possible to make an entry "ProfileName" and these entry can store a first name, a last name and a nick name but the entry can easily be changed so if there is no need for a nick name it can be changed into alternate spellings for the first name or add several new components to the "ProfileName" like academical titles and so on. 
+An entry is a generic component of a profile. A profile can handle/manage several different entries. Content stored in an profile entry is persistent. 
+
+\subsection{Creating a profile}
+\begin{verbatim}
+public class CreateProfile {
+	//Create an empty SharkKB
+    private SharkKB kb = new InMemoSharkKB();
+    
+    //Create a profile factory
+    private ProfileFactory profileFactory;
+    
+    //Create Alice addresses
+    private String[] aliceAddresses = {"mail://alice@wonderland.net", "mail://alice@wizards.net", "http://www.sharksystem.net/alice.html"};
+    
+    //Create Alice semantic identifiers 
+    private String[] aliceSis = {"http://www.sharksystem.net/alice.html"};
+    
+    //Create Alice as peer
+    private PeerSemanticTag alice = InMemoSharkKB.createInMemoPeerSemanticTag("Alice",
+            aliceSis,
+            aliceAddresses);
+            
+    //Initialize profileFactory with SharkKB
+    public CreateProfile() throws SharkKBException {
+        profileFactory = new ProfileFactoryImpl(kb);
+    }
+
+    private Profile createProfileAlice() throws SharkKBException {
+    	//Create profile for Alice with the profileFactory
+        Profile aliceProfile = profileFactory.createProfile(alice, alice);
+        //Create ProfileName object
+        ProfileName profileName = new ProfileNameImpl("Alice");
+		//Fill ProfileName with data
+        profileName.setLastName("Alpha");
+        profileName.setTitle("Prof.");
+		//Set the ProfileName in Alice profile
+        aliceProfile.setName(profileName);
+        return aliceProfile;
+    }
+\end{verbatim}
+
+For creating/rebuilding a profile you always use the profile factory. These factory is like the manager of all profiles in the SharkKB. It provides functions to rebuild profiles out of context points and a function to create an empty new profile object {\tt createProfile(PeerSemanticTag, PeerSemanticTag)}. The first PeerSemanticTag parameter is called creator and the second PeerSementicTag parameter is called target. Creator is a peer that makes a new profile and maintains it and a target is a peer all information of the profile refers to. E.g. a profile creator writes a profile over a target. A profile factory needs to be initialized with a SharkKB. All profiles that are created with this factory are now stored in the KB. But the factory can only rebuild profiles from this specific SharkKB so if there is no such profile in the KB an SharkKBException is thrown. To rebuild a profile from an other KB create a new profile factory and initialize it with the KB. A profile consists of all the entry functionality and some basic functions. These basic functions store data which often occurs in a normal profile like:
+\begin{verbatim}
+	setName(ProfileName profileName) 
+	setPicture(byte[] content, String contentType, String identifier)
+	setTelephoneNumber(String number, String identifier)
+\end{verbatim}
+3 basic functions to store often occurring data. It is possible to create exactly these 3 basic functions of the profile with the entry functionality but in terms of simplification they are given by the profile.
+
+\subsection{Getting a profile}
+\begin{verbatim}
+public class gettingProfiles {
+    private ProfileFactory profileFactory;
+    
+    //Imagine there is a profile of Alice and of Bob in the SharkKB of the profile Factory
+    gettingProfiles(ProfileFactory pf) {
+    	this.profileFactory = pf;
+    }
+}
+\end{verbatim}
