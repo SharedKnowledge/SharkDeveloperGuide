@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\begin{document}
+\title{SharkNet}
+\maketitle
+\author{Thilo Stegemann}
+\section{GooglePlusProfile}
+\label{sec:knowledgePorts:GooglePlusProfile}
+
+A Google plus profile(g+ profile) is like a specified profile or an application based on the profile implementation. What a profile is and how it is used, is well explained in a previous chapter "Profile". The content which could be stored in this profile is very similar to a real g+ profile. One of the main reasons for this application is to make a/an wrapper/interface for g+ profile information. If there is a stream from Google which provides data it is possible to easily make an g+ profile object and fill it with data from the stream. At the end our object looks like the raw data of a g+ profile from Google. 
+
+\subsection{GooglePlusProfileFactory}
+
+These g+ profile factory is a manager of g+ profiles. It provides functions to create g+ profiles, to get g+ profiles and to remove them. E.g. {\tt GooglePlusProfile createGooglePlusProfile(String name, String profileURL) throws SharkKBException;} is a function to create a g+ profile. Parameter name is just the name of the profile and parameter profileURL is the location or the link where the profile is located or where it can be found. The implementation of this function is based on functionalities of "ProfileFactory". To create a GooglePlusProfileFactory a ProfileFactory is needed and to create a ProfileFactory a SharkKB is needed. At the end all information or all g+ profiles are stored in the SharkKB.  {\tt GooglePlusProfile createGooglePlusProfile(String name, String profileURL) throws SharkKBException;} creates peers with a name and URL as semantic identifiers. These peers are used to be parameters of a createProfile(PeerSementicTag) function of the ProfileFactory. All functions of GooglePlusProfileFactory are like "createGooglePlusProfile(...)" because they use different functionalities of "ProfileFactory". Thats why these application is based on the profile/profileFactory implementation. The GooglePlusProfileFactory is based on ProfileFactory and the GooglePlusProfile is based on Profile.
+
+
+\begin{verbatim}
+
+\end{verbatim}
+
+\subsubsection{Getting profiles}
+
+\begin{itemize}
+  \item OCCUPATION
+  \item SKILLS
+  \item EMPLOYMENTS
+\end{itemize}
+
+\begin{enumerate}
+\item Know the structure and types of entries to access them or cast to the right types
+\item Parametrize getters so users can enter what entries they search
+\item Use {\tt getSubEntry(...)} to search for entries
+\item Access content of entries with .getContent()
+\item First extract the entry list then get the right list element
+\item Return the correct casted content of the list element
+\end{enumerate}
+
+\end{document}
