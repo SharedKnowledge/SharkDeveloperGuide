@@ -2,7 +2,7 @@
 \begin{document}
 \title{SharkNet}
 \maketitle
-
+\author{Thilo Stegemann}
 \section{Profile}
 \label{sec:knowledgePorts:Profile}
 Peers like Alice and Bob sometimes have more relevant information about themselves. If there is more than temporal interests an instance to store and collect theses relevant facts about peers is needed. Therefore we can use the profile. A profile can change its shape so it fits the needs. E.g. its possible to make an entry "ProfileName" and these entry can store a first name, a last name and a nick name but the entry can easily be changed so if there is no need for a nick name it can be changed into alternate spellings for the first name or add several new components to the "ProfileName" like academical titles and so on. 
@@ -226,10 +226,28 @@ public interface WorkProfile {
     String END = "End";
     String CURRENT = "Current";
     String JOBDESCRIPTION = "JobDescription";
+
+    void setOccupation(String occupation) throws SharkKBException;
+    String getOccupation() throws SharkKBException;
+    void setSkills(String skills) throws SharkKBException;
+    String getSkills() throws SharkKBException;
     
     void addEmployment(String employerName, String jobTitle,
             int start, int end, boolean current,
             String jobDescription) throws SharkKBException;
+
+    String getEmployerName(String employmentNumber) 
+                                   throws SharkKBException;
+    String getJobTitle(String employmentNumber) 
+                                   throws SharkKBException;
+    int getStartOfEmployment(String employmentNumber) 
+                                   throws SharkKBException;
+    int getEndOfEmployment(String employmentNumber) 
+                                   throws SharkKBException;
+    Boolean getIsEmploymentCurrent(String employmentNumber) 
+                                   throws SharkKBException;
+    String getJobDescription(String employmentNumber) 
+                                   throws SharkKBException;
 }
 
 public class WorkProfileImpl implements WorkProfile {
@@ -292,37 +310,43 @@ public class WorkProfileImpl implements WorkProfile {
         p.createSubEntry(WORK, EMPLOYMENTS,
              Integer.toString(count), entryList);
       }
-      public String getEmployerName(String employmentNumber) throws SharkKBException {
+      public String getEmployerName(String employmentNumber) 
+                                   throws SharkKBException {
         Entry<?> entry = p.getSubEntry(WORK, employmentNumber);
         List<Entry<?>> entryList = (List<Entry<?>>) entry.getContent();
         return (String) entryList.get(0).getContent();
       }
 
-      public String getJobTitle(String employmentNumber) throws SharkKBException {
+      public String getJobTitle(String employmentNumber) 
+                                   throws SharkKBException {
         Entry<?> entry = p.getSubEntry(WORK, employmentNumber);
         List<Entry<?>> entryList = (List<Entry<?>>) entry.getContent();
         return (String) entryList.get(1).getContent();
       }
 
-      public int getStartOfEmployment(String employmentNumber) throws SharkKBException {
+      public int getStartOfEmployment(String employmentNumber) 
+                                   throws SharkKBException {
         Entry<?> entry = p.getSubEntry(WORK, employmentNumber);
         List<Entry<?>> entryList = (List<Entry<?>>) entry.getContent();
         return (Integer) entryList.get(2).getContent();
       }
 
-      public int getEndOfEmployment(String employmentNumber) throws SharkKBException {
+      public int getEndOfEmployment(String employmentNumber) 
+                                   throws SharkKBException {
         Entry<?> entry = p.getSubEntry(WORK, employmentNumber);
         List<Entry<?>> entryList = (List<Entry<?>>) entry.getContent();
         return (Integer) entryList.get(3).getContent();
       }
 
-      public Boolean getIsEmploymentCurrent(String employmentNumber) throws SharkKBException {
+      public Boolean getIsEmploymentCurrent(String employmentNumber) 
+                                   throws SharkKBException {
         Entry<?> entry = p.getSubEntry(WORK, employmentNumber);
         List<Entry<?>> entryList = (List<Entry<?>>) entry.getContent();
         return (Boolean) entryList.get(4).getContent();
       }
 
-      public String getJobDescription(String employmentNumber) throws SharkKBException {
+      public String getJobDescription(String employmentNumber) 
+                                   throws SharkKBException {
         Entry<?> entry = p.getSubEntry(WORK, employmentNumber);
         List<Entry<?>> entryList = (List<Entry<?>>) entry.getContent();
         return (String) entryList.get(5).getContent();
@@ -331,7 +355,19 @@ public class WorkProfileImpl implements WorkProfile {
 
 \end{verbatim}
  
+Now the class WorkProfileImpl is able to store and access occupations, skills and employments. Missing setters and getters for occupation and skills are added too. Heads of new functions are added to interface WorkProfile. Heads of function means  the declaration of a function that specifies the function's name and type signature (parameter types, and return type), but omits the function body. How does these getters work? Lets simply explain this with an example: {\tt getEmployerName(String employmentNumber)} . First extracting the right entry. The user of the getter has to specify an employmentNumber. These parameter is like an index for EMPLOYMENTS. Remember that when an EMPLOYMENT is created its indexed by a number. So the first created EMPLOYMENT gets an index of 1 and the second created EMPLOYMENT gets an index of 2 and so on. For example the user wants employer name from the second created employment, so he calls {\tt getEmployerName("2")}. Function {\tt Entry<T> getSubEntry(Entry<T> rootEntry, String subEntryName)} can now search for an entry with "2" as identifier. Variable Entry<?> entry gets the found result. Short explanation of "getSubEntry(...)": these function searches iteratively through a given rootEntry, it searches a specified subEntryName or the name of an entry. If the right entry is extracted, content of entry has to be extracted and casted. {\tt addEmployment(...)} stores a List of entries as content. To access these content just cast {\tt List<Entry<?>>}. Its possible to make it even shorter: {\tt List<Entry<?>> entryList = (List<Entry<?>>) p.getSubEntry(WORK, employmentNumber).getContent();}. These entry list contains all information about employer name, job title, start of employment and so on. Access the elements of the list with an index. Content of list element one "employerName" is accessed with entryList.get(1).getContent() and content of list element two is accessed with entryList.get(2).getContent(). Last step is returning the casted type of the list element content. {\tt return (String) entryList.get(1).getContent();}. In short:
 
+\begin{enumerate}
+\item Know the structure and types of entries to access them or cast to the right types
+\item Parametrize getters so users can enter what entries they search
+\item Use {\tt getSubEntry(...)} to search for entries
+\item Access content of entries with .getContent()
+\item First extract the entry list then get the right list element
+\item Return the correct casted content of the list element
+\end{enumerate}
+
+\subsection{Summary}
+Profiles are a good opportunity to store and access a big variety of information about a peer or person. It may be even possible to make profiles about places or historical persons. To manage, create or access profiles just use the profile factory. Customize profiles with the entry functionalities. Store and access different  content types or information in customizable entry structures. Contents and information are stored persistently in the SharkKB. 
 \end{document}
 
 
