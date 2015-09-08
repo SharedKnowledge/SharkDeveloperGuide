@@ -10,7 +10,59 @@ A Google plus profile(g+ profile) is like a specified profile or an application 
 
 \subsection{GooglePlusProfileFactory}
 
-These g+ profile factory is a manager of g+ profiles. It provides functions to create g+ profiles, to get g+ profiles and to remove them. E.g. {\tt GooglePlusProfile createGooglePlusProfile(String name, String profileURL) throws SharkKBException;} is a function to create a g+ profile. Parameter name is just the name of the profile and parameter profileURL is the location or the link where the profile is located or where it can be found. The implementation of this function is based on functionalities of "ProfileFactory". To create a GooglePlusProfileFactory a ProfileFactory is needed and to create a ProfileFactory a SharkKB is needed. At the end all information or all g+ profiles are stored in the SharkKB.  {\tt GooglePlusProfile createGooglePlusProfile(String name, String profileURL) throws SharkKBException;} creates peers with a name and URL as semantic identifiers. These peers are used to be parameters of a createProfile(PeerSementicTag) function of the ProfileFactory. All functions of GooglePlusProfileFactory are like "createGooglePlusProfile(...)" because they use different functionalities of "ProfileFactory". Thats why these application is based on the profile/profileFactory implementation. The GooglePlusProfileFactory is based on ProfileFactory and the GooglePlusProfile is based on Profile.
+These g+ profile factory is a manager of g+ profiles. It provides functions to create g+ profiles, to get g+ profiles and to remove them. E.g. {\tt GooglePlusProfile createGooglePlusProfile} (String name, String profileURL) throws SharkKBException; is a function to create a g+ profile. Parameter name is just the name of the profile and parameter profileURL is the location or the link where the profile is located or where it can be found. The implementation of this function is based on functionalities of "ProfileFactory". To create a GooglePlusProfileFactory a ProfileFactory is needed and to create a ProfileFactory a SharkKB is needed. At the end all information or all g+ profiles are stored in the SharkKB.  {\tt GooglePlusProfile createGooglePlusProfile} (String name, String profileURL) throws SharkKBException; creates peers with a name and URL as semantic identifiers. These peers are used to be parameters of a createProfile(PeerSementicTag) function of the ProfileFactory. All functions of GooglePlusProfileFactory are like "createGooglePlusProfile(...)" because they use different functionalities of "ProfileFactory". Thats why these application is based on the profile/profileFactory implementation. The GooglePlusProfileFactory is based on ProfileFactory and the GooglePlusProfile is based on Profile.
+
+\subsubsection{Create, get and remove a GooglePlusProfile}
+
+\begin{verbatim}
+public class AliceGooglePlusProfile {
+    //Creating an empty in memory SharkKB
+    private SharkKB kb = new InMemoSharkKB();
+
+    //Creating a ProfileFactory object
+    private ProfileFactory profileFactory;
+
+    //Creating a GooglePlusProfileFactory object
+    private GooglePlusProfileFactory googlePlusProfileFactory;
+
+    //Initialize ProfileFactory with SharkKB and
+    //GooglePlusProfileFactory with ProfileFactory
+    public AliceGooglePlusProfile() throws SharkKBException {
+        profileFactory = new ProfileFactoryImpl(kb);
+        googlePlusProfileFactory =
+            new GooglePlusProfileFactoryImpl(profileFactory);
+    }
+
+    public void createAliceGooglePlusProfile()
+                throws SharkKBException {
+        googlePlusProfileFactory.createGooglePlusProfile
+        ("Alice", "http://www.sharksystem.net/alice.html");
+    }
+
+    public GooglePlusProfile getAliceGooglePlusProfile()
+                throws SharkKBException {
+        return googlePlusProfileFactory.getGooglePlusProfile
+        ("Alice", "http://www.sharksystem.net/alice.html");
+    }
+
+    public void removeAliceGooglePlusProfile()
+                throws SharkKBException {
+        googlePlusProfileFactory.removeGooglePlusProfile
+        ("Alice", "http://www.sharksystem.net/alice.html");
+}
+\end{verbatim}
+
+How does the implementation of AliceGooglePlusProfile work? First defining three private members: an empty SharkKB, a not initialized ProfileFactory and a not initialized GooglePlusProfileFactory. Building a constructor that initializes profileFactory with the empty SharkKB and then initializes googlePlusProfileFactory with profileFactory it also throws a SharkKBException. Declaring three functions to create, get and remove Alice g+ profile.
+
+\begin{itemize}
+  \item createAliceGooglePlusProfile(): googlePlusProfileFactory.removeGooglePlusProfile ("Alice", "http://www.sharksystem.net/alice.html");
+  \item getAliceGooglePlusProfile(): googlePlusProfileFactory.getGooglePlusProfile ("Alice", "http://www.sharksystem.net/alice.html");
+  \item removeAliceGooglePlusProfile(): googlePlusProfileFactory.removeGooglePlusProfile ("Alice", "http://www.sharksystem.net/alice.html");
+\end{itemize}
+
+It is important to know the signature of a g+ profile. Signature is first the name of the profile e.g. "Alice" and second the profile URL e.g. "http://www.sharksystem.net/alice.html". These profile URL is like a semantic identifier of a PeerSemanticTag. It shows the link or place where the profile is located. Knowing the signature is important because it is needed to create a profile, to find or get it and to remove it.
+
+
 
 \subsubsection{Using and testing Alice GooglePlusProfile}
 
@@ -23,7 +75,8 @@ public class AliceGooglePlusProfileTest {
 
     public AliceGooglePlusProfileTest() throws SharkKBException {
        profileFactory = new ProfileFactoryImpl(kb);
-       googlePlusProfileFactory = new GooglePlusProfileFactoryImpl(profileFactory);
+       googlePlusProfileFactory =
+           new GooglePlusProfileFactoryImpl(profileFactory);
     }
 
     @Test
@@ -158,20 +211,5 @@ public class AliceGooglePlusProfileTest {
 
 AliceGooglePlusProfileTest is a test class which uses every getter and setter function a GooglePlusProfile provides. In this special example every content option is set once or more often. There is a difference between setters and adding functions. A function that "sets" content can only save one content but not multiple contents at the same time. Functions with "add" like {\tt addEmployment(...)} can add multiple contents at the same time. If setter functions are used twice they simply will overwrite the last content. But content could be arbitrary complex. Just store a large string or a text as string and set it as content. Every stored parameter or variable has its own getter. Some getters need an identifying number as Integer and other getters need an identifying number as String. These are the getters from adding functions, because "adding" functions can add multiple contents it is needed to identify these contents with an index or an identifier. To access e.g. the job title of an employment use function {\tt getJobTitle("0")} the parameter specifies which employment is needed. 
 
-
-\begin{itemize}
-  \item OCCUPATION
-  \item SKILLS
-  \item EMPLOYMENTS
-\end{itemize}
-
-\begin{enumerate}
-\item Know the structure and types of entries to access them or cast to the right types
-\item Parametrize getters so users can enter what entries they search
-\item Use {\tt getSubEntry(...)} to search for entries
-\item Access content of entries with .getContent()
-\item First extract the entry list then get the right list element
-\item Return the correct casted content of the list element
-\end{enumerate}
 
 \end{document}
