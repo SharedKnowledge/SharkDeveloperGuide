@@ -64,7 +64,7 @@ It is important to know the signature of a g+ profile. Signature is first the na
 
 
 
-\subsubsection{Using and testing Alice GooglePlusProfile}
+\subsection{Using and testing Alice GooglePlusProfile}
 
 \begin{verbatim}
 public class AliceGooglePlusProfileTest {
@@ -209,7 +209,161 @@ public class AliceGooglePlusProfileTest {
 } 
 \end{verbatim}
 
-AliceGooglePlusProfileTest is a test class which uses every getter and setter function a GooglePlusProfile provides. In this special example every content option is set once or more often. There is a difference between setters and adding functions. A function that "sets" content can only save one content but not multiple contents at the same time. Functions with "add" like {\tt addEmployment(...)} can add multiple contents at the same time. If setter functions are used twice they simply will overwrite the last content. But content could be arbitrary complex. Just store a large string or a text as string and set it as content. Every stored parameter or variable has its own getter. Some getters need an identifying number as Integer and other getters need an identifying number as String. These are the getters from adding functions, because "adding" functions can add multiple contents it is needed to identify these contents with an index or an identifier. To access e.g. the job title of an employment use function {\tt getJobTitle("0")} the parameter specifies which employment is needed. 
+AliceGooglePlusProfileTest is a test class which uses every getter and setter function a GooglePlusProfile provides. In this special example every content option is set once or more often. There is a difference between setters and adding functions. A function that "sets" content can only save one content but not multiple contents at the same time. Functions with "add" like {\tt addEmployment(...)} can add multiple contents at the same time. If setter functions are used twice they simply will overwrite the last content. But content could be arbitrary complex. Just store a large string or a text as string and set it as content. Every stored parameter or variable has its own getter. Some getters need an identifying number as Integer and other getters need an identifying number as String. These are the getters from adding functions, because "adding" functions can add multiple contents it is needed to identify these contents with an index or an identifier. To access e.g. the job title of an employment use function {\tt getJobTitle("0")} the parameter specifies which employment is needed. To add an whole employment as e.g. HTW programmer just use addEmployment("HTW", "Programmer", 2012, 2015, true, "I write Scala and Java tests."). Meaning of parameters (employer name, job title, start of employment, end of employment, is employment current, description of the job). To know the meaning of all parameters of every function in GooglePlusProfile just visit the GooglePlusProfile interface and see the documentation. Extracting all information out of the first employment stored:
 
+\begin{enumerate}
+\item myGooglePlusProfile.getEmployerName("0");
+\item myGooglePlusProfile.getJobTitle("0");
+\item myGooglePlusProfile.getStartOfEmployment("0");
+\item myGooglePlusProfile.getEndOfEmployment("0");
+\item myGooglePlusProfile.getIsEmploymentCurrent("0");
+\item myGooglePlusProfile.getJobDescription("0");
+\end{enumerate}
+
+The index of "adding" functions is calculated. A removing function for "adding" function is needed, because overwriting content is not possible. Just remove the added content at the index of choice and add a new one. To remove the first stored employment use {\tt myGooglePlusProfile.removeEmployment("0");}. Every "adding" function has a remove function so feel free to use them.
+
+\subsection{Implementation of GooglePlusProfile}
+
+Core of the GooglePlusProfile is a profile object. This profile object is the only member variable in GooglePlusProfile all information is stored in this profile. To create a GooglePlusProfile use the GooglePlusProfileFactory function .createGooglePlusProfile(). At one point these function needs to create a GooglePlusProfileImpl object and to create these object it need the public constructor of GooglePlusProfileImpl. The constructor needs two parameters. First a profile object and second a boolean value. Profile is so important because every information is stored in it and the boolean value is important because it remembers if the object exists already or if it needs to create all entries. If the boolean value is true the constructor will create:
+
+\begin{itemize}
+  \item name entry
+  \item story entry
+  \item work entry
+  \item education entry
+  \item places entry
+  \item basic information entry
+  \item contact information entry
+  \item link entry
+\end{itemize}
+
+If the boolean value is false it means these entries or object already exist and don`t need to be created. 
+
+\subsubsection{Example implementation of entry contact information}
+
+\begin{verbatim}
+
+public class GooglePlusProfileImpl implements GooglePlusProfile {
+
+    //Profile member variable stores all information
+    private Profile p;
+
+    //Constructor which is explained above 
+    GooglePlusProfileImpl(Profile p, Boolean isNew) throws SharkKBException {
+        this.p = p;
+        if (isNew){
+            createNameEntry();
+            createStory();
+            createWork();
+            p.createProfileEntry(EDUCATION);
+            p.createProfileEntry(PLACES);
+            createBasicInformation();
+            createContactInformation();
+            createLink();
+        }
+    }
+    ...
+
+    //Creates the skeleton or structure of contact information entry
+    //Is used in the constructor if second constructor parameter is true
+    private void createContactInformation() throws SharkKBException {
+        p.createProfileEntry(CONTACTINFORMATION);
+        p.addSubEntryInEntry(CONTACTINFORMATION, HOME);
+        p.addSubEntryInEntry(CONTACTINFORMATION, WORK);
+    }
+
+    ...
+
+
+    //###############ContactInformationSection###############
+    public void addHomeContact(String contactType, String contactInfo)
+            throws SharkKBException {
+        List<Entry<?>> entryList = new ArrayList<Entry<?>>();
+        entryList.add(new EntryImpl<String>(CONTACTTYPE, contactType));
+        entryList.add(new EntryImpl<String>(CONTACTINFO, contactInfo));
+
+        int count = p.getSubEntry(CONTACTINFORMATION, HOME).
+            getEntryList().size();
+        p.createSubEntry(CONTACTINFORMATION, HOME,
+            Integer.toString(count), entryList);
+    }
+
+    public String getHomeContactType(int contactNumber) 
+            throws SharkKBException {
+        List<Entry<?>> entryList = 
+            (List<Entry<?>>) p.getSubEntry(CONTACTINFORMATION, HOME)
+            .getEntryList().get(contactNumber).getContent();
+        return (String) entryList.get(0).getContent();
+    }
+
+    public String getHomeContactInfo(int contactNumber) 
+            throws SharkKBException {
+        List<Entry<?>> entryList = 
+            (List<Entry<?>>) p.getSubEntry(CONTACTINFORMATION, HOME)
+            .getEntryList().get(contactNumber).getContent();
+        return (String) entryList.get(1).getContent();
+    }
+
+    public void removeHomeContact(String contactNumber) 
+            throws SharkKBException {
+        p.removeEntryFromSubEntry(CONTACTINFORMATION, 
+            HOME, contactNumber);
+    }
+
+    public void addWorkContact(String contactType, String contactInfo) 
+            throws SharkKBException {
+        List<Entry<?>> entryList = new ArrayList<Entry<?>>();
+        entryList.add(new EntryImpl<String>(CONTACTTYPE, contactType));
+        entryList.add(new EntryImpl<String>(CONTACTINFO, contactInfo));
+
+        int count = p.getSubEntry(CONTACTINFORMATION, WORK)
+            .getEntryList().size();
+        p.createSubEntry(CONTACTINFORMATION, WORK, Integer
+            .toString(count), entryList);
+    }
+
+    public String getWorkContactType(int contactNumber) 
+            throws SharkKBException {
+        List<Entry<?>> entryList = 
+            (List<Entry<?>>) p.getSubEntry(CONTACTINFORMATION, WORK)
+            .getEntryList().get(contactNumber).getContent();
+        return (String) entryList.get(0).getContent();
+    }
+
+    public String getWorkContactInfo(int contactNumber)    
+            throws SharkKBException {
+        List<Entry<?>> entryList = 
+            (List<Entry<?>>) p.getSubEntry(CONTACTINFORMATION, WORK)
+            .getEntryList().get(contactNumber).getContent();
+        return (String) entryList.get(1).getContent();
+    }
+
+    public void removeWorkContact(String contactNumber) 
+            throws SharkKBException {
+        p.removeEntryFromSubEntry(CONTACTINFORMATION,
+            WORK, contactNumber);
+    }
+
+    ...
+
+}
+
+\end{verbatim}
+
+{\tt private void createContactInformation() throws SharkKBException;} creates entry structure. First it creates the super entry CONTACTINFORMATION: p.createProfileEntry(CONTACTINFORMATION); CONTACTINFORMATION is a static constant and is stored in GooglePlusProfile which is the interface of GooglePlusProfileImpl. Then it creates two sub entries under the super entry CONTACTINFORMATION: 
+
+\begin{itemize}
+  \item p.addSubEntryInEntry(CONTACTINFORMATION, HOME);
+  \item p.addSubEntryInEntry(CONTACTINFORMATION, WORK);
+\end{itemize}
+
+Now there is a contact information entry which contains a home contact entry and a work contact entry. This process of creating entry structure is the same for every other entry in GooglePlusProfile. A home or work contact should contain a type of contact like is it a mobile phone, a fax, an address and so on and it should contain the actual information. If contact type is mobile phone then the contact information should be something like: 0172-1235412. Functions to add contact type and information are needed for work and home contacts. Because the implementation of home and work contact functions are nearly the same only home contact implementation will be explained in the following. {\tt public void addHomeContact(String contactType, String contactInfo) throws SharkKBException;} contact type and information are given as parameters, so the addHomeContact(...) function can take and store them. An entry list is created. These list stores both parameters as content. 
+\begin{verbatim}
+List<Entry<?>> entryList = new ArrayList<Entry<?>>();
+entryList.add(new EntryImpl<String>(CONTACTTYPE, contactType));
+entryList.add(new EntryImpl<String>(CONTACTINFO, contactInfo));
+\end{verbatim}        
+
+Multiple contacts should be stored, so an index for those is needed. These index is calculated. First entry HOME is searched especially its entry list and the size of this list: {\tt int count = p.getSubEntry( CONTACTINFORMATION, HOME).getEntryList().size();} Finally the created entry list is stored under home contact entry with the calculated index as identifier: {\tt p.createSubEntry (CONTACTINFORMATION, HOME, Integer.toString(count), entryList);} Next step is the implementation of getter functions. A home contact entry stores two parameters so two getters are needed. One getter for home contact type and one for home contact information. Implementing getters for information stored in entries is always a bit tricky, because entries are generic and so is there content. To extract generic content it is important to know the type of the generic content. {\tt getHomeContactType(int contactNumber) throws SharkKBException; }  first searches the entry list of home contact entry. These entry list contains all stored home contacts. Parameter contactNumber is the index and verifies which list element out of home contacts entry list should be used. If the list element is selected the content of this element should be casted to a list of unknown entries and stored in variable entryList: {\tt List<Entry<?>> entryList =  (List<Entry<?>>)  p.getSubEntry (CONTACTINFORMATION, HOME) .getEntryList() .get(contactNumber).getContent();} The first list element is selected and content should be extracted and casted to string. Finally these casted content is returned. {\tt return (String) entryList.get(0). getContent();} The implementation of {\tt getHomeContactInfo(int contactNumber)} is exactly the same, but one little difference: The second element out of the correct home contact entry list element content is selected and not the first one.
 
 \end{document}
