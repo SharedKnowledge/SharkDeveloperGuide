@@ -1,0 +1,245 @@
+\section{ProfileKP}
+(Author of that section: Maximilian Herzog)
+\label{sec:knowledgePorts:ProfileKP}
+
+In a P2P social network everyone has their own profile or maybe even multiple profiles that describe themselves or other people. Since we want to get to know other people and they want to get to know us, we have to have the possibility to exchange our profiles. A ProfileKP does excactly that job. It provides functions with which we can ask other peers for their profiles and send our profiles to them as well. 
+{\tt ProfileKP} implements two interfaces: {\tt ProfileKPApp} and {\tt ProfileKPConfig}. The interface {\tt ProfileKPApp} defines functions for profile exchange that can be used by an application. The functions of {\tt ProfileKPConfig} are for setting and getting {\tt ProfileKP} configuration parameters. Each peer has their own {\tt ProfileKP} that can be configured in several ways to fit the needs of the user.
+
+\subsection{Usage}
+A {\tt ProfileKP} must be instatiated with a {\tt SharkEngine}, a {\tt KnowledgeBase}, a {\tt ProfileFactory} and a {\tt PeerSemanticTag}. So we have to create those.
+
+\begin{verbatim}
+//Create a new SharkEngine
+J2SEAndroidSharkEngine aliceSE = new J2SEAndroidSharkEngine();
+
+//Create a new KnowledgeBase for Alice
+SharkKB aliceKB = new InMemoSharkKB();
+
+//Create a PeerSemanticTag that describes Alice
+PeerSemanticTag alice = aliceKB.getPeerSTSet().createPeerSemanticTag(
+							"Alice", 
+							"http://alice.org", 
+							"tcp://localhost:5555");
+
+//Alice owns this KB
+aliceKB.setOwner(alice);
+
+//Create a ProfileFactory for Alice's profiles
+ProfileFactory alicePF = new ProfileFactoryImpl(aliceKB);
+
+//Create the ProfileKP
+ProfileKP aliceKP = new ProfileKP(aliceSE, aliceKB, alicePF, alice);
+\end{verbatim}
+
+First we create a {\tt SharkEngine} that makes up the peer. Then a {\tt KnowledgeBase} is created to hold the {\tt PeerSemanticTag}s and profiles of Alice's peers. Next we need a {\tt PeerSemanticTag} describing Alice to make her the owner of the {\tt KnowledgeBase}. Finally we can create a {\tt ProfileFactory} with the new {\tt KnowledgeBase} and have everything we need to instatiate a {\tt ProfileKP} for Alice.
+In order to exchange profiles with other peers Alice should have a profile of her own. So let's create it.
+
+\begin{verbatim}
+//create Alice profile
+Profile aliceProfile = alicePF.createProfile(alice, alice);
+\end{verbatim}
+
+This creates an empty profile. Of course it should be filled with information about Alice. How to to that is explained in the profile section. 
+Afterwards we only start Alice's TCP and she is ready to exchange profiles with other peers.
+
+\begin{verbatim}
+//start TCP
+aliceSE.startTCP(5555);
+\end{verbatim}
+
+Now we can make use of the functions defined in the {\tt ProfileKPApp} interface.
+
+\begin{verbatim}
+public void ask4Profiles(Iterator<PeerSemanticTag> peers);
+
+public void sendProfiles(Iterator<Profile> profiles, 
+						 Iterator<PeerSemanticTag> recipients);
+
+public void sendMyProfile(Iterator<PeerSemanticTag> recipients);
+
+public void sendAllProfiles(Iterator<PeerSemanticTag> recipients);
+\end{verbatim}
+
+Let's say Alice already knows Bob and wants to aks him for his profiles. That can be done with the {\tt ask4Profiles()} function. It takes an iterator of {\tt PeerSemanticTag}s and sends an interest to each peer asking them to send their profiles.
+
+\begin{verbatim}
+//Alice knows Bob
+PeerSemanticTag bob = aliceKB.getPeerSTSet().createPeerSemanticTag(
+						"Bob", 
+						"http://bob.org", 
+						"tcp://localhost:5556");
+
+//get Alice's peers
+PeerSTSet aliceContacts = aliceKB.getPeerSTSet();
+
+//create a list of Alice's peers
+List<PeerSemanticTag> aliceContactList = list(aliceContacts.peerTags());
+
+//ask all peers on that list for their profiles
+aliceKP.ask4Profiles(aliceContactList.iterator());
+\end{verbatim}
+
+Alice knows Bob. So we add a {\tt PeerSemanticTag} describing Bob to Alice's {\tt KnowledgeBase}. Then we can create a contact list containing all of Alice's peers including Bob and call the {\tt ask4Profiles()} function to send an interest to them. This contact list is just an example. The function can be called with any iterator of {\tt PeerSemanticTag}s. Bob will now receive that interest and can respond to it by sending his profiles.
+
+For sending profiles we can choose one of the three remaining functions. The {\tt sendAllProfiles()} function sends all of the profiles in the users {\tt KnowledgeBase} to the recipients whereas {\tt sendMyProfile()} only sends the users own profile. If the user wants to send a few chosen profiles, the {\tt sendProfiles()} function can be used. In addition to the recipients itererator we also need an iteretor of the selected profiles here.
+
+
+
+\subsection{Configuration}
+There are several configuration options for the {\tt ProfileKP} that can make profile exchange even easier. Some of them offer protection whereas others automate certain processes. 
+All configuration parameters are set to {\tt FALSE} by default. We can set and get parameters by using the functions defined in the {\tt ProfileKPConfig} interface. The following options are available:
+
+	{\tt acceptWithoutVerification}
+	{\tt sendProfiles2UnknownPeer}
+	{\tt sendMyProfileAutomatically}
+	{\tt ask4ProfilesAutomatically}
+	{\tt acceptProfileWithDifferentOwner}
+	{\tt ask4ProfilesAutomaticallyOnWiFiDirectConnection}
+	{\tt sendProfileAutomaticallyOnWiFiDirectConnection}
+
+The parameter {\tt acceptWithoutVerification} determines whether unsigned messages are accepted. If this parameter is set to {\tt TRUE} a request for profiles and profiles sent by other peers are only accepted if their message is signed with their private key. Otherwise the message will be ignored. This ensures that the request or the sent profiles are really from the right person.
+With the option {\tt sendProfiles2UnknownPeer} we can choose if we only want to send our profiles to people we know or to unknown peers as well. If it is set to {\tt FALSE} profile requests from peers that are not in the users {\tt KnowledgeBase} will be ignored.
+We can set {\tt sendMyProfileAutomatically} to {\tt TRUE} if we want to automatically send our profile back to a peer whenever we receive profiles. This is similar to  {\tt ask4ProfilesAutomatically}. The option {\tt ask4ProfilesAutomatically} can be used to automatically ask a peer for his/her profiles when he/she requested profiles from us.
+In some applications it may be possible for the user to create profiles about other people or profiles about a company for example. In that case the profile is about someone else than the owner. If we only want to receive those profiles that are made by the person the profile is about, {\tt acceptProfileWithDifferentOwner} has to be set to {\tt FALSE}.
+With the last two parameters we can choose to automatically send our profile or ask for profiles whenever a Wi-Fi Direct connection to another peer is established. In order to do that they have to be set to {\tt TRUE}. Otherwise nothing will happen.
+
+
+
+\subsection{Implementation} 
+We already know that {\tt ProfileKP} implements the two interfaces {\tt ProfileKPApp} and {\tt ProfileKPConfig}. Their methods for the configurations, sending and asking for profiles have already been explained. Now lets see what actually happens when profiles or requests for profiles are received. 
+{\tt ProfileKP} derives from {\tt KnowledgePort}. So it has to implement the two functions {\tt doInsert} and {\tt doExpose}. {\tt doExpose} handles incoming interests and therefore is responsible for processing profile requests. Received profiles are processed by the {\tt doInsert} function because that is where incoming information is handled.
+
+\subsubsection{doExpose}
+{\tt doExpose} basically consists of three parts. In the first part we check if the received message should be accepted or not.
+
+\begin{verbatim}
+protected void doExpose(SharkCS interest, KEPConnection kepConnection) {
+    if (!acceptWithoutVerification && !kepConnection.receivedMessageSigned()) { 					return; 
+    }
+    try {
+        if (!sendProfiles2UnknownPeer && 
+        		!(checkIfSenderIsKnown(kepConnection.getSender()))) { 
+			return;
+		}
+    } catch (SharkKBException e) {
+        L.e(e.getMessage(), this);
+    }
+...
+\end{verbatim}
+
+First we need to know if the received message is signed. If that is not the case and the configuration parameter {\tt acceptWithoutVerification} is set to {\tt FALSE} the message will be ignored.
+Then we check if the sender is known by calling the {\tt checkIfSenderIsKnown()} function with the sender of the received message. The function compares a {\tt PeerSemanticTag} with the ones in the users {\tt KnowledgeBase} and returns {\tt TRUE} if it exist which would mean that the user has already been in contact with the sender. If the sender is not known and the option {\tt sendProfiles2UnknownPeer} is set to {\tt FALSE} the message is ignored.
+
+\begin{verbatim}
+...
+    //WiFi Direct Connection (= any interest)
+    if (SharkCSAlgebra.isAny(interest)){
+        if (ask4ProfilesAutomaticallyOnWiFiDirectConnection){
+            ContextCoordinates profileCC = getProfileCC(SharkCS.DIRECTION_IN);
+            try {
+                kepConnection.expose(profileCC);
+            } catch (SharkException e) {
+                L.w(e.getMessage(), this);
+            }
+        }
+        if (sendProfileAutomaticallyOnWiFiDirectConnection){
+            Iterator<Profile> profiles;
+            try {
+                profiles = pf.getProfiles(this.owner, this.owner).iterator();
+                Knowledge k = pf.getKnowledge4Profiles(profiles);
+                kepConnection.insert(k, "MyProfile");
+            } catch (SharkKBException e) {
+                L.e(e.getMessage(), this);
+            } catch (SharkException e) {
+                L.e(e.getMessage(), this);
+            }
+        }
+...
+\end{verbatim}
+
+If the message was not ignored we check if a Wi-Fi Direct connection has been established. That is the case if the incoming interest is an any interest (all dimensions are null). Next we see if the configuration parameters for a Wi-Fi Direct connection are set. If  {\tt ask4ProfilesAutomaticallyOnWiFiDirectConnection} is {\tt TRUE}, ContextCoordinates with the profile topic and the user's {\tt PeerSemanticTag}  in the peer dimension are created. Then the {\tt KepConnection}'s {\tt expose()} function is called with our profile ContextCoordinates to send our interest directly to the peer we are connected to.
+If the parameter {\tt sendProfileAutomaticallyOnWiFiDirectConnection} is set {\tt TRUE}, the getProfiles function of our {\tt ProfileFactory} is called with the user's {\tt PeerSemanticTag} so we get an iterator with his/her profile. Then we create {\tt Knowledge} of that profile and send it to the peer we are connected to by calling the KepConnections {\tt insert()} function with the {\tt Knowledge} we just created.
+
+\begin{verbatim}
+...
+    //Interest in profile exchange
+    } else try {
+        if (check4ProfileTopic(interest)){
+            PeerSTSet sender = InMemoSharkKB.createInMemoPeerSTSet();
+            sender.merge(kepConnection.getSender());
+            List<PeerSemanticTag> senderList = list(sender.peerTags());
+            sendAllProfiles(senderList.iterator());
+            if (ask4ProfilesAutomatically){
+                ask4Profiles(senderList.iterator());
+            }
+        }
+    } catch (SharkKBException e) {
+        L.e(e.getMessage(), this);
+    }
+}
+\end{verbatim}
+
+If the received message was not an any interest we now check if it has a profile SemanticTag in the topic dimenson which would mean that the sender is interested in our profiles. An interest without a profile topic will be ignored because it is not relavant to a {\tt ProfileKP}. Next a PeerSTSet is created and the {\tt PeerSemanticTag} of the sender of the interest is merged into it. Then we make a list out of it and call the{\tt sendAllProfiles()} function to send our profiles. Finally we check if the {\tt ask4ProfilesAutomatically} option is set to {\tt TRUE} and ask for the sender's profiles if that is the case.
+
+\subsubsection{doInsert}
+
+\begin{verbatim}
+protected void doInsert(Knowledge knowledge, KEPConnection kepConnection) {
+    if (!acceptWithoutVerification 
+		&& !kepConnection.receivedMessageSigned()) { return; }
+...
+\end{verbatim}
+
+When we receive {\tt Knowledge} we first check if the message was signed and if we accept it if it is not.
+
+\begin{verbatim}
+...
+for (Enumeration<ContextPoint> cpE = 
+    		knowledge.contextPoints(); cpE.hasMoreElements();) {
+     ContextPoint cp = cpE.nextElement();
+     ContextCoordinates cc = cp.getContextCoordinates();
+
+     //select contextpoints with profiles
+     if (cc.getTopic().identical(ProfileFactoryImpl.getProfileSemanticTag()) && 						(cc.getOriginator().identical(cc.getPeer())) ||								
+        		acceptProfileWithDifferentOwner){
+         try {
+            ContextPoint profileCP = this.kb.getContextPoint(cc);
+            if (profileCP == null){ //new profile
+                SharkCSAlgebra.merge(this.kb, cc, cp, true);
+            } else { //profile already exists
+                int existingProfileVersion = Integer.parseInt(
+                	profileCP.getContextCoordinates().getTopic().getProperty(
+                	Profile.SHARK_PROFILE_VERSION_PROPERTY));
+                int newProfileVersion = Integer.parseInt(
+                	cc.getTopic().getProperty(
+                	Profile.SHARK_PROFILE_VERSION_PROPERTY));
+                if (newProfileVersion > existingProfileVersion){
+                    pf.removeProfile(cc.getOriginator(), cc.getPeer());
+                    SharkCSAlgebra.merge(this.kb, cc, cp, true);
+                }
+            }
+        } catch (SharkKBException e) {
+            L.e(e.getMessage(), this);
+        }
+...
+\end{verbatim}
+
+If the message is accepted we start iterating through the ContextPoints of the received {\tt Knowledge}. Only ContextPoints with a profile topic are relevant to this {\tt KnowledgePort} so we check that first. Additionally either the originator and the peer dimension have to contain the same PeerSemantic tag or the {\tt acceptProfileWithDifferentOwner} option has to be set to {\tt TRUE}. Otherwise the ContextPoint will not be added to our {\tt KnowledgeBase}.
+Next we need to know if a ContextPoint with the same ContextCoordinates already exists in our {\tt KnowledgeBase}. If the {\tt getContextPoint()} function returns null we have not received a profile of that peer yet and we can merge it. Is that not the case a profile of that peer already exists in our {\tt KnowledgeBase} and we have to check which of the profiles is newer. So we get the profile version of both profiles and compare them. If the received pofile is the latest version we remove the older profile from our {\tt KnowledgeBase} and add the new one. This process is repeated for every received profile.
+
+\begin{verbatim}
+...
+if (sendMyProfileAutomatically){
+	try {
+		PeerSTSet recipients = InMemoSharkKB.createInMemoPeerSTSet();
+		recipients.merge(kepConnection.getSender());
+		List<PeerSemanticTag> recipientsList = list(recipients.peerTags());
+		sendMyProfile(recipientsList.iterator());
+	} catch (SharkKBException e) {
+		L.e(e.getMessage(), this);
+	}
+}
+\end{verbatim}
+
+Afterwards we check if the {\tt sendMyProfileAutomatically} option is enabled in which case we create a PeerSTSet and merge {\tt PeerSemanticTag} of the profile sender into it. Then we create a list out of it and send the the user's profile back by calling the {\tt sendMyProfile()} function.
+That is it. If you are interested in how exactly the functions for sending and asking for profiles work, feel free to have a look at the code in our repository.
