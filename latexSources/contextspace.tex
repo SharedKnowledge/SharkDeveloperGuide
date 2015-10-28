@@ -28,7 +28,7 @@ Information is about something that is described by a topic. Tourist information
 Let's have an example:
 There is a model in which the earth is orbiting the sun. Centuries ago a scientist claimed that this model would describe our reality. Others called it heresy and burned him.  
 
-Who is right? The decision was clear in the  mediaeval times. Sun is orbiting earth. Shark simply ignores this question and allows to put the same information to different topics by remembering who made that classification - who choose the topic:
+Who is right? The decision was clear in the  mediaeval times. Sun is orbiting earth. Shark simply ignores this question and allows to put the same information to different topics by remembering who made that classification - who chose the topic:
 
 That's the originator. The peer that declares that this specific information fits to that specific topic. This concept has at least two impacts.
 
@@ -37,19 +37,19 @@ That's the originator. The peer that declares that this specific information fit
 Information can be stored with different topics by different originators. Shark does not decide what setting is {\it true} or {\it false}. Both originator think they are right.
 
 \item 
-A peer can put itself into the originator role at any time. It removes the former originator. The peer does not claim to be information creator but it agrees that the chosen topic is appropriate. This step is crucial in Shark because a change of mind happened: the peer (more specific, the human owing that peer) has read and understood something. That process is called {\it assimilation}.
+A peer can put itself into the originator role at any time. It removes the former originator. The peer does not claim to be information creator but it agrees that the chosen topic is appropriate. This step is crucial in Shark because a change of mind happened: the peer (more specific, the human owning that peer) has read and understood something. That process is called {\it assimilation}.
 \end{enumerate}
 
     \item[Peer] Information can be sent to other peers. The peer dimension states who will be the sender in that case.
 
-    \item[Remote Peer] Information can be exchanged with other peers. The remote peer dimension states to whom information can be sent - or from whom information were received.
+    \item[Remote Peer] Information can be exchanged with other peers. The remote peer dimension states to whom information can be sent - or from whom information can be received.
 
     \item[Location] 
-The location aspect defines at which place the peer is willing to communicate. This dimension does {\it not} define a kind of spatial validity of information. Example: Let's imagine location would define Aleppo in Syria. It would {\it not} state that the peer is interested in information {\it about} Aleppo. It would state, that the peer wants to exchange information {\it in} Aleppo.
+The location aspect defines at which place the peer is willing to communicate. This dimension does {\it not} define a kind of spatial validity of information. Example: Let's imagine the location would define Aleppo in Syria. It would {\it not} state that the peer is interested in information {\it about} Aleppo. It would state, that the peer wants to exchange information {\it in} Aleppo.
 
-Topic dimension can be used to describe that information are related to locations. A semantic tag {\it Aleppo} could be used in topic dimension. Moreover, the tag can be used in topic {\it and} location dimension. In that case, peers are interested in exchanging information about Aleppo only in Aleppo. Sounds like a location based tourist guide\footnote{At least, it will hopefully sound like a tourist guide in next future. The author has spent a short but marvelous time in Aleppo and is still very grateful for the generous hospitality. May that civil war end better yesterday than tomorrow as any military conflict. It's a shame.}.
+The topic dimension can be used to describe the relation between information and locations. A semantic tag {\it Aleppo} could be used in the topic dimension. Moreover, the tag can be used in topic {\it and} location dimension. In that case, peers are interested in exchanging information about Aleppo only in Aleppo. Sounds like a location based tourist guide\footnote{At least, it will hopefully sound like a tourist guide in next future. The author has spent a short but marvelous time in Aleppo and is still very grateful for the generous hospitality. May that civil war end better yesterday than tomorrow as any military conflict. It's a shame.}.
 
-Apparently, location dimension can be used to create location based services.
+Apparently, the location dimension can be used to create location based services.
 
     \item[Time] 
 The time dimension defines the time of communication. It does not limit the validity of information. It does describe the time in which communication can take place.
@@ -92,7 +92,7 @@ ContextPoint cp = InMemoSharkKB.createInMemoContextPoint(cc);
 Information info = cp.addInformation("Hello Shark");
 \end{verbatim}
 
-This code creates coordinates. Just three dimension are declared. Information is about {\it topic Shark} which is created ({\it originator}) and stored ({\it peer}) by Alice. Alice has described no constraints regarding recipients, time and place of an information exchange. She wants to deliver information ({\it direction out}).
+This code creates coordinates. Just three dimension are declared. The information is about {\it topic Shark} which is created ({\it originator}) and stored ({\it peer}) by Alice. Alice has described no constraints regarding recipients, time and place of an information exchange. She wants to deliver information ({\it direction out}).
 
 A {\tt context point} links context and information together. The final line creates a single string and stores it with its context coordinates. In Shark we say: {\it We put information into a context}.
 
@@ -185,7 +185,7 @@ intPeers.merge(alice);
 // create interest
 Interest interest = InMemoSharkKB.createInMemoInterest(
    intTopics, // topics
-   null, // don't care originator
+   null, // don't care about originator
    intPeers, // peers
    null, // don't care about remote peers
    null, // don't care about time
@@ -200,7 +200,7 @@ if(cpEnum != null) {
 }
 \end{verbatim}
 
-Interests have seven dimensions. Most of them are sets of semantic tags. In this example we first create two sets. One will contain interesting topics. The other one contains peers. We use 'Shark' and 'diving' as topics and Alice as peer.
+Interests have seven dimensions. Most of them are sets of semantic tags. In this example we first create two sets. One contains interesting topics. The other one contains peers. We use 'Shark' and 'diving' as topics and Alice as peer.
 
 We create an interest with our in-memo knowledge base and use it to look for non-empty context points with {\tt getContextPoints()}. An enumeration object is returned if at least one context point can be found with attached information.
 We use our logger class {\tt L} to print the results. 
@@ -236,8 +236,7 @@ Thus, {\it any} in context coordinates are interpreted as {\it don't know} rathe
 The problem arises when facing the interests. What is meant if a user declares {\it any} e.g. in topic dimension? From a technical point of view, it could have two meanings: 
 \begin{enumerate}
     \item The user is interested in information which has no defined topic. The user is not interested in any information with a declared topic.
-\item
-The user has no constraints in topics. 
+    \item The user has no constraints in topics. 
 \end{enumerate}
 
 We have chosen the last interpretation\footnote{And we have already seen that developers can change that decision. There are two variants of {\tt getContextPoints}, see previous section.} as default. Thus, an {\it any tag} in interests declares that dimension to be free of constraints. Anything would fit.
@@ -267,11 +266,11 @@ Now we have reached the very core of the Shark data model and even the Shark con
 
 Information exchange shall be based on {\it mutual interests}. Now we explain how mutual interests can be {\it calculated}. Let's do it with an example first and let's come back to Alice and Bob.
 
-We have already seen that Alice had stored information about Shark and is willing to share it. She stored her information with a knowledge base and used those coordinates which can also be seen and used as interest.\\
+We have already seen that Alice had stored information about Shark and is willing to share it. She stored her information with a knowledge base and used the following coordinates, which can also be seen and used as interest:\\
 (Shark, Alice, Alice, Any, Any, Any, OUT)\\
 She (Alice) offers something about Shark to anybody, anywhere and anytime.
 
-A P2P system needs to be at least one other peer. That's Bob. He might be interested in exchange of anything which is of any interest by Alice. Such interest can be described.\\
+A P2P system needs to have at least one other peer. That's Bob. He might be interested in exchange of anything which is of any interest by Alice. Such interest can be described.\\
 (Any, Any, Bob, Alice, Any, Any, INOUT).
 
 Note the last dimension {\tt inout}. He wants to send but also receive  information. Lets have a look on a fresh code example that firstly creates both interests.
@@ -326,21 +325,21 @@ System.out.println("Bob interest:\n " +
     L.contextSpace2String(bobInterest));
 \end{verbatim}
 
-Interests are defined by peers. Interests can be sent. Let's assume that Alice has received Bobs interest. For us it is very simple to find the mutual interest. If Bob wants to share anything with Alice and Alice offers information about java to anybody it is obvious: Both have the interest, that Alice sends information about Java to Bob anywhere and anytime.
+Interests are defined by peers. Interests can be sent. Let's assume that Alice has received Bobs interest. For us it is very simple to find the mutual interest. If Bob wants to share anything with Alice and Alice offers information about Java to anybody it is obvious: Both have the interest, that Alice sends information about Java to Bob anywhere and anytime.
 
 (Shark, Alice, Alice, Bob, Any, Any, OUT)
 
 Let's have a closer look at the calculation: Bob had no constraints about the topic. Alice did: The intersection of both is Shark. Bob had no constraints regarding originator. Alice did. The intersection is Alice.
 
-Bob has introduced himself as Bob in peer dimension. So did Alice. She introduced herself as Alice. Apparently, Alice should not try to find out if both  {\it peer} dimensions fit. She should try to find out if peer in received interest fits to her constraints about remote peers - and vice versa.
+Bob has introduced himself as Bob in peer dimension. So did Alice. She introduced herself as Alice. Apparently, Alice should not try to find out if both {\it peer} dimensions fit. She should try to find out if peer in received interest fits to her constraints about remote peers -- and vice versa.
 
 Alice had no constraints about remote peers, Bob only wants to talk with Alice. The intersection is Bob. Alice is making that calculation and Bob is the remote peer.
 
-Bob has constraints about his remote peers: He only wants to talk with Alice. Alice has revealed her identity - that fits. Alice is put into the peer dimension.
+Bob has constraints about his remote peers: He only wants to talk with Alice. Alice has revealed her identity -- that fits. Alice is put into the peer dimension.
 
 Both peers have no constraints in location and time. There are no constraints in the mutual interests either. Bob wants to communicate in both directions. Alice only wants to send.
 
-This sound complicated and actually it is. The good new is - Shark makes those calculations for you:
+This sound complicated and actually it is. The good new is -- Shark makes those calculations for you:
 
 \begin{verbatim}
 // zero fp: don't follow any relation. depth = 0
@@ -370,7 +369,7 @@ Imagine, Bob would receive Alice's interest. He could do the same calculation an
 
 (Java, Alice, Bob, Alice, Any, Any, IN)
 
-That result differs in three points: peer, remote peer and direction. And that's only logical. We are on Bobs side now. Bob puts himself into the peer dimension and Alice in the remote peer slot of course. He also learnt that Alice only wants to send something, so he changed the direction to IN.
+That result differs in three points: peer, remote peer and direction. And that's only logical. We are on Bobs side now. Bob puts himself into the peer dimension and Alice in the remote peer slot, of course. He also learnt that Alice only wants to send something, so he changed the direction to IN.
 
 We extend our program with these lines:
 \begin{verbatim}
@@ -385,30 +384,27 @@ System.out.println("Bob calculates: Alice / Bob:\n " +
 
 Both mutual interests describe a potential information exchange. Both mutual interests differ because they describe the same exchange from different perspectives. 
 
-Bob describes Alice as {\it remote peer} and vice versa. Alice describes an interest in {\it sending} information. This fits to Bob because he wants also to {\it receive} information. Once an interest is received it has to be translated into the recipient peers perspective.
+Bob describes Alice as {\it remote peer} and vice versa. Alice describes an interest in {\it sending} information. This fits to Bob because he wants also to {\it receive} information. Once an interest is received, it has to be translated into the recipient peers perspective.
 
 We have used our algebra class {\tt SharkCSAlgebra} for our calculation. Applying {\tt contextualize} on {\tt interest} automatically makes the translation of perspective. The method takes three parameters. First is a {\it source} which is meant to be the received interest. Second parameter is the {\it context} which is meant to be the interest created by the receiving peer.
 
-The fragmentation parameter are used for those calculations. The algorithm is explained in detail in next sub section.
+The fragmentation parameter is used for those calculations. The algorithm is explained in detail in next sub section.
 
-Does it sound complicated even irritating? Don't panic! The good news is that most applications don't have to deal with those details. Everything is already implemented and there are already predefined and implemented classes that perform the information exchange that fits to a huge number of applications (namely {\tt StandardKP}). 
+Does it sound complicated, maybe even irritating? Don't panic! The good news is that most applications don't have to deal with those details. Everything is already implemented and there are already predefined and implemented classes that perform the information exchange that fits to a huge number of applications (namely {\tt StandardKP}). 
 
-Have a look on the algorithm if you like. It is not necessary when first reading this book. Read it if you run into problems in your applications.
+Have a look at the algorithm if you like. It is not necessary when first reading this book. Read it if you run into problems in your applications.
 
 \subsubsection{Algorithm}
 The algorithm explanation is a brief one compared to the motivation. We already know contextualisation in semantic tag sets. The context space contextualisation algorithm works as described below.
 
 \begin{enumerate}
-    \item The Algorithm has two parameter: Source and context. Both are context spaces. A third context space will be the result -- we call it fragment.
-\item The topic dimension in the fragment is created by means of a contextualisation of two semantic tag sets. The source set is the topic dimension of source and the context set is the topic dimension of the context. 
-\item The same operation is made with location and time. Source location and time is contextualised with context location and time.
-\item The sources originator is contextualised with the contexts originator.
-\item
-The fragment peer dimension is the result of the contextualisation of the sources remote peer dimension with the contexts peer dimension.
-\item
-The fragments remote peer dimension is the result of the contextualisation of the sources peer dimension with the contexts remote peer dimension.
-\item
-The contextualisation of the direction differs from the calculations above and is explained in table \ref{tab:directionCalculation}
+    \item The Algorithm has two parameters: Source and context. Both are context spaces. A third context space will be the result -- we call it fragment.
+    \item The topic dimension in the fragment is created by means of a contextualisation of two semantic tag sets. The source set is the topic dimension of source and the context set is the topic dimension of the context. 
+    \item The same operation is made with location and time. Source location and time is contextualised with context location and time.
+    \item The sources originator is contextualised with the contexts originator.
+    \item The fragment peer dimension is the result of the contextualisation of the sources remote peer dimension with the contexts peer dimension.
+    \item The fragments remote peer dimension is the result of the contextualisation of the sources peer dimension with the contexts remote peer dimension.
+    \item The contextualisation of the direction differs from the calculations above and is explained in table \ref{tab:directionCalculation}
 \end{enumerate}
 
 \begin{table}[t]
@@ -454,7 +450,7 @@ The actual algorithm is straightforward: Most of each context space dimension is
 
 Let's have an example. We choose just two dimensions to shorten the description. 
 
-Lets have a two dimensional space constituted by topic and peer. Lets define a point with the dimension ({\it Java}, {\it Alice}). Lets define a context space:
+Let's have a two dimensional space constituted by topic and peer. Lets define a point with the dimension ({\it Java}, {\it Alice}). Lets define a context space:
 ({\it (Java, Skiing), (Alice, Bob)}). Is the point inside the context space?
 
 The figure \ref{fig:csIsIn} shows the context space and the point (Java, Alice):
@@ -529,8 +525,8 @@ if(SharkCSAlgebra.isIn(interest, cc)) {
 \end{verbatim}
 
 \subsection{Identical}
-Two context spaces are defined to be identical if both comprises the same points. 
-We could also say that each point of context A must by {\it in} context B and vice versa. We could also say that all context space dimensions must be identical. That method is simple and so is the code. We extend the previous code.
+Two context spaces are defined to be identical if both comprise the same points. 
+We could also say that each point of context A must be {\it in} context B and vice versa. We could also say that all context space dimensions must be identical. That method is simple and so is the code. We extend the previous code.
 
 \begin{verbatim}
 if(!SharkCSAlgebra.identical(interest, cc)) {
@@ -539,13 +535,13 @@ if(!SharkCSAlgebra.identical(interest, cc)) {
 \end{verbatim}
 
 \section{Context Space interfaces}
-Figure \ref{fig:contextSpaceHierarchy} illustrates most important interfaces which make up context space in Shark.
+Figure \ref{fig:contextSpaceHierarchy} illustrates the most important interfaces which make up context space in Shark.
 
-{\tt ContextSpace} just defines the basic fact that a context space is made up by dimensions. {\tt SharkCS} defines number and names of dimensions and some basic methods and important constants. What is {\tt ContextSpace} good for?
+{\tt ContextSpace} just defines the basic fact that a context space is made up by dimensions. {\tt SharkCS} defines the amount and the names of dimensions and some basic methods and important constants. What is {\tt ContextSpace} good for?
 
-It is a heritage and a reminder. There is a more generic theory on context space explained in my PhD. Context spaces is a general concept for independent and co-operating knowledge bases. The number of dimensions is irrelevant for the more general concept. Those, there could be implementations that don't use seven dimensions but an arbitrary other number of dimensions and dimension types.
+It is a heritage and a reminder. There is a more generic theory on context space explained in my PhD. Context spaces is a general concept for independent and co-operating knowledge bases. The number of dimensions is irrelevant for the more general concept. Thus, there could be implementations that don't use seven dimensions but an arbitrary other number of dimensions and dimension types.
 
-{\tt SharkCS} describes the Shark context space. It makes clear, that Shark uses seven dimensions with the defined semantics. {\tt SharkCSAlgebra} implements all algorithms for this seven dimensional incarnation. Some classes also offer methods like {\tt contextualization} and {\tt fragmentation}. Finally, any of those methods use this central class. We suggest to use the algebra class whenever possible.
+{\tt SharkCS} describes the Shark context space. It makes clear that Shark uses seven dimensions with the defined semantics. {\tt SharkCSAlgebra} implements all algorithms for this seven dimensional incarnation. Some classes also offer methods like {\tt contextualization} and {\tt fragmentation}. Finally, any of those methods uses this central class. We suggest to use the algebra class whenever possible.
 
 {\tt ContextCoordinates} and {\tt Interests} are derived from {\tt SharkCS} and define point and hyperplane in the context space.
 
@@ -556,12 +552,12 @@ It is a heritage and a reminder. There is a more generic theory on context space
 \label{fig:contextSpaceHierarchy}
 \end{figure}
 
-All those interfaces are implemented with a knowledge base implementation which will be discussed next chapter. A knowledge base stores tags, tags sets and information in a context space. A knowledge base is more than a context space but it can be used as context space ({\tt SharkKB.asSharkCS()}). But that's already topic of the next chapter.
+All those interfaces are implemented with a knowledge base implementation which will be discussed in the next chapter. A knowledge base stores tags, tags sets and information in a context space. A knowledge base is more than a context space but it can be used as context space ({\tt SharkKB.asSharkCS()}). But that's already topic of the next chapter.
 
 \section{Exercises}
 \begin{enumerate}
 \item 
-Given following vocabulary. Create a cs..
+Given following vocabulary. Create a cs.
 \item 
 Add information to the given point in cs.
 \item 
