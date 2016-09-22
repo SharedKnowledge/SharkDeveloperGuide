@@ -1,7 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=latex 2013.5.2)  22 SEP 2014 17:40
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=latex 2013.5.2)  22 SEP 2016 13:49
 entering extended mode
 **tutorials
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\tutorials.tex
+
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\t
+utorials.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -70,7 +72,8 @@ File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\tutorials.aux)
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\t
+utorials.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
@@ -89,34 +92,35 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 16.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 16.
-
-[1
+ [1
 
 
 ] [2
 
 ]
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\tutorials.toc
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\t
+utorials.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 3.
-
-[3] [4] [5])
+ [3] [4] [5])
 \tf@toc=\write3
 
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\intro.tex [6]
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\i
+ntro.tex [6]
 Chapter 1.
 
-Overfull \hbox (3.04684pt too wide) in paragraph at lines 11--12
-[]\OT1/cmr/m/n/10 Programmer frame-works dra-mat-i-cally re-duce soft-ware cost
-s. There are plenty
+Overfull \hbox (6.30605pt too wide) in paragraph at lines 2--3
+\OT1/cmr/m/n/10 The In-ter-net was con-quered by the client-server-paradigm and
+ by server providers.
  []
 
 [7
 
-]) (C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\concepts.tex
-[8]
+])
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\c
+oncepts.tex [8]
 Chapter 2.
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 6.
 ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
@@ -142,17 +146,18 @@ File: triangle.eps Graphic file (type eps)
  <triangle.eps> [12]
 File: hub.eps Graphic file (type eps)
  <hub.eps> [13])
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\settingup.tex
-[14]
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\s
+ettingup.tex [14]
 Chapter 3.
 
-Overfull \hbox (6.54613pt too wide) in paragraph at lines 4--6
-[]\OT1/cmr/m/n/10 Latest ver-sion can be found on the web-page. It has a name l
+Overfull \hbox (8.76834pt too wide) in paragraph at lines 8--10
+[]\OT1/cmr/m/n/10 Latest ver-sion can be found on the web page. It has a name l
 ike []\OT1/cmtt/m/n/10 SharkFW 2.8.1
  []
 
-) (C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\semanticTags.tex
-[15
+)
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\s
+emanticTags.tex [15
 
 ] [16
 
@@ -183,19 +188,20 @@ edgeBase/SemanticTag.html|
  []
 
 [22] [23])
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\derivedSemanticTags.
-tex [24]
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\d
+erivedSemanticTags.tex [24]
 Chapter 5.
 [25
 
 ] [26] [27])
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\properties.tex
-[28]
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\p
+roperties.tex [28]
 Chapter 6.
 [29
 
-]) (C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\tagSets.tex
-[30]
+])
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\t
+agSets.tex [30]
 Chapter 7.
 [31
 
@@ -231,13 +237,13 @@ Overfull \hbox (22.4968pt too wide) in paragraph at lines 217--217
 uage%29");[] 
  []
 
-
+[35]
 Overfull \hbox (38.24666pt too wide) in paragraph at lines 217--217
 []      \OT1/cmtt/m/n/10 "http://en.wikipedia.org/wiki/C_Sharp_%28programming_l
 anguage%29");[] 
  []
 
-[35] [36]
+[36]
 Overfull \hbox (11.99689pt too wide) in paragraph at lines 266--266
 []\OT1/cmtt/m/n/10 boolean isIdentical = SharkCSAlgebra.identical(plainSet, pla
 inSet2);[] 
@@ -265,14 +271,14 @@ ng(fragment));[]
 
 File: tagsSetTypes.eps Graphic file (type eps)
 <tagsSetTypes.eps> [44]
-Overfull \hbox (7.61111pt too wide) in paragraph at lines 593--594
-[]\OT1/cmr/m/n/10 Note, method name is iden-ti-cal but re-turn type has changed
- from \OT1/cmtt/m/n/10 SemanticTag
+Overfull \hbox (23.72224pt too wide) in paragraph at lines 593--594
+[]\OT1/cmr/m/n/10 Note, the method name is iden-ti-cal but re-turn type has cha
+nged from \OT1/cmtt/m/n/10 SemanticTag
  []
 
 [45])
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\contextspace.tex
-[46]
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\c
+ontextspace.tex [46]
 Chapter 8.
 [47
 
@@ -311,7 +317,8 @@ File: insideAContextSpace.eps Graphic file (type eps)
 <insideAContextSpace.eps> [59] [60]
 File: CSInterfaces.eps Graphic file (type eps)
  <CSInterfaces.eps> [61])
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\sharkkb.tex [62]
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\s
+harkkb.tex [62]
 Chapter 9.
 [63
 
@@ -374,312 +381,478 @@ e%29");[]
 
 File: assimilation.eps Graphic file (type eps)
 <assimilation.eps> [76] [77])
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\knowledgePorts.tex
-[78] [79] [80
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\k
+nowledgePorts.tex [78] [79] [80
 
 ]
 Chapter 10.
 [81] [82] [83]
 File: physicalAndLogicalSender.eps Graphic file (type eps)
  <physicalAndLogicalSender.eps> [84]
-Overfull \hbox (10.63039pt too wide) in paragraph at lines 175--176
-[]\OT1/cmr/m/n/10 Shark al-lows sign-ing and en-crypt-ing. Shark only of-fers E
-nd-to-End-Encryption.
+Overfull \hbox (16.49149pt too wide) in paragraph at lines 173--175
+\OT1/cmr/m/n/10 cal but A2 is phys-i-cal sender. >>>>>>> 64cb9cb05b907c77572a97
+95282711e75220cde5 
  []
 
-[85] [86] [87] [88])
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\knowledgePortsExisti
-ng.tex [89] [90
+[85] [86] [87]
+Overfull \hbox (10.71368pt too wide) in paragraph at lines 266--272
+\OT1/cmr/m/n/10 scribe and re-move lis-ten-ers. >>>>>>> 64cb9cb05b907c77572a979
+5282711e75220cde5
+ []
+
+[88])
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\k
+nowledgePortsExisting.tex [89] [90
 
 ]
 Chapter 11.
 
-Overfull \hbox (8.63783pt too wide) in paragraph at lines 14--15
+Overfull \hbox (108.74161pt too wide) in paragraph at lines 2--11
+\OT1/cmr/m/n/10 which each new ver-sion. The first and most flex-i-ble >>>>>>> 
+64cb9cb05b907c77572a9795282711e75220cde5
+ []
+
+
+Overfull \hbox (8.63783pt too wide) in paragraph at lines 22--23
 \OT1/cmr/m/n/10 isn't ab-stract and im-ple-ments \OT1/cmtt/m/n/10 doExpose() \O
 T1/cmr/m/n/10 and \OT1/cmtt/m/n/10 doInsert() \OT1/cmr/m/n/10 it trig-gers \OT1
 /cmtt/m/n/10 KPListener
  []
 
-
-Underfull \vbox (badness 3579) has occurred while \output is active []
-
- [91]
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 111--111
+[91]
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 123--123
 []                              \OT1/cmtt/m/n/10 "http://www.sharksystem.net/al
 ice.html",[] 
  []
 
-
-Underfull \vbox (badness 2635) has occurred while \output is active []
-
- [92]
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 111--111
+[92]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 123--123
 []                            \OT1/cmtt/m/n/10 "http://www.sharksystem.net/bob.
 html",[] 
  []
 
 [93]
-Overfull \hbox (0.48708pt too wide) in paragraph at lines 119--121
+Overfull \hbox (0.48708pt too wide) in paragraph at lines 135--137
 \OT1/cmr/m/n/10 and \OT1/cmr/m/it/10 Shark \OT1/cmr/m/n/10 as topic. In-for-ma-
 tion shall be sent which is de-fined by \OT1/cmtt/m/n/10 DIRECTION[]OUT\OT1/cmr
 /m/n/10 .
  []
 
 [94] [95]
+Overfull \hbox (23.35258pt too wide) in paragraph at lines 228--233
+\OT1/cmr/m/n/10 This pro-cess is de-scribed soon. >>>>>>> 64cb9cb05b907c77572a9
+795282711e75220cde5 
+ []
+
+[96]
 File: StandardKP_Expose.eps Graphic file (type eps)
- <StandardKP_Expose.eps> [96] [97] [98]
+ <StandardKP_Expose.eps> [97] [98] [99]
 File: StandardKP_Insert.eps Graphic file (type eps)
- <StandardKP_Insert.eps>
-[99] [100]
+ <StandardKP_Insert.eps> [100]
+[101]
 File: hubKP.eps Graphic file (type eps)
- <hubKP.eps> [101] [102]
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 407--407
+ <hubKP.eps> [102] [103]
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 439--439
 []\OT1/cmtt/m/n/10 protected void doInsert(Knowledge k, KEPConnection responseF
 actory) {[] 
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 449--449
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 481--481
 []       \OT1/cmtt/m/n/10 this.doProcess(interest, kepConnection, this.outInter
 ests);[] 
  []
 
-[103]
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 480--480
+[104]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 512--512
 []  \OT1/cmtt/m/n/10 Iterator<SharkCS> interestIter = storedInterests.getIntere
 sts();[] 
  []
 
-[104]
+[105]
 File: chatKP.eps Graphic file (type eps)
- <chatKP.eps> [105]
+ <chatKP.eps> [106]
 File: chatClassDiagram.eps Graphic file (type eps)
  <chatClassDiagram.eps>
-Overfull \hbox (29.04533pt too wide) in paragraph at lines 525--526
+Overfull \hbox (29.04533pt too wide) in paragraph at lines 557--558
 \OT1/cmr/m/n/10 11.5[]. \OT1/cmtt/m/n/10 ChatKPListener \OT1/cmr/m/n/10 is an i
 n-ter-face that de-clares a sin-gle method: \OT1/cmtt/m/n/10 messageReceived\OT
 1/cmr/m/n/10 .
  []
 
 
-Overfull \hbox (27.74675pt too wide) in paragraph at lines 539--539
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 571--571
 []               \OT1/cmtt/m/n/10 throws SharkProtocolNotSupportedException, IO
 Exception {[] 
  []
 
-[106]
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 557--557
+[107]
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 589--589
 []                            \OT1/cmtt/m/n/10 "http://www.sharksystem.net/alic
 e.html",[] 
  []
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 574--574
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 606--606
 []  \OT1/cmtt/m/n/10 public void messageReceived(String message, PeerSemanticTa
 g sender)[] 
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 574--574
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 606--606
 []    \OT1/cmtt/m/n/10 System.out.println("Alice has got that message:\n" + mes
 sage);[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 574--574
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 606--606
 []    \OT1/cmtt/m/n/10 System.out.println("\nfrom:\n" + L.semanticTag2String(se
 nder));[] 
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 574--574
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 606--606
 []    \OT1/cmtt/m/n/10 System.out.println("Alice is going to reply with \"Hi Bo
 b\"\n");[] 
  []
 
-[107]
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 594--594
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 626--626
 []  \OT1/cmtt/m/n/10 public Bob(String peerName, String peerSI, String address,
  int port)[] 
  []
 
 
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 594--594
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 626--626
 []             \OT1/cmtt/m/n/10 throws SharkProtocolNotSupportedException, IOEx
 ception {[] 
  []
 
-
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 608--608
+[108]
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 640--640
 []  \OT1/cmtt/m/n/10 public void messageReceived(String message, PeerSemanticTa
 g sender)[] 
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 608--608
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 640--640
 []                              \OT1/cmtt/m/n/10 throws SharkException, IOExcep
 tion {[] 
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 608--608
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 640--640
 []    \OT1/cmtt/m/n/10 System.out.println("Bob has received something:\n" + mes
 sage);[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 608--608
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 640--640
 []    \OT1/cmtt/m/n/10 System.out.println("\nfrom:\n" + L.semanticTag2String(se
 nder));[] 
  []
 
 
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 635--635
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 667--667
 []    \OT1/cmtt/m/n/10 PeerSemanticTag alice = InMemoSharkKB.createInMemoPeerSe
 manticTag([] 
  []
 
 
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 635--635
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 667--667
 []                            \OT1/cmtt/m/n/10 "http://www.sharksystem.net/alic
 e.html",[] 
  []
 
-[108]
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 677--677
+[109]
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 709--709
 []    \OT1/cmtt/m/n/10 PeerSemanticTag peer = InMemoSharkKB.createInMemoPeerSem
 anticTag[] 
  []
 
-[109]
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 713--713
+[110]
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 745--745
 []  \OT1/cmtt/m/n/10 protected void doExpose(SharkCS interest, KEPConnection ke
 pConnection) {[] 
  []
 
-[110]
-Overfull \hbox (17.24684pt too wide) in paragraph at lines 761--761
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 793--793
 []  \OT1/cmtt/m/n/10 protected void doInsert(Knowledge k, KEPConnection kepConn
 ection) {[] 
  []
 
 [111]
-Overfull \hbox (22.4968pt too wide) in paragraph at lines 777--777
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 809--809
 []  \OT1/cmtt/m/n/10 private void messageReceived(String message, PeerSemanticT
 ag sender)[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 777--777
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 809--809
 []                               \OT1/cmtt/m/n/10 throws SharkException, IOExce
 ption {[] 
  []
 
-
-Overfull \hbox (11.99689pt too wide) in paragraph at lines 823--823
+[112]
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 855--855
 []  \OT1/cmtt/m/n/10 public void sendMessage(String message, PeerSemanticTag re
 cipient)[] 
  []
 
 
-Overfull \hbox (38.24666pt too wide) in paragraph at lines 823--823
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 855--855
 []    \OT1/cmtt/m/n/10 ContextCoordinates cc = InMemoSharkKB.createInMemoContex
 tCoordinates([] 
  []
 
 
-Overfull \hbox (43.49661pt too wide) in paragraph at lines 823--823
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 855--855
 []                              \OT1/cmtt/m/n/10 this.owner, // originator is o
 wner of engine[] 
  []
 
 
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 823--823
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 855--855
 []                              \OT1/cmtt/m/n/10 this.owner, // peer is owner a
 s well[] 
  []
 
 
-Overfull \hbox (53.99652pt too wide) in paragraph at lines 823--823
+Overfull \hbox (53.99652pt too wide) in paragraph at lines 855--855
 []                              \OT1/cmtt/m/n/10 recipient, // want to talk wit
 h connected peer[] 
  []
 
 
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 823--823
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 855--855
 []                              \OT1/cmtt/m/n/10 null, // time and place is irr
 elevant[] 
  []
 
-[112]
-Overfull \hbox (1.49698pt too wide) in paragraph at lines 823--823
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 855--855
 []    \OT1/cmtt/m/n/10 SemanticTag chatTopic = InMemoSharkKB.createInMemoSemant
 icTag([] 
  []
 
-[113]) (C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\se.tex
-[114]
+[113]
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\p
+rofileKP.tex [114]
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 32--32
+[]\OT1/cmtt/m/n/10 PeerSemanticTag alice = aliceKB.getPeerSTSet().createPeerSem
+anticTag([] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 32--32
+[]\OT1/cmtt/m/n/10 ProfileKP aliceKP = new ProfileKP(aliceSE, aliceKB, alicePF,
+ alice);[] 
+ []
+
+
+Overfull \hbox (7.35101pt too wide) in paragraph at lines 34--36
+[]\OT1/cmr/m/n/10 First we cre-ate a \OT1/cmtt/m/n/10 SharkEngine \OT1/cmr/m/n/
+10 that makes up the peer. Then a \OT1/cmtt/m/n/10 KnowledgeBase
+ []
+
+
+Overfull \hbox (30.628pt too wide) in paragraph at lines 34--36
+\OT1/cmtt/m/n/10 KnowledgeBase\OT1/cmr/m/n/10 . Fi-nally we can cre-ate a \OT1/
+cmtt/m/n/10 ProfileFactory \OT1/cmr/m/n/10 with the new \OT1/cmtt/m/n/10 Knowle
+dgeBase
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 61--61
+[]\OT1/cmtt/m/n/10 public void sendAllProfiles(Iterator<PeerSemanticTag> recipi
+ents);[] 
+ []
+
+[115]
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 80--80
+[]\OT1/cmtt/m/n/10 PeerSemanticTag bob = aliceKB.getPeerSTSet().createPeerSeman
+ticTag([] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 80--80
+[]\OT1/cmtt/m/n/10 List<PeerSemanticTag> aliceContactList = list(aliceContacts.
+peerTags());[] 
+ []
+
+
+Overfull \hbox (1.72112pt too wide) in paragraph at lines 84--85
+\OT1/cmtt/m/n/10 sendAllProfiles() \OT1/cmr/m/n/10 func-tion sends all of the p
+ro-files in the users \OT1/cmtt/m/n/10 KnowledgeBase
+ []
+
+
+Overfull \hbox (68.191pt too wide) in paragraph at lines 92--99
+[]\OT1/cmtt/m/n/10 acceptWithoutVerification sendProfiles2UnknownPeer sendMyPro
+fileAutomatically
+ []
+
+
+Overfull \hbox (200.18971pt too wide) in paragraph at lines 92--99
+\OT1/cmtt/m/n/10 ask4ProfilesAutomatically acceptProfileWithDifferentOwner ask4
+ProfilesAutomaticallyOnWiFiDirectConnection
+ []
+
+[116]
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 128--128
+[]\OT1/cmtt/m/n/10 protected void doExpose(SharkCS interest, KEPConnection kepC
+onnection) {[] 
+ []
+
+
+Overfull \hbox (116.99597pt too wide) in paragraph at lines 128--128
+[]    \OT1/cmtt/m/n/10 if (!acceptWithoutVerification && !kepConnection.receive
+dMessageSigned()) {  return;[] 
+ []
+
+[117]
+Overfull \hbox (64.49643pt too wide) in paragraph at lines 158--158
+[]            \OT1/cmtt/m/n/10 ContextCoordinates profileCC = getProfileCC(Shar
+kCS.DIRECTION_IN);[] 
+ []
+
+
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 158--158
+[]                \OT1/cmtt/m/n/10 profiles = pf.getProfiles(this.owner, this.o
+wner).iterator();[] 
+ []
+
+
+Overfull \hbox (13.1554pt too wide) in paragraph at lines 160--162
+\OT1/cmr/m/n/10 rect con-nec-tion are set. If \OT1/cmtt/m/n/10 ask4ProfilesAuto
+maticallyOnWiFiDirectConnection
+ []
+
+
+Overfull \hbox (10.88843pt too wide) in paragraph at lines 160--162
+\OT1/cmr/m/n/10 is \OT1/cmtt/m/n/10 TRUE\OT1/cmr/m/n/10 , Con-textCo-or-di-nate
+s with the pro-file topic and the user's \OT1/cmtt/m/n/10 PeerSemanticTag
+ []
+
+
+Overfull \hbox (95.68333pt too wide) in paragraph at lines 160--162
+\OT1/cmr/m/n/10 the peer we are con-nected to. If the pa-ram-e-ter \OT1/cmtt/m/
+n/10 sendProfileAutomaticallyOnWiFiDirectConnection
+ []
+
+[118]
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 180--180
+[]            \OT1/cmtt/m/n/10 PeerSTSet sender = InMemoSharkKB.createInMemoPee
+rSTSet();[] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 180--180
+[]            \OT1/cmtt/m/n/10 List<PeerSemanticTag> senderList = list(sender.p
+eerTags());[] 
+ []
+
+
+Overfull \hbox (48.74657pt too wide) in paragraph at lines 191--191
+[]\OT1/cmtt/m/n/10 protected void doInsert(Knowledge knowledge, KEPConnection k
+epConnection) {[] 
+ []
+
+
+Overfull \hbox (326.99414pt too wide) in paragraph at lines 225--225
+[]     \OT1/cmtt/m/n/10 if (cc.getTopic().identical(ProfileFactoryImpl.getProfi
+leSemanticTag()) &&  (cc.getOriginator().identical(cc.getPeer())) ||[] 
+ []
+
+[119]
+Overfull \hbox (43.49661pt too wide) in paragraph at lines 225--225
+[]                 \OT1/cmtt/m/n/10 profileCP.getContextCoordinates().getTopic(
+).getProperty([] 
+ []
+
+
+Overfull \hbox (27.74675pt too wide) in paragraph at lines 225--225
+[]                    \OT1/cmtt/m/n/10 pf.removeProfile(cc.getOriginator(), cc.
+getPeer());[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 242--242
+[]\OT1/cmtt/m/n/10 List<PeerSemanticTag> recipientsList = list(recipients.peerT
+ags());[] 
+ []
+
+) [120])
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\s
+e.tex [121] [122
+
+]
 Chapter 12.
 File: sharkComponents.eps Graphic file (type eps)
-<sharkComponents.eps> [115
+<sharkComponents.eps> [123] [124] [125]
+Overfull \hbox (6.66653pt too wide) in paragraph at lines 96--97
+[]\OT1/cmr/m/n/10 This method it-er-ates over all knowl-edge ports and per-form
+s an \OT1/cmtt/m/n/10 publishKP(kp)
+ []
 
-] [116] [117]
-Overfull \hbox (6.74693pt too wide) in paragraph at lines 122--122
+[126] [127]
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 187--187
 []\OT1/cmtt/m/n/10 // returns background knowledge of knowledge that wasn't han
 dled by[] 
  []
 
-[118] [119] [120] [121]
-Overfull \hbox (0.30605pt too wide) in paragraph at lines 235--237
+[128] [129] [130]
+Overfull \hbox (0.30605pt too wide) in paragraph at lines 300--302
 []\OT1/cmr/m/n/10 Use com-mu-ni-ca-tion chan-nel which de-liv-ered re-ceived me
 s-sage in first place. 
  []
 
-[122] [123] [124]
-Overfull \hbox (7.65738pt too wide) in paragraph at lines 362--363
+[131] [132] [133]
+Overfull \hbox (7.65738pt too wide) in paragraph at lines 427--428
 \OT1/cmr/m/n/10 abstract classes de-cide just that. Thus, the J2SEEngine de-riv
 es from \OT1/cmtt/m/n/10 SharkEngine
  []
 
-) (C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\security.tex
-[125] [126
+)
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\s
+ecurity.tex [134]
+Chapter 13.
+[135
 
 ]
-Chapter 13.
-[127]
 Overfull \hbox (17.24684pt too wide) in paragraph at lines 63--63
 []\OT1/cmtt/m/n/10 SharkPublicKeyStorage ks = new FSSharkKBPublicKeyStorage(bas
 eKB, se);[] 
  []
 
-[128] [129]
+[136] [137]
 Overfull \hbox (6.74693pt too wide) in paragraph at lines 119--119
 []   \OT1/cmtt/m/n/10 SharkEngine.SecurityLevel.NO, // signing level (NO in thi
 s case)[] 
  []
 
-) (C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\sharkkbImpl.tex
-[130]
+)
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\s
+harkkbImpl.tex [138]
 Chapter 14.
-) [131
+) [139
 
-]
-(C:\user\thsc\_aktuell\Shark\developerGuide\workingEdition\tutorials.aux)
+] [140]
+(C:\user\thsc\_aktuell\_GROSSPROJEKTE\Shark\DeveloperGuide\trunk\latexSources\t
+utorials.aux) )
+(\end occurred inside a group at level 2)
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- )
-(\end occurred inside a group at level 1)
-
-### simple group (level 1) entered at line 194 ({)
+### simple group (level 2) entered at line 217 ({)
+### simple group (level 1) entered at line 215 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 867 strings out of 493922
- 13716 string characters out of 3144903
+ 871 strings out of 493922
+ 14638 string characters out of 3144903
  64103 words of memory out of 3000000
- 4124 multiletter control sequences out of 15000+200000
+ 4125 multiletter control sequences out of 15000+200000
  10748 words of font info for 38 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 25i,8n,21p,1286b,310s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 25i,8n,21p,1286b,316s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on tutorials.dvi (131 pages, 342856 bytes).
+Output written on tutorials.dvi (140 pages, 375072 bytes).

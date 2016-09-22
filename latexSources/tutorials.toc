@@ -73,60 +73,67 @@
 \contentsline {subsubsection}{Reply}{83}
 \contentsline {subsection}{\numberline {10.1.2}Physical and logical sender}{84}
 \contentsline {subsection}{\numberline {10.1.3}Sending initial messages}{86}
-\contentsline {subsection}{\numberline {10.1.4}Creating a knowledge port}{86}
-\contentsline {subsection}{\numberline {10.1.5}KP Listener}{86}
+\contentsline {subsection}{\numberline {10.1.4}Creating a knowledge port}{87}
+\contentsline {subsection}{\numberline {10.1.5}KP Listener}{87}
 \contentsline {subsection}{\numberline {10.1.6}Other methods}{88}
 \contentsline {section}{\numberline {10.2}Exercises}{89}
 \contentsline {chapter}{\numberline {11}Predefined Knowledge Ports}{91}
 \contentsline {section}{\numberline {11.1}StandardKP}{91}
 \contentsline {subsection}{\numberline {11.1.1}Alice and Bob basic scenario}{92}
 \contentsline {subsubsection}{Alice}{92}
-\contentsline {subsubsection}{Bob}{94}
-\contentsline {subsection}{\numberline {11.1.2}doExpose}{95}
+\contentsline {subsubsection}{Bob}{95}
+\contentsline {subsection}{\numberline {11.1.2}doExpose}{96}
 \contentsline {paragraph}{Interest arrives}{96}
 \contentsline {paragraph}{Revealing check}{96}
-\contentsline {paragraph}{Effective Interest}{96}
-\contentsline {paragraph}{Mutual Interest}{97}
+\contentsline {paragraph}{Effective Interest}{97}
+\contentsline {paragraph}{Mutual Interest}{98}
 \contentsline {paragraph}{Receiving Mutual Interest}{98}
 \contentsline {paragraph}{Sending Mutual Interest}{98}
-\contentsline {subsubsection}{In simple words...}{98}
-\contentsline {subsection}{\numberline {11.1.3}constructor and parameters}{98}
+\contentsline {subsubsection}{In simple words...}{99}
+\contentsline {subsection}{\numberline {11.1.3}constructor and parameters}{99}
 \contentsline {subsection}{\numberline {11.1.4}doInsert}{100}
-\contentsline {subsection}{\numberline {11.1.5}Summary}{101}
-\contentsline {section}{\numberline {11.2}HubKP}{101}
-\contentsline {subsection}{\numberline {11.2.1}Usage}{102}
-\contentsline {subsection}{\numberline {11.2.2}Implementation}{103}
-\contentsline {section}{\numberline {11.3}ChatKP}{105}
-\contentsline {subsection}{\numberline {11.3.1}Implementation}{106}
-\contentsline {subsection}{\numberline {11.3.2}Alice}{106}
+\contentsline {subsection}{\numberline {11.1.5}Summary}{102}
+\contentsline {section}{\numberline {11.2}HubKP}{102}
+\contentsline {subsection}{\numberline {11.2.1}Usage}{103}
+\contentsline {subsection}{\numberline {11.2.2}Implementation}{104}
+\contentsline {section}{\numberline {11.3}ChatKP}{106}
+\contentsline {subsection}{\numberline {11.3.1}Implementation}{107}
+\contentsline {subsection}{\numberline {11.3.2}Alice}{107}
 \contentsline {subsection}{\numberline {11.3.3}Bob}{108}
-\contentsline {subsection}{\numberline {11.3.4}ChatPeerTCP}{109}
-\contentsline {subsection}{\numberline {11.3.5}ChatKP}{110}
-\contentsline {section}{\numberline {11.4}Exercises}{113}
-\contentsline {chapter}{\numberline {12}Shark Engine}{115}
-\contentsline {section}{\numberline {12.1}Architectur}{115}
-\contentsline {subsection}{\numberline {12.1.1}Stubs}{115}
-\contentsline {subsection}{\numberline {12.1.2}SharkEngine}{115}
-\contentsline {subsection}{\numberline {12.1.3}Knowledge Port}{116}
-\contentsline {subsection}{\numberline {12.1.4}Message2StreamStub}{116}
-\contentsline {section}{\numberline {12.2}Knowledge Port Management}{117}
-\contentsline {subsection}{\numberline {12.2.1}Publishing}{117}
-\contentsline {section}{\numberline {12.3}KEP communication}{118}
-\contentsline {subsection}{\numberline {12.3.1}Communication History}{118}
-\contentsline {subsection}{\numberline {12.3.2}Silent period and empty knowledge}{119}
-\contentsline {subsection}{\numberline {12.3.3}Some other protocol methods}{120}
-\contentsline {subsection}{\numberline {12.3.4}Connection timeouts}{121}
-\contentsline {subsection}{\numberline {12.3.5}Protocol priorities}{121}
-\contentsline {subsection}{\numberline {12.3.6}Starting a KEP conversion}{122}
-\contentsline {subsubsection}{Information push with interest replay}{122}
-\contentsline {subsubsection}{Spontaneous networks}{123}
-\contentsline {section}{\numberline {12.4}Black- and white lists}{124}
-\contentsline {section}{\numberline {12.5}Platform specific engines}{125}
-\contentsline {chapter}{\numberline {13}Security}{127}
-\contentsline {section}{\numberline {13.1}Signing}{127}
-\contentsline {section}{\numberline {13.2}Encrypting}{127}
-\contentsline {section}{\numberline {13.3}Shark Key Store}{128}
-\contentsline {section}{\numberline {13.4}Setting up security policy}{129}
-\contentsline {subsection}{\numberline {13.4.1}Reply policies}{129}
-\contentsline {section}{\numberline {13.5}Shark Public Key Infrastructure}{130}
-\contentsline {chapter}{\numberline {14}SharkKB implementations}{131}
+\contentsline {subsection}{\numberline {11.3.4}ChatPeerTCP}{110}
+\contentsline {subsection}{\numberline {11.3.5}ChatKP}{111}
+\contentsline {section}{\numberline {11.4}ProfileKP}{114}
+\contentsline {subsection}{\numberline {11.4.1}Usage}{114}
+\contentsline {subsection}{\numberline {11.4.2}Configuration}{116}
+\contentsline {subsection}{\numberline {11.4.3}Implementation}{117}
+\contentsline {subsubsection}{doExpose}{117}
+\contentsline {subsubsection}{doInsert}{119}
+\contentsline {section}{\numberline {11.5}Exercises}{121}
+\contentsline {chapter}{\numberline {12}Shark Engine}{123}
+\contentsline {section}{\numberline {12.1}Architectur}{123}
+\contentsline {subsection}{\numberline {12.1.1}Stubs}{123}
+\contentsline {subsection}{\numberline {12.1.2}SharkEngine}{123}
+\contentsline {subsection}{\numberline {12.1.3}Knowledge Port}{124}
+\contentsline {subsection}{\numberline {12.1.4}Message2StreamStub}{124}
+\contentsline {section}{\numberline {12.2}Knowledge Port Management}{125}
+\contentsline {subsection}{\numberline {12.2.1}Publishing}{125}
+\contentsline {subsection}{\numberline {12.2.2}Persistence}{126}
+\contentsline {section}{\numberline {12.3}KEP communication}{127}
+\contentsline {subsection}{\numberline {12.3.1}Communication History}{127}
+\contentsline {subsection}{\numberline {12.3.2}Silent period and empty knowledge}{128}
+\contentsline {subsection}{\numberline {12.3.3}Some other protocol methods}{129}
+\contentsline {subsection}{\numberline {12.3.4}Connection timeouts}{130}
+\contentsline {subsection}{\numberline {12.3.5}Protocol priorities}{130}
+\contentsline {subsection}{\numberline {12.3.6}Starting a KEP conversion}{131}
+\contentsline {subsubsection}{Information push with interest replay}{131}
+\contentsline {subsubsection}{Spontaneous networks}{132}
+\contentsline {section}{\numberline {12.4}Black- and white lists}{133}
+\contentsline {section}{\numberline {12.5}Platform specific engines}{134}
+\contentsline {chapter}{\numberline {13}Security}{135}
+\contentsline {section}{\numberline {13.1}Signing}{135}
+\contentsline {section}{\numberline {13.2}Encrypting}{135}
+\contentsline {section}{\numberline {13.3}Shark Key Store}{136}
+\contentsline {section}{\numberline {13.4}Setting up security policy}{137}
+\contentsline {subsection}{\numberline {13.4.1}Reply policies}{137}
+\contentsline {section}{\numberline {13.5}Shark Public Key Infrastructure}{138}
+\contentsline {chapter}{\numberline {14}SharkKB implementations}{139}

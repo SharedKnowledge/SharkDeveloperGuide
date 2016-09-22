@@ -95,6 +95,71 @@ aliceSE.publishAllKP();
 
 This method iterates over all knowledge ports and performs an {\tt publishKP(kp)} on each of them.
 
+\subsection{Persistence}
+We have learned how ports can be created during run time of our application. 
+Shark applications can be stopped and restarted. Ports must be restarted as
+well. Version 3 of that framework offers help to make port persistent.
+
+The following code illustrates how a port can be made persistent with
+the Shark Engine.
+
+\begin{verbatim}
+SharkKB configKB = ... // a persistent knowledge base
+SharkEngine se = new J2SEAndroidSharkEngine(configKB);
+ASIPPort port = ... // an ASIP port
+
+se.persistPort(port);
+\end{verbatim}
+
+A knowledge base is created which becomes parameter of engine constructor in
+the second line. Third line illustrates creation of an arbitrary port. The last
+line makes the trick and persists that port.
+
+Nothing is for free unfortunately. Developers have to write some code to support
+port persistence. The general idea of port persistence has to be understood.
+But that's no rocket science - it's actually a design pattern - the memento pattern.
+
+Here comes the idea: Only one component in Shark can make information persistent.
+It's the knowledge base. Our {\tt configKB} is used to store all information which
+are required to restart a port.
+
+{\bf Rule 1: Persistence requires to construct a Shark Engine with a 
+Shark KB as parameter.} That knowledge base will store internal information.
+It is highly recommended to use a separate knowledge base for that purpose.
+Knowledge bases don't have noteworthy overhead. An additional {\it config base}
+will not harm applications.
+
+What happens when calling {\tt persist} in the last line?
+The current status of the port is retrieved and stored with
+the {\it config knowledge base}. That status can later be used
+to re-instantiate that port.
+
+How can the engine get that status in the first place?
+It calls a method on {\tt ASIPPort}, namely {\tt byte[] getMemento()}.
+
+The is a default implementation which return nothing.
+{\bf Rule 2: Implement (overwrite) the getMemento() method on your 
+port and get persistence support as award.}
+
+Persistent ports are re-instantiated after restart. 
+
+\begin{verbatim}
+SharkKB configKB = ... // a persistent knowledge base
+SharkEngine se = new J2SEAndroidSharkEngine(configKB);
+
+// ports are re-instantiated here.
+\end{verbatim}
+
+The code is nearly the same but it's shorter. Our {\tt configKB}
+is created again and taken by the engine. The engine extracts
+all the memento of former ports when created in the second line.
+All ports are re-instantiated during that process.
+
+Developers have to support that process as well. 
+
+[HIER WEITERMACHEN... METHODEN FUER DAS LOESCHEN DER PORTS SCHON
+IMPLEMENTIERT???] 
+
 \section{KEP communication}
 \label{ref:sec:KEP}
 We have already seen that {\tt KEPStub} orchestrates communication and hides protocol specifics and security algorithms from developers. {\tt KEPStub} provides several other, maybe, useful methods which are discussed in this chapter. 
